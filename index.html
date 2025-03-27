@@ -3,54 +3,244 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Skills Showcase</title>
+  <title>Aaron Skills Portfolio</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f7f7f7;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+    }
+    header {
+      background: #007acc;
+      color: #fff;
+      padding: 1.5em 0;
+      text-align: center;
+    }
+    header a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    nav {
+      background: #333;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #fff;
+      padding: 1em;
+      text-decoration: none;
+      margin: 0.2em;
+    }
+    nav a:hover {
+      background: #444;
     }
     .container {
-      max-width: 800px;
-      margin: 40px auto;
-      background-color: #fff;
-      padding: 20px 40px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      max-width: 960px;
+      margin: 2em auto;
+      padding: 0 1em;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    h1 {
-      text-align: center;
-      color: #333;
+    section {
+      padding: 1.5em;
+      border-bottom: 1px solid #ddd;
+    }
+    section:last-child {
+      border-bottom: none;
+    }
+    h2 {
+      color: #007acc;
+      margin-top: 0;
+      border-bottom: 2px solid #007acc;
+      padding-bottom: 0.5em;
     }
     ul {
       list-style: none;
       padding: 0;
     }
-    li {
-      padding: 10px;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #ddd;
+    ul li {
+      margin-bottom: 0.75em;
     }
-    li:last-child {
-      border-bottom: none;
+    article {
+      margin: 1em 0;
+      padding: 1em;
+      background: #eef;
+      border-left: 4px solid #007acc;
     }
-    strong {
-      color: #007acc;
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1em 0;
+    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+      nav a {
+        padding: 0.75em;
+      }
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Aaron Skills Portfolio</h1>
+    <p>Showcasing my skills, certifications, repositories, prototypes, and articles</p>
+    <p>
+      <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank">
+        Visit my LinkedIn Profile
+      </a>
+    </p>
+  </header>
+
+  <nav>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#repositories">Repositories</a>
+    <a href="#articles">Articles & Newsletters</a>
+    <a href="#prototypes">Prototypes</a>
+  </nav>
+
   <div class="container">
-    <h1>My Skills</h1>
-    <ul>
-      <li><strong>Python Development:</strong> 8+ years of experience</li>
-      <li><strong>Generative AI & LLMs:</strong> GPT-4, Claude, LangChain</li>
-      <li><strong>Retrieval-Augmented Generation (RAG):</strong> Proven expertise in integrating RAG systems</li>
-      <li><strong>Vector Databases:</strong> Experience with Pinecone and ChromaDB</li>
-      <li><strong>AI-Driven Chatbots & Automation:</strong> Design and deployment of smart chatbot solutions</li>
-      <li><strong>Full Stack & DevOps:</strong> Cloud (AWS, Azure), Flask, Django, FastAPI, React, JavaScript, Docker, Kubernetes, CI/CD</li>
-    </ul>
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li><strong>Python Development:</strong> 8+ years of experience</li>
+        <li><strong>Generative AI & LLMs:</strong> GPT-4, Claude, LangChain</li>
+        <li><strong>Retrieval-Augmented Generation (RAG):</strong> Expertise in integrating RAG systems</li>
+        <li><strong>Vector Databases:</strong> Experience with Pinecone and ChromaDB</li>
+        <li><strong>AI-Driven Chatbots & Automation:</strong> Design and deployment of advanced chatbot solutions</li>
+        <li><strong>Full Stack & DevOps:</strong> Cloud (AWS, Azure), Flask, Django, FastAPI, React, JavaScript, Docker, Kubernetes, CI/CD</li>
+      </ul>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+      <h2>Certifications</h2>
+      <ul>
+        <li>Machine Learning Specialization, Stanford (120 hrs)</li>
+        <li>LLMOps Specialization, Duke (80 hrs)</li>
+        <li>Generative AI, Google Cloud (60 hrs)</li>
+        <li>Test Automation & API Testing (50 hrs)</li>
+      </ul>
+    </section>
+
+    <!-- Repositories Section -->
+    <section id="repositories">
+      <h2>Repositories & Projects</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/cordz-del/Amie-SEL-Chatbot" target="_blank">
+            Amie SEL Chatbot
+          </a>
+          &mdash; AI-driven chatbot implementation.
+        </li>
+        <li>
+          <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">
+            SecureChatRAG
+          </a>
+          &mdash; Secure retrieval-augmented generation system.
+        </li>
+        <li>
+          <a href="https://github.com/cordz-del/Automation-Workflow-Tools" target="_blank">
+            Automation Workflow Tools
+          </a>
+          &mdash; Tools and scripts to automate various workflows.
+        </li>
+        <!-- You can add more repositories as needed -->
+      </ul>
+    </section>
+
+    <!-- Articles & Newsletters Section -->
+    <section id="articles">
+      <h2>Articles & Newsletters</h2>
+      <ul>
+        <li>
+          <a href="#article1">Business Transformation with AI</a>
+        </li>
+        <li>
+          <a href="#article2">LLMs in Automation</a>
+        </li>
+        <li>
+          <a href="#article3">Building Chatbots without Backend</a>
+        </li>
+        <li>
+          <a href="#article4">RAG System Implementations & Advanced LLM Efficiency</a>
+        </li>
+      </ul>
+
+      <article id="article1">
+        <h3>Business Transformation with AI</h3>
+        <p>
+          This article explores how AI is revolutionizing business operations, transforming legacy systems, and driving innovation through automation and advanced analytics.
+        </p>
+      </article>
+      <article id="article2">
+        <h3>LLMs in Automation</h3>
+        <p>
+          A deep dive into the integration of large language models for streamlining and automating processes across industries.
+        </p>
+      </article>
+      <article id="article3">
+        <h3>Building Chatbots without Backend</h3>
+        <p>
+          Discover how to build efficient and responsive chatbots with minimal backend infrastructure while ensuring scalability and security.
+        </p>
+      </article>
+      <article id="article4">
+        <h3>RAG System Implementations & Advanced LLM Efficiency</h3>
+        <p>
+          Learn the best practices for implementing retrieval-augmented generation systems and optimizing large language models for enhanced performance.
+        </p>
+      </article>
+    </section>
+
+    <!-- Prototypes Section -->
+    <section id="prototypes">
+      <h2>Prototype Demonstrations</h2>
+      <p>The following prototypes reflect my core expertise and real-world implementations:</p>
+      <ul>
+        <li>
+          <strong>Python Development Showcase:</strong> A modular Python project with robust testing.
+        </li>
+        <li>
+          <strong>Generative AI & LLMs Demo:</strong> A demo integrating GPT-4/LLMs with LangChain for prompt-based interactions.
+        </li>
+        <li>
+          <strong>Retrieval-Augmented Generation Example:</strong> Demonstrates combining retrieval from a dataset with generative AI responses.
+        </li>
+        <li>
+          <strong>Vector Database Integration:</strong> A sample project connecting to Pinecone or ChromaDB for similarity searches.
+        </li>
+        <li>
+          <strong>AI-Driven Chatbot & Automation:</strong> An interactive chatbot prototype automating conversational workflows.
+        </li>
+        <li>
+          <strong>Cloud Deployment Examples:</strong> Scripts for deploying applications on AWS and Azure.
+        </li>
+        <li>
+          <strong>Python Backend Frameworks:</strong> Minimal examples using Flask, Django, and FastAPI.
+        </li>
+        <li>
+          <strong>Frontend with React & JavaScript Demo:</strong> A simple React app interfacing with backend APIs.
+        </li>
+        <li>
+          <strong>DevOps: Docker, Kubernetes, CI/CD:</strong> Containerization and deployment pipelines using Docker, Kubernetes, and GitHub Actions.
+        </li>
+      </ul>
+      <p>
+        Detailed code for each prototype is available in the corresponding GitHub repositories linked above.
+      </p>
+    </section>
   </div>
+
+  <footer>
+    <p>&copy; 2025 Aaron Skills Portfolio. All rights reserved.</p>
+  </footer>
 </body>
 </html>
