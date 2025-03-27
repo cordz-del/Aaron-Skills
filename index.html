@@ -5,18 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aaron Skills Portfolio</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    /* Reset and base styling */
+    body, h1, h2, h3, p, ul, li, a {
       margin: 0;
       padding: 0;
-      line-height: 1.6;
+      font-family: Arial, sans-serif;
+    }
+    body {
       background-color: #f4f4f4;
+      line-height: 1.6;
     }
     header {
-      background: #007acc;
+      background-color: #007acc;
       color: #fff;
-      padding: 1.5em 0;
       text-align: center;
+      padding: 1.5em 0;
     }
     header a {
       color: #fff;
@@ -40,29 +43,35 @@
     .container {
       max-width: 960px;
       margin: 2em auto;
-      padding: 0 1em;
       background: #fff;
+      padding: 20px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     section {
-      padding: 1.5em;
-      border-bottom: 1px solid #ddd;
-    }
-    section:last-child {
-      border-bottom: none;
+      margin-bottom: 2em;
     }
     h2 {
       color: #007acc;
-      margin-top: 0;
       border-bottom: 2px solid #007acc;
       padding-bottom: 0.5em;
+      margin-bottom: 1em;
     }
     ul {
       list-style: none;
-      padding: 0;
+      margin-bottom: 1em;
     }
-    ul li {
+    li {
       margin-bottom: 0.75em;
+    }
+    .prototype {
+      margin-bottom: 1.5em;
+    }
+    .prototype a {
+      text-decoration: none;
+      color: #007acc;
+    }
+    .prototype a:hover {
+      text-decoration: underline;
     }
     article {
       margin: 1em 0;
@@ -138,21 +147,20 @@
           <a href="https://github.com/cordz-del/Amie-SEL-Chatbot" target="_blank">
             Amie SEL Chatbot
           </a>
-          &mdash; AI-driven chatbot implementation.
+          &mdash; An AI-powered chatbot leveraging generative LLMs.
         </li>
         <li>
           <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">
             SecureChatRAG
           </a>
-          &mdash; Secure retrieval-augmented generation system.
+          &mdash; A secure retrieval-augmented generation system.
         </li>
         <li>
           <a href="https://github.com/cordz-del/Automation-Workflow-Tools" target="_blank">
             Automation Workflow Tools
           </a>
-          &mdash; Tools and scripts to automate various workflows.
+          &mdash; Tools and scripts to automate business processes.
         </li>
-        <!-- You can add more repositories as needed -->
       </ul>
     </section>
 
@@ -202,40 +210,40 @@
 
     <!-- Prototypes Section -->
     <section id="prototypes">
-      <h2>Prototype Demonstrations</h2>
-      <p>The following prototypes reflect my core expertise and real-world implementations:</p>
-      <ul>
-        <li>
-          <strong>Python Development Showcase:</strong> A modular Python project with robust testing.
-        </li>
-        <li>
-          <strong>Generative AI & LLMs Demo:</strong> A demo integrating GPT-4/LLMs with LangChain for prompt-based interactions.
-        </li>
-        <li>
-          <strong>Retrieval-Augmented Generation Example:</strong> Demonstrates combining retrieval from a dataset with generative AI responses.
-        </li>
-        <li>
-          <strong>Vector Database Integration:</strong> A sample project connecting to Pinecone or ChromaDB for similarity searches.
-        </li>
-        <li>
-          <strong>AI-Driven Chatbot & Automation:</strong> An interactive chatbot prototype automating conversational workflows.
-        </li>
-        <li>
-          <strong>Cloud Deployment Examples:</strong> Scripts for deploying applications on AWS and Azure.
-        </li>
-        <li>
-          <strong>Python Backend Frameworks:</strong> Minimal examples using Flask, Django, and FastAPI.
-        </li>
-        <li>
-          <strong>Frontend with React & JavaScript Demo:</strong> A simple React app interfacing with backend APIs.
-        </li>
-        <li>
-          <strong>DevOps: Docker, Kubernetes, CI/CD:</strong> Containerization and deployment pipelines using Docker, Kubernetes, and GitHub Actions.
-        </li>
-      </ul>
-      <p>
-        Detailed code for each prototype is available in the corresponding GitHub repositories linked above.
-      </p>
+      <h2>Prototype Demonstrations from My Repositories</h2>
+      <div class="prototype">
+        <h3>
+          <a href="https://github.com/cordz-del/Amie-SEL-Chatbot" target="_blank">
+            Amie SEL Chatbot
+          </a>
+        </h3>
+        <p>
+          An AI-powered chatbot leveraging generative LLMs for interactive, real-time conversation. This project demonstrates my expertise in natural language processing, secure communication, and chatbot development.
+        </p>
+      </div>
+
+      <div class="prototype">
+        <h3>
+          <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">
+            SecureChatRAG
+          </a>
+        </h3>
+        <p>
+          A secure retrieval-augmented generation system integrating vector databases with LLMs. This project highlights my advanced skills in data retrieval, security, and dynamic AI response generation.
+        </p>
+      </div>
+
+      <div class="prototype">
+        <h3>
+          <a href="https://github.com/cordz-del/Automation-Workflow-Tools" target="_blank">
+            Automation Workflow Tools
+          </a>
+        </h3>
+        <p>
+          A comprehensive suite of automation scripts and tools designed to streamline business processes, showcasing my abilities in automation, DevOps, and effective process management.
+        </p>
+      </div>
+      <!-- Add additional prototype links here as needed -->
     </section>
   </div>
 
