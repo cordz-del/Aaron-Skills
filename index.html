@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aaron Skills Portfolio</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>Aaron's Portfolio</title>
+  <!-- Google Fonts: Roboto for body and Playfair Display for the quote -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     /* Default (Light) Theme Variables */
     :root {
@@ -23,11 +23,11 @@
       --secondary-color: #222;
       --background-color: #121212;
       --white: #f4f4f4;
-      --text-color: #bbb; /* Darker text for dark mode */
+      --text-color: #bbb; /* Darker, less glaring text */
       --accent-bg: #1a1a1a;
       --bubble-bg: #1e1e1e;
     }
-    /* Background Pattern for Aesthetic Code-Like Effect */
+    /* Background Pattern for a subtle code-like effect */
     body {
       font-family: 'Roboto', sans-serif;
       background-color: var(--background-color);
@@ -56,11 +56,17 @@
       position: relative;
     }
     header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.8rem;
+      margin-bottom: 0.3rem;
     }
-    header p {
-      margin-bottom: 0.5rem;
+    /* Quote styled with a different font & bold emphasis */
+    .quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .quote strong {
+      font-weight: bold;
     }
     /* Dark Mode Toggle Button */
     #theme-toggle {
@@ -119,6 +125,7 @@
     ul {
       list-style: none;
       margin-bottom: 1rem;
+      padding-left: 0;
     }
     li {
       margin-bottom: 0.75rem;
@@ -139,17 +146,7 @@
       border-left: 4px solid var(--primary-color);
       border-radius: 4px;
     }
-    /* Newsletter Items */
-    .newsletter-item {
-      margin-bottom: 1rem;
-    }
-    .newsletter-item a {
-      transition: text-decoration 0.3s ease;
-    }
-    .newsletter-item a:hover {
-      text-decoration: underline;
-    }
-    /* Repositories Filtering UI */
+    /* Filter Controls for Tabs & Search */
     .filter-controls {
       margin-bottom: 1rem;
       display: flex;
@@ -174,9 +171,6 @@
       border-radius: 4px;
       flex: 1;
     }
-    .repository-item {
-      margin-bottom: 1rem;
-    }
     /* Footer */
     footer {
       background-color: var(--secondary-color);
@@ -196,27 +190,32 @@
 </head>
 <body data-theme="light">
   <header>
-    <h1>Aaron Skills Portfolio</h1>
-    <p>Showcasing my skills, certifications, repositories, newsletters, and articles</p>
+    <h1>Aaron's Portfolio</h1>
+    <p class="quote">"Every lesson learned is a stepping stone to greatness. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> light the way."</p>
     <p>
       <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank">Visit my LinkedIn Profile</a>
     </p>
-    <!-- Dark Mode Toggle Button -->
     <button id="theme-toggle">Toggle Dark Mode</button>
   </header>
   <nav>
+    <a href="#biography">Biography</a>
     <a href="#ai-agent">AI Agent</a>
-    <a href="#newsletters">LinkedIn Newsletters &amp; Articles</a>
+    <a href="#newsletters">Newsletters &amp; Articles</a>
     <a href="#skills">Skills</a>
     <a href="#certifications">Certifications</a>
     <a href="#repositories">Repositories</a>
   </nav>
   <div class="container">
-    <!-- AI Agent Section at the Top -->
-    <div class="bubble" id="ai-agent">
+    <!-- Biography Section -->
+    <div class="bubble" id="biography">
+      <h2>Biography</h2>
+      <p>Hello! I'm Aaron, a passionate developer with over 8 years of experience in Python, AI, and full-stack solutions. I believe in lifelong learning and constantly reaching for the stars. My mission is to create innovative solutions that make a real difference.</p>
+    </div>
+    <!-- AI Agent Section (Interactive Design) -->
+    <div class="bubble" id="ai-agent" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: var(--white);">
       <h2>Try My AI Agent</h2>
-      <p>Interact with my AI agent to explore its capabilities.</p>
-      <div style="width:100%; height:800px">
+      <p>Experience cutting-edge AI in real time! Interact with my agent to see its powerful capabilities.</p>
+      <div style="width:100%; height:800px; border: 3px solid var(--white); border-radius: 10px; overflow: hidden;">
         <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b"
                 frameborder="0" 
                 allowtransparency="true" 
@@ -224,134 +223,152 @@
         </iframe>
       </div>
     </div>
-    <!-- LinkedIn Newsletters & Articles Section -->
+    <!-- LinkedIn Newsletters & Articles Section with Tabs & Search -->
     <div class="bubble" id="newsletters">
       <h2>LinkedIn Newsletters &amp; Articles</h2>
-      <ul>
-        <li class="newsletter-item">
+      <div class="filter-controls" id="newsletters-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="newsletter">Newsletters</button>
+        <button data-filter="article">Articles</button>
+        <input type="text" id="newsletters-search" placeholder="Search newsletters/articles..." />
+      </div>
+      <ul id="newsletters-list">
+        <li class="newsletter-item" data-category="newsletter">
           <strong>AI Chatbot Insights Newsletter</strong><br>
           Published weekly | 340 subscribers<br>
-          Stay updated with the latest trends, insights, and developments in AI chatbot and agent technology.
+          Stay updated with the latest trends and insights.
         </li>
-        <li class="newsletter-item">
+        <li class="newsletter-item" data-category="article">
           <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
             Three AI Mega-Trends Shaping Technology, Healthcare, and Society (2025–2035)
           </a> — 38 min read
         </li>
-        <li class="newsletter-item">
+        <li class="newsletter-item" data-category="article">
           <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
             Unlocking the Power of AI: Insights into ML, Python Automation, and RAG
           </a> — 2 min read
         </li>
-        <li class="newsletter-item">
+        <li class="newsletter-item" data-category="article">
           <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
-            How AI is Revolutionizing Cancer Treatment: A Deep Dive into the Technology Transforming Oncology
+            How AI is Revolutionizing Cancer Treatment: A Deep Dive into Transformative Tech
           </a> — 20 min read
         </li>
-        <li class="newsletter-item">
+        <li class="newsletter-item" data-category="article">
           <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
             Comprehensive Guide to ChromaDB for Beginners and Advanced Users
           </a> — 2 min read
         </li>
-        <li class="newsletter-item">
+        <li class="newsletter-item" data-category="article">
           <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
             Mastering Pinecone: A Comprehensive Guide for New and Advanced Users
           </a> — 2 min read
         </li>
       </ul>
-      <p>View more on my <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">LinkedIn Newsletters</a>.</p>
     </div>
-    <!-- Skills Section -->
+    <!-- Skills Section with Tabs & Search -->
     <div class="bubble" id="skills">
       <h2>Skills</h2>
-      <ul>
-        <li><strong>Python Development:</strong> 8+ years of experience</li>
-        <li><strong>Generative AI &amp; LLMs:</strong> GPT-4, Claude, LangChain</li>
-        <li><strong>Retrieval-Augmented Generation (RAG):</strong> Expertise in integrating RAG systems</li>
-        <li><strong>Vector Databases:</strong> Experience with Pinecone and ChromaDB</li>
-        <li><strong>AI-Driven Chatbots &amp; Automation:</strong> Design and deployment of advanced chatbot solutions</li>
-        <li><strong>Full Stack &amp; DevOps:</strong> Cloud (AWS, Azure), Flask, Django, FastAPI, React, JavaScript, Docker, Kubernetes, CI/CD</li>
+      <div class="filter-controls" id="skills-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="programming">Programming</button>
+        <button data-filter="ai">AI</button>
+        <button data-filter="automation">Automation</button>
+        <button data-filter="fullstack">Full-Stack</button>
+        <input type="text" id="skills-search" placeholder="Search skills..." />
+      </div>
+      <ul id="skills-list">
+        <li data-category="programming"><strong>Python Development:</strong> 8+ years of experience</li>
+        <li data-category="ai"><strong>Generative AI &amp; LLMs:</strong> GPT-4, Claude, LangChain</li>
+        <li data-category="ai"><strong>Retrieval-Augmented Generation (RAG):</strong> Expertise in integrating RAG systems</li>
+        <li data-category="ai"><strong>Vector Databases:</strong> Experience with Pinecone and ChromaDB</li>
+        <li data-category="automation"><strong>AI-Driven Chatbots &amp; Automation:</strong> Advanced chatbot solutions</li>
+        <li data-category="fullstack"><strong>Full Stack &amp; DevOps:</strong> AWS, Azure, Flask, Django, React, Docker, Kubernetes, CI/CD</li>
       </ul>
     </div>
-    <!-- Certifications Section -->
+    <!-- Certifications Section with Search -->
     <div class="bubble" id="certifications">
       <h2>Certifications</h2>
-      <ul>
+      <input type="text" id="certifications-search" placeholder="Search certifications..." />
+      <ul id="certifications-list">
         <li>Machine Learning Specialization, Stanford (120 hrs)</li>
         <li>LLMOps Specialization, Duke (80 hrs)</li>
         <li>Generative AI, Google Cloud (60 hrs)</li>
         <li>Test Automation &amp; API Testing (50 hrs)</li>
       </ul>
     </div>
-    <!-- Repositories Section with Interactive Filtering -->
+    <!-- Repositories & Projects Section with Tabs & Search -->
     <div class="bubble" id="repositories">
       <h2>Repositories &amp; Projects</h2>
-      <!-- Filter Controls -->
-      <div class="filter-controls">
+      <div class="filter-controls" id="repos-tabs">
         <button data-filter="all" class="active">All</button>
         <button data-filter="chatbots">Chatbots</button>
         <button data-filter="automation">Automation</button>
         <button data-filter="ai">AI</button>
         <button data-filter="fullstack">Full-Stack</button>
-        <input type="text" id="repo-search" placeholder="Search projects..." />
+        <input type="text" id="repos-search" placeholder="Search projects..." />
       </div>
-      <!-- Repository Items -->
       <div id="repo-list">
         <div class="repository-item" data-category="chatbots ai">
-          <a href="https://github.com/cordz-del/Amie-SEL-Chatbot" target="_blank">Amie SEL Chatbot</a> — An AI-powered chatbot leveraging generative LLMs.
+          <a href="https://github.com/cordz-del/Amie-SEL-Chatbot" target="_blank">Amie SEL Chatbot</a> — An AI-powered chatbot.
         </div>
         <div class="repository-item" data-category="automation ai">
-          <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">SecureChatRAG</a> — A secure retrieval-augmented generation system.
+          <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">SecureChatRAG</a> — A secure RAG system.
         </div>
         <div class="repository-item" data-category="automation fullstack">
-          <a href="https://github.com/cordz-del/Automation-Workflow-Tools" target="_blank">Automation Workflow Tools</a> — Tools and scripts to automate business processes.
+          <a href="https://github.com/cordz-del/Automation-Workflow-Tools" target="_blank">Automation Workflow Tools</a> — Scripts to automate business processes.
         </div>
       </div>
     </div>
   </div>
   <footer>
-    <p>&copy; 2025 Aaron Skills Portfolio. All rights reserved.</p>
+    <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
   </footer>
-  <!-- Dark Mode Toggle Script -->
   <script>
+    // Dark Mode Toggle
     const toggleButton = document.getElementById('theme-toggle');
     toggleButton.addEventListener('click', () => {
       const currentTheme = document.documentElement.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
     });
-    // Repository Filtering Script
-    const filterButtons = document.querySelectorAll('.filter-controls button');
-    const repoList = document.getElementById('repo-list');
-    const searchInput = document.getElementById('repo-search');
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        const filter = button.getAttribute('data-filter');
-        filterRepos(filter, searchInput.value.toLowerCase());
-      });
-    });
-
-    searchInput.addEventListener('input', () => {
-      const activeFilterButton = document.querySelector('.filter-controls button.active');
-      const filter = activeFilterButton ? activeFilterButton.getAttribute('data-filter') : 'all';
-      filterRepos(filter, searchInput.value.toLowerCase());
-    });
-
-    function filterRepos(filter, searchTerm) {
-      const repoItems = document.querySelectorAll('.repository-item');
-      repoItems.forEach(item => {
-        const categories = item.getAttribute('data-category');
-        const title = item.textContent.toLowerCase();
-        // Check if item matches the active filter (or if filter is 'all') and the search term
-        const matchesFilter = filter === 'all' || categories.includes(filter);
-        const matchesSearch = title.includes(searchTerm);
-        item.style.display = (matchesFilter && matchesSearch) ? 'block' : 'none';
+    
+    // Generic filtering for search inputs
+    function setupFilter(listId, searchInputId) {
+      const searchInput = document.getElementById(searchInputId);
+      const items = document.querySelectorAll(`#${listId} li, #${listId} .repository-item, #${listId} .newsletter-item`);
+      searchInput.addEventListener('input', () => {
+        const term = searchInput.value.toLowerCase();
+        items.forEach(item => {
+          item.style.display = item.textContent.toLowerCase().includes(term) ? '' : 'none';
+        });
       });
     }
+    setupFilter('skills-list', 'skills-search');
+    setupFilter('certifications-list', 'certifications-search');
+    setupFilter('newsletters-list', 'newsletters-search');
+    setupFilter('repo-list', 'repos-search');
+    
+    // Tab filtering for sections with filter-controls
+    function setupTabs(tabsContainerId, listId) {
+      const tabsContainer = document.getElementById(tabsContainerId);
+      const buttons = tabsContainer.querySelectorAll('button');
+      const items = document.querySelectorAll(`#${listId} li, #${listId} .repository-item, #${listId} .newsletter-item`);
+      
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          buttons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          const filter = button.getAttribute('data-filter');
+          items.forEach(item => {
+            const categories = item.getAttribute('data-category') || '';
+            item.style.display = (filter === 'all' || categories.includes(filter)) ? '' : 'none';
+          });
+        });
+      });
+    }
+    setupTabs('skills-tabs', 'skills-list');
+    setupTabs('newsletters-tabs', 'newsletters-list');
+    setupTabs('repos-tabs', 'repo-list');
   </script>
 </body>
 </html>
