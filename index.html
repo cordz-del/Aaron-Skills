@@ -15,6 +15,7 @@
       --white: #fff;
       --text-color: #333;
       --accent-bg: #eef;
+      --bubble-bg: #fff;
     }
     /* Dark Theme Overrides */
     [data-theme="dark"] {
@@ -22,20 +23,20 @@
       --secondary-color: #222;
       --background-color: #121212;
       --white: #f4f4f4;
-      --text-color: #ddd;
+      --text-color: #bbb; /* Darker text for dark mode */
       --accent-bg: #1a1a1a;
+      --bubble-bg: #1e1e1e;
     }
-    /* Reset & Global Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Background Pattern for Aesthetic Code-Like Effect */
     body {
       font-family: 'Roboto', sans-serif;
       background-color: var(--background-color);
       color: var(--text-color);
       line-height: 1.6;
+      background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 10px);
+    }
+    [data-theme="dark"] body {
+      background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 10px);
     }
     a {
       color: var(--primary-color);
@@ -93,26 +94,28 @@
     nav a:hover {
       background-color: #444;
     }
-    /* Main Container */
+    /* Container & Bubble Sections */
     .container {
       max-width: 960px;
       margin: 2rem auto;
-      background: var(--white);
+      padding: 1rem;
+    }
+    .bubble {
+      background: var(--bubble-bg);
+      border-radius: 20px;
       padding: 2rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    /* Sections */
-    section {
       margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    section h2 {
+    /* Section Titles */
+    .bubble h2 {
       font-size: 2rem;
       color: var(--primary-color);
       border-bottom: 2px solid var(--primary-color);
       padding-bottom: 0.5rem;
       margin-bottom: 1rem;
     }
+    /* Lists */
     ul {
       list-style: none;
       margin-bottom: 1rem;
@@ -128,6 +131,7 @@
       left: 0;
       color: var(--primary-color);
     }
+    /* Articles Styling */
     article {
       margin: 1rem 0;
       padding: 1rem;
@@ -144,6 +148,34 @@
     }
     .newsletter-item a:hover {
       text-decoration: underline;
+    }
+    /* Repositories Filtering UI */
+    .filter-controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .filter-controls button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .filter-controls button:hover, .filter-controls button.active {
+      background-color: #444;
+    }
+    .filter-controls input[type="text"] {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      flex: 1;
+    }
+    .repository-item {
+      margin-bottom: 1rem;
     }
     /* Footer */
     footer {
@@ -173,80 +205,28 @@
     <button id="theme-toggle">Toggle Dark Mode</button>
   </header>
   <nav>
+    <a href="#ai-agent">AI Agent</a>
+    <a href="#newsletters">LinkedIn Newsletters &amp; Articles</a>
     <a href="#skills">Skills</a>
     <a href="#certifications">Certifications</a>
     <a href="#repositories">Repositories</a>
-    <a href="#articles">Articles & Newsletters</a>
-    <a href="#newsletters">LinkedIn Newsletters</a>
-    <a href="#ai-agent">AI Agent</a>
   </nav>
   <div class="container">
-    <!-- Skills Section -->
-    <section id="skills">
-      <h2>Skills</h2>
-      <ul>
-        <li><strong>Python Development:</strong> 8+ years of experience</li>
-        <li><strong>Generative AI & LLMs:</strong> GPT-4, Claude, LangChain</li>
-        <li><strong>Retrieval-Augmented Generation (RAG):</strong> Expertise in integrating RAG systems</li>
-        <li><strong>Vector Databases:</strong> Experience with Pinecone and ChromaDB</li>
-        <li><strong>AI-Driven Chatbots & Automation:</strong> Design and deployment of advanced chatbot solutions</li>
-        <li><strong>Full Stack & DevOps:</strong> Cloud (AWS, Azure), Flask, Django, FastAPI, React, JavaScript, Docker, Kubernetes, CI/CD</li>
-      </ul>
-    </section>
-    <!-- Certifications Section -->
-    <section id="certifications">
-      <h2>Certifications</h2>
-      <ul>
-        <li>Machine Learning Specialization, Stanford (120 hrs)</li>
-        <li>LLMOps Specialization, Duke (80 hrs)</li>
-        <li>Generative AI, Google Cloud (60 hrs)</li>
-        <li>Test Automation & API Testing (50 hrs)</li>
-      </ul>
-    </section>
-    <!-- Repositories Section -->
-    <section id="repositories">
-      <h2>Repositories & Projects</h2>
-      <ul>
-        <li>
-          <a href="https://github.com/cordz-del/Amie-SEL-Chatbot" target="_blank">Amie SEL Chatbot</a> — An AI-powered chatbot leveraging generative LLMs.
-        </li>
-        <li>
-          <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">SecureChatRAG</a> — A secure retrieval-augmented generation system.
-        </li>
-        <li>
-          <a href="https://github.com/cordz-del/Automation-Workflow-Tools" target="_blank">Automation Workflow Tools</a> — Tools and scripts to automate business processes.
-        </li>
-      </ul>
-    </section>
-    <!-- Articles & Newsletters Section -->
-    <section id="articles">
-      <h2>Articles & Newsletters</h2>
-      <ul>
-        <li><a href="#article1">Business Transformation with AI</a></li>
-        <li><a href="#article2">LLMs in Automation</a></li>
-        <li><a href="#article3">Building Chatbots without Backend</a></li>
-        <li><a href="#article4">RAG System Implementations & Advanced LLM Efficiency</a></li>
-      </ul>
-      <article id="article1">
-        <h3>Business Transformation with AI</h3>
-        <p>This article explores how AI is revolutionizing business operations, transforming legacy systems, and driving innovation through automation and advanced analytics.</p>
-      </article>
-      <article id="article2">
-        <h3>LLMs in Automation</h3>
-        <p>A deep dive into the integration of large language models for streamlining and automating processes across industries.</p>
-      </article>
-      <article id="article3">
-        <h3>Building Chatbots without Backend</h3>
-        <p>Discover how to build efficient and responsive chatbots with minimal backend infrastructure while ensuring scalability and security.</p>
-      </article>
-      <article id="article4">
-        <h3>RAG System Implementations & Advanced LLM Efficiency</h3>
-        <p>Learn the best practices for implementing retrieval-augmented generation systems and optimizing large language models for enhanced performance.</p>
-      </article>
-    </section>
-    <!-- LinkedIn Newsletters Section -->
-    <section id="newsletters">
-      <h2>LinkedIn Newsletters & Articles</h2>
+    <!-- AI Agent Section at the Top -->
+    <div class="bubble" id="ai-agent">
+      <h2>Try My AI Agent</h2>
+      <p>Interact with my AI agent to explore its capabilities.</p>
+      <div style="width:100%; height:800px">
+        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b"
+                frameborder="0" 
+                allowtransparency="true" 
+                style="background-color: transparent; width:100%; height:100%;">
+        </iframe>
+      </div>
+    </div>
+    <!-- LinkedIn Newsletters & Articles Section -->
+    <div class="bubble" id="newsletters">
+      <h2>LinkedIn Newsletters &amp; Articles</h2>
       <ul>
         <li class="newsletter-item">
           <strong>AI Chatbot Insights Newsletter</strong><br>
@@ -280,19 +260,54 @@
         </li>
       </ul>
       <p>View more on my <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">LinkedIn Newsletters</a>.</p>
-    </section>
-    <!-- AI Agent Demo Section -->
-    <section id="ai-agent">
-      <h2>Try My AI Agent</h2>
-      <p>Interact with my AI agent to explore its capabilities.</p>
-      <div style="width:100%; height:800px">
-        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b"
-                frameborder="0" 
-                allowtransparency="true" 
-                style="background-color: transparent; width:100%; height:100%;">
-        </iframe>
+    </div>
+    <!-- Skills Section -->
+    <div class="bubble" id="skills">
+      <h2>Skills</h2>
+      <ul>
+        <li><strong>Python Development:</strong> 8+ years of experience</li>
+        <li><strong>Generative AI &amp; LLMs:</strong> GPT-4, Claude, LangChain</li>
+        <li><strong>Retrieval-Augmented Generation (RAG):</strong> Expertise in integrating RAG systems</li>
+        <li><strong>Vector Databases:</strong> Experience with Pinecone and ChromaDB</li>
+        <li><strong>AI-Driven Chatbots &amp; Automation:</strong> Design and deployment of advanced chatbot solutions</li>
+        <li><strong>Full Stack &amp; DevOps:</strong> Cloud (AWS, Azure), Flask, Django, FastAPI, React, JavaScript, Docker, Kubernetes, CI/CD</li>
+      </ul>
+    </div>
+    <!-- Certifications Section -->
+    <div class="bubble" id="certifications">
+      <h2>Certifications</h2>
+      <ul>
+        <li>Machine Learning Specialization, Stanford (120 hrs)</li>
+        <li>LLMOps Specialization, Duke (80 hrs)</li>
+        <li>Generative AI, Google Cloud (60 hrs)</li>
+        <li>Test Automation &amp; API Testing (50 hrs)</li>
+      </ul>
+    </div>
+    <!-- Repositories Section with Interactive Filtering -->
+    <div class="bubble" id="repositories">
+      <h2>Repositories &amp; Projects</h2>
+      <!-- Filter Controls -->
+      <div class="filter-controls">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="chatbots">Chatbots</button>
+        <button data-filter="automation">Automation</button>
+        <button data-filter="ai">AI</button>
+        <button data-filter="fullstack">Full-Stack</button>
+        <input type="text" id="repo-search" placeholder="Search projects..." />
       </div>
-    </section>
+      <!-- Repository Items -->
+      <div id="repo-list">
+        <div class="repository-item" data-category="chatbots ai">
+          <a href="https://github.com/cordz-del/Amie-SEL-Chatbot" target="_blank">Amie SEL Chatbot</a> — An AI-powered chatbot leveraging generative LLMs.
+        </div>
+        <div class="repository-item" data-category="automation ai">
+          <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">SecureChatRAG</a> — A secure retrieval-augmented generation system.
+        </div>
+        <div class="repository-item" data-category="automation fullstack">
+          <a href="https://github.com/cordz-del/Automation-Workflow-Tools" target="_blank">Automation Workflow Tools</a> — Tools and scripts to automate business processes.
+        </div>
+      </div>
+    </div>
   </div>
   <footer>
     <p>&copy; 2025 Aaron Skills Portfolio. All rights reserved.</p>
@@ -305,6 +320,38 @@
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
     });
+    // Repository Filtering Script
+    const filterButtons = document.querySelectorAll('.filter-controls button');
+    const repoList = document.getElementById('repo-list');
+    const searchInput = document.getElementById('repo-search');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.getAttribute('data-filter');
+        filterRepos(filter, searchInput.value.toLowerCase());
+      });
+    });
+
+    searchInput.addEventListener('input', () => {
+      const activeFilterButton = document.querySelector('.filter-controls button.active');
+      const filter = activeFilterButton ? activeFilterButton.getAttribute('data-filter') : 'all';
+      filterRepos(filter, searchInput.value.toLowerCase());
+    });
+
+    function filterRepos(filter, searchTerm) {
+      const repoItems = document.querySelectorAll('.repository-item');
+      repoItems.forEach(item => {
+        const categories = item.getAttribute('data-category');
+        const title = item.textContent.toLowerCase();
+        // Check if item matches the active filter (or if filter is 'all') and the search term
+        const matchesFilter = filter === 'all' || categories.includes(filter);
+        const matchesSearch = title.includes(searchTerm);
+        item.style.display = (matchesFilter && matchesSearch) ? 'block' : 'none';
+      });
+    }
   </script>
 </body>
 </html>
