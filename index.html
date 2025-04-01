@@ -36,7 +36,7 @@
       line-height: 1.6;
       background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 10px);
     }
-    /* Enhanced SVG Background Overlay with overlapping diamonds & larger formulas */
+    /* Enhanced SVG Background Overlay with overlapping diamonds & varied formulas */
     body::before {
       content: "";
       position: fixed;
@@ -46,12 +46,12 @@
       height: 100%;
       z-index: -1;
       pointer-events: none;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23888888' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23888888' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23888888' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23888888' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23888888' transform='rotate(-10 70 90)'>F=ma</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23888888' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23888888' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23888888' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23888888' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23888888' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23888888' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23888888' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23888888' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
       opacity: 0.25;
     }
-    /* Dark mode SVG with white strokes & larger formulas */
+    /* Dark mode SVG with white strokes & same varied formulas */
     [data-theme="dark"] body::before {
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23FFFFFF' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23FFFFFF' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23FFFFFF' transform='rotate(-10 70 90)'>F=ma</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23FFFFFF' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23FFFFFF' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23FFFFFF' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23FFFFFF' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23FFFFFF' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23FFFFFF' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
     }
     a {
       color: var(--primary-color);
@@ -73,6 +73,17 @@
     header h1 {
       font-size: 2.8rem;
       margin-bottom: 0.3rem;
+    }
+    /* Sub-header link for LinkedIn with 3D bright white text and hover jump effect */
+    header .linkedin-link {
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+    header .linkedin-link:hover {
+      transform: translateY(-5px);
     }
     /* Quote styling */
     .quote {
@@ -259,7 +270,7 @@
     <h1>Aaron's Portfolio</h1>
     <p class="quote">"Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> ignite change."</p>
     <p>
-      <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank">Visit my LinkedIn Profile</a>
+      <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">Visit my LinkedIn Profile</a>
     </p>
     <button id="theme-toggle">Toggle Dark Mode</button>
   </header>
