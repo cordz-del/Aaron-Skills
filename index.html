@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aaron's Portfolio</title>
   <!-- Google Fonts: Roboto for body and Playfair Display for the quote -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
+    /* CSS Reset for Consistency */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
     /* Default (Light) Theme Variables */
     :root {
       --primary-color: #007acc;
@@ -74,7 +81,7 @@
       font-size: 2.8rem;
       margin-bottom: 0.3rem;
     }
-    /* Sub-header link for LinkedIn with 3D bright white text and hover jump effect */
+    /* Sub-header LinkedIn link with bright 3D white text and hover jump effect */
     header .linkedin-link {
       color: #fff;
       font-weight: bold;
@@ -232,6 +239,11 @@
     }
     .pagination button:hover {
       background-color: #444;
+    }
+    /* Footer Centering */
+    footer {
+      text-align: center;
+      padding: 1rem;
     }
     /* Custom styling for the AI Agent section */
     .ai-agent-container {
