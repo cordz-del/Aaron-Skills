@@ -23,7 +23,7 @@
       --secondary-color: #222;
       --background-color: #121212;
       --white: #f4f4f4;
-      --text-color: #bbb; /* Darker, less glaring text */
+      --text-color: #bbb;
       --accent-bg: #1a1a1a;
       --bubble-bg: #1e1e1e;
     }
@@ -186,6 +186,28 @@
         padding: 0.75rem;
       }
     }
+    /* Custom styling for the AI Agent section */
+    .ai-agent-container {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      padding: 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .ai-agent-container h2 {
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .ai-agent-frame {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 900px;
+      height: 800px;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
   </style>
 </head>
 <body data-theme="light">
@@ -202,20 +224,20 @@
     <a href="#ai-agent">AI Agent</a>
     <a href="#newsletters">Newsletters &amp; Articles</a>
     <a href="#skills">Skills</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#repositories">Repositories</a>
+    <a href="#certifications">Licenses &amp; Certifications</a>
+    <a href="#projects">Projects</a>
   </nav>
   <div class="container">
     <!-- Biography Section -->
     <div class="bubble" id="biography">
       <h2>Biography</h2>
-      <p>Hello! I'm Aaron, a passionate developer with over 8 years of experience in Python, AI, and full-stack solutions. I believe in lifelong learning and constantly reaching for the stars. My mission is to create innovative solutions that make a real difference.</p>
+      <p>Hello, I'm Aaron—a passionate developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full-stack solutions, I possess secret strengths that drive me to innovate and uplift communities. My deep love for AI fuels my mission: to harness technology for the betterment of all people, to unify diverse perspectives, and to help everyone reach their full potential. I believe that every line of code is a step toward a more connected, compassionate world.</p>
     </div>
-    <!-- AI Agent Section (Interactive Design) -->
-    <div class="bubble" id="ai-agent" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: var(--white);">
-      <h2>Try My AI Agent</h2>
-      <p>Experience cutting-edge AI in real time! Interact with my agent to see its powerful capabilities.</p>
-      <div style="width:100%; height:800px; border: 3px solid var(--white); border-radius: 10px; overflow: hidden;">
+    <!-- AI Agent Section -->
+    <div class="bubble ai-agent-container" id="ai-agent">
+      <h2>Example of AI Agent Aaron 2.0</h2>
+      <p>Experience cutting-edge AI in real time! Interact with my agent and see how it transforms conversation with creative prompts and dynamic responses.</p>
+      <div class="ai-agent-frame">
         <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b"
                 frameborder="0" 
                 allowtransparency="true" 
@@ -223,7 +245,7 @@
         </iframe>
       </div>
     </div>
-    <!-- LinkedIn Newsletters & Articles Section with Tabs & Search -->
+    <!-- LinkedIn Newsletters & Articles Section -->
     <div class="bubble" id="newsletters">
       <h2>LinkedIn Newsletters &amp; Articles</h2>
       <div class="filter-controls" id="newsletters-tabs">
@@ -233,13 +255,14 @@
         <input type="text" id="newsletters-search" placeholder="Search newsletters/articles..." />
       </div>
       <ul id="newsletters-list">
+        <!-- Sample Items; update with actual content from your LinkedIn links -->
         <li class="newsletter-item" data-category="newsletter">
           <strong>AI Chatbot Insights Newsletter</strong><br>
           Published weekly | 340 subscribers<br>
-          Stay updated with the latest trends and insights.
+          Stay updated with trends and insights.
         </li>
         <li class="newsletter-item" data-category="article">
-          <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
+          <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/" target="_blank">
             Three AI Mega-Trends Shaping Technology, Healthcare, and Society (2025–2035)
           </a> — 38 min read
         </li>
@@ -249,23 +272,13 @@
           </a> — 2 min read
         </li>
         <li class="newsletter-item" data-category="article">
-          <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
+          <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/" target="_blank">
             How AI is Revolutionizing Cancer Treatment: A Deep Dive into Transformative Tech
           </a> — 20 min read
         </li>
-        <li class="newsletter-item" data-category="article">
-          <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
-            Comprehensive Guide to ChromaDB for Beginners and Advanced Users
-          </a> — 2 min read
-        </li>
-        <li class="newsletter-item" data-category="article">
-          <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
-            Mastering Pinecone: A Comprehensive Guide for New and Advanced Users
-          </a> — 2 min read
-        </li>
       </ul>
     </div>
-    <!-- Skills Section with Tabs & Search -->
+    <!-- Skills Section -->
     <div class="bubble" id="skills">
       <h2>Skills</h2>
       <div class="filter-controls" id="skills-tabs">
@@ -285,34 +298,41 @@
         <li data-category="fullstack"><strong>Full Stack &amp; DevOps:</strong> AWS, Azure, Flask, Django, React, Docker, Kubernetes, CI/CD</li>
       </ul>
     </div>
-    <!-- Certifications Section with Search -->
+    <!-- Licenses & Certifications Section -->
     <div class="bubble" id="certifications">
-      <h2>Certifications</h2>
-      <input type="text" id="certifications-search" placeholder="Search certifications..." />
-      <ul id="certifications-list">
-        <li>Machine Learning Specialization, Stanford (120 hrs)</li>
-        <li>LLMOps Specialization, Duke (80 hrs)</li>
-        <li>Generative AI, Google Cloud (60 hrs)</li>
-        <li>Test Automation &amp; API Testing (50 hrs)</li>
+      <h2>Licenses &amp; Certifications</h2>
+      <div class="filter-controls" id="certs-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="ml">Machine Learning</button>
+        <button data-filter="llmops">LLMOps</button>
+        <button data-filter="cloud">Cloud</button>
+        <button data-filter="testing">Testing</button>
+        <input type="text" id="certs-search" placeholder="Search certifications..." />
+      </div>
+      <ul id="certs-list">
+        <li data-category="ml">Machine Learning Specialization, Stanford (120 hrs)</li>
+        <li data-category="llmops">LLMOps Specialization, Duke (80 hrs)</li>
+        <li data-category="cloud">Generative AI, Google Cloud (60 hrs)</li>
+        <li data-category="testing">Test Automation &amp; API Testing (50 hrs)</li>
       </ul>
     </div>
-    <!-- Repositories & Projects Section with Tabs & Search -->
-    <div class="bubble" id="repositories">
-      <h2>Repositories &amp; Projects</h2>
-      <div class="filter-controls" id="repos-tabs">
+    <!-- Projects Section -->
+    <div class="bubble" id="projects">
+      <h2>Projects</h2>
+      <div class="filter-controls" id="projects-tabs">
         <button data-filter="all" class="active">All</button>
         <button data-filter="chatbots">Chatbots</button>
         <button data-filter="automation">Automation</button>
         <button data-filter="ai">AI</button>
         <button data-filter="fullstack">Full-Stack</button>
-        <input type="text" id="repos-search" placeholder="Search projects..." />
+        <input type="text" id="projects-search" placeholder="Search projects..." />
       </div>
-      <div id="repo-list">
+      <div id="projects-list">
         <div class="repository-item" data-category="chatbots ai">
           <a href="https://github.com/cordz-del/Amie-SEL-Chatbot" target="_blank">Amie SEL Chatbot</a> — An AI-powered chatbot.
         </div>
         <div class="repository-item" data-category="automation ai">
-          <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">SecureChatRAG</a> — A secure RAG system.
+          <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">SecureChatRAG</a> — A secure retrieval-augmented generation system.
         </div>
         <div class="repository-item" data-category="automation fullstack">
           <a href="https://github.com/cordz-del/Automation-Workflow-Tools" target="_blank">Automation Workflow Tools</a> — Scripts to automate business processes.
@@ -332,7 +352,7 @@
       document.documentElement.setAttribute('data-theme', newTheme);
     });
     
-    // Generic filtering for search inputs
+    // Generic filtering function for search inputs
     function setupFilter(listId, searchInputId) {
       const searchInput = document.getElementById(searchInputId);
       const items = document.querySelectorAll(`#${listId} li, #${listId} .repository-item, #${listId} .newsletter-item`);
@@ -344,16 +364,15 @@
       });
     }
     setupFilter('skills-list', 'skills-search');
-    setupFilter('certifications-list', 'certifications-search');
+    setupFilter('certs-list', 'certs-search');
     setupFilter('newsletters-list', 'newsletters-search');
-    setupFilter('repo-list', 'repos-search');
+    setupFilter('projects-list', 'projects-search');
     
-    // Tab filtering for sections with filter-controls
+    // Tab filtering function for sections with filter-controls
     function setupTabs(tabsContainerId, listId) {
       const tabsContainer = document.getElementById(tabsContainerId);
       const buttons = tabsContainer.querySelectorAll('button');
       const items = document.querySelectorAll(`#${listId} li, #${listId} .repository-item, #${listId} .newsletter-item`);
-      
       buttons.forEach(button => {
         button.addEventListener('click', () => {
           buttons.forEach(btn => btn.classList.remove('active'));
@@ -368,7 +387,8 @@
     }
     setupTabs('skills-tabs', 'skills-list');
     setupTabs('newsletters-tabs', 'newsletters-list');
-    setupTabs('repos-tabs', 'repo-list');
+    setupTabs('certs-tabs', 'certs-list');
+    setupTabs('projects-tabs', 'projects-list');
   </script>
 </body>
 </html>
