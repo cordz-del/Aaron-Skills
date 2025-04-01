@@ -257,7 +257,7 @@
       color: var(--white);
       margin-bottom: 1rem;
     }
-    /* Responsive AI Agent Frame using aspect-ratio technique */
+    /* Use aspect-ratio for the AI Agent frame */
     .ai-agent-frame {
       position: relative;
       width: 100%;
@@ -290,10 +290,26 @@
         font-size: 0.8rem;
         padding: 0.3rem 0.7rem;
       }
-      /* Adjust AI Agent Frame to better fit mobile screens */
+      /* Adjust AI Agent Frame for landscape mode on mobile */
       .ai-agent-frame {
         max-width: 90%;
         aspect-ratio: 16 / 9;
+      }
+    }
+    /* Portrait Orientation Adjustments for Mobile */
+    @media (max-width: 600px) and (orientation: portrait) {
+      /* Increase container vertical space for AI Agent */
+      .ai-agent-frame {
+        max-width: 95%;
+        height: 600px; /* Increased vertical height */
+      }
+      /* Scale down iframe content to make chat history and text smaller */
+      .ai-agent-frame iframe {
+        transform: scale(0.85);
+        transform-origin: top left;
+        /* Increase width/height to compensate for scaling */
+        width: 117%;
+        height: 117%;
       }
     }
   </style>
