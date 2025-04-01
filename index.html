@@ -4,117 +4,182 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aaron Skills Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset and base styling */
-    body, h1, h2, h3, p, ul, li, a {
+    /* Default (Light) Theme Variables */
+    :root {
+      --primary-color: #007acc;
+      --secondary-color: #333;
+      --background-color: #f4f4f4;
+      --white: #fff;
+      --text-color: #333;
+      --accent-bg: #eef;
+    }
+    /* Dark Theme Overrides */
+    [data-theme="dark"] {
+      --primary-color: #1e90ff;
+      --secondary-color: #222;
+      --background-color: #121212;
+      --white: #f4f4f4;
+      --text-color: #ddd;
+      --accent-bg: #1a1a1a;
+    }
+    /* Reset & Global Styles */
+    * {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      box-sizing: border-box;
     }
     body {
-      background-color: #f4f4f4;
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
       line-height: 1.6;
     }
-    header {
-      background-color: #007acc;
-      color: #fff;
-      text-align: center;
-      padding: 1.5em 0;
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: transform 0.3s ease, text-decoration 0.3s ease;
     }
-    header a {
-      color: #fff;
+    a:hover {
+      transform: translateY(-3px);
       text-decoration: underline;
     }
+    /* Header */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      margin-bottom: 0.5rem;
+    }
+    /* Dark Mode Toggle Button */
+    #theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--white);
+      color: var(--primary-color);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    #theme-toggle:hover {
+      background-color: var(--primary-color);
+      color: var(--white);
+    }
+    /* Navigation */
     nav {
-      background: #333;
+      background-color: var(--secondary-color);
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
     }
     nav a {
-      color: #fff;
-      padding: 1em;
+      color: var(--white);
+      padding: 1rem;
       text-decoration: none;
-      margin: 0.2em;
     }
     nav a:hover {
-      background: #444;
+      background-color: #444;
     }
+    /* Main Container */
     .container {
       max-width: 960px;
-      margin: 2em auto;
-      background: #fff;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      margin: 2rem auto;
+      background: var(--white);
+      padding: 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      border-radius: 8px;
     }
+    /* Sections */
     section {
-      margin-bottom: 2em;
+      margin-bottom: 2rem;
     }
-    h2 {
-      color: #007acc;
-      border-bottom: 2px solid #007acc;
-      padding-bottom: 0.5em;
-      margin-bottom: 1em;
+    section h2 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
     }
     ul {
       list-style: none;
-      margin-bottom: 1em;
+      margin-bottom: 1rem;
     }
     li {
-      margin-bottom: 0.75em;
+      margin-bottom: 0.75rem;
+      padding-left: 1rem;
+      position: relative;
     }
-    /* Styling for newsletter items */
+    li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
+    article {
+      margin: 1rem 0;
+      padding: 1rem;
+      background-color: var(--accent-bg);
+      border-left: 4px solid var(--primary-color);
+      border-radius: 4px;
+    }
+    /* Newsletter Items */
     .newsletter-item {
-      margin-bottom: 1em;
+      margin-bottom: 1rem;
     }
     .newsletter-item a {
-      text-decoration: none;
-      color: #007acc;
+      transition: text-decoration 0.3s ease;
     }
     .newsletter-item a:hover {
       text-decoration: underline;
     }
-    article {
-      margin: 1em 0;
-      padding: 1em;
-      background: #eef;
-      border-left: 4px solid #007acc;
-    }
+    /* Footer */
     footer {
-      background: #333;
-      color: #fff;
+      background-color: var(--secondary-color);
+      color: var(--white);
       text-align: center;
-      padding: 1em 0;
+      padding: 1rem 0;
     }
     @media (max-width: 600px) {
       nav {
         flex-direction: column;
       }
       nav a {
-        padding: 0.75em;
+        padding: 0.75rem;
       }
     }
   </style>
 </head>
-<body>
+<body data-theme="light">
   <header>
     <h1>Aaron Skills Portfolio</h1>
     <p>Showcasing my skills, certifications, repositories, newsletters, and articles</p>
     <p>
-      <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank">
-        Visit my LinkedIn Profile
-      </a>
+      <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank">Visit my LinkedIn Profile</a>
     </p>
+    <!-- Dark Mode Toggle Button -->
+    <button id="theme-toggle">Toggle Dark Mode</button>
   </header>
-
   <nav>
     <a href="#skills">Skills</a>
     <a href="#certifications">Certifications</a>
     <a href="#repositories">Repositories</a>
     <a href="#articles">Articles & Newsletters</a>
     <a href="#newsletters">LinkedIn Newsletters</a>
+    <a href="#ai-agent">AI Agent</a>
   </nav>
-
   <div class="container">
     <!-- Skills Section -->
     <section id="skills">
@@ -128,7 +193,6 @@
         <li><strong>Full Stack & DevOps:</strong> Cloud (AWS, Azure), Flask, Django, FastAPI, React, JavaScript, Docker, Kubernetes, CI/CD</li>
       </ul>
     </section>
-
     <!-- Certifications Section -->
     <section id="certifications">
       <h2>Certifications</h2>
@@ -139,77 +203,48 @@
         <li>Test Automation & API Testing (50 hrs)</li>
       </ul>
     </section>
-
     <!-- Repositories Section -->
     <section id="repositories">
       <h2>Repositories & Projects</h2>
       <ul>
         <li>
-          <a href="https://github.com/cordz-del/Amie-SEL-Chatbot" target="_blank">
-            Amie SEL Chatbot
-          </a>
-          &mdash; An AI-powered chatbot leveraging generative LLMs.
+          <a href="https://github.com/cordz-del/Amie-SEL-Chatbot" target="_blank">Amie SEL Chatbot</a> — An AI-powered chatbot leveraging generative LLMs.
         </li>
         <li>
-          <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">
-            SecureChatRAG
-          </a>
-          &mdash; A secure retrieval-augmented generation system.
+          <a href="https://github.com/cordz-del/SecureChatRAG" target="_blank">SecureChatRAG</a> — A secure retrieval-augmented generation system.
         </li>
         <li>
-          <a href="https://github.com/cordz-del/Automation-Workflow-Tools" target="_blank">
-            Automation Workflow Tools
-          </a>
-          &mdash; Tools and scripts to automate business processes.
+          <a href="https://github.com/cordz-del/Automation-Workflow-Tools" target="_blank">Automation Workflow Tools</a> — Tools and scripts to automate business processes.
         </li>
       </ul>
     </section>
-
-    <!-- Articles & Newsletters Section (existing content) -->
+    <!-- Articles & Newsletters Section -->
     <section id="articles">
       <h2>Articles & Newsletters</h2>
       <ul>
-        <li>
-          <a href="#article1">Business Transformation with AI</a>
-        </li>
-        <li>
-          <a href="#article2">LLMs in Automation</a>
-        </li>
-        <li>
-          <a href="#article3">Building Chatbots without Backend</a>
-        </li>
-        <li>
-          <a href="#article4">RAG System Implementations & Advanced LLM Efficiency</a>
-        </li>
+        <li><a href="#article1">Business Transformation with AI</a></li>
+        <li><a href="#article2">LLMs in Automation</a></li>
+        <li><a href="#article3">Building Chatbots without Backend</a></li>
+        <li><a href="#article4">RAG System Implementations & Advanced LLM Efficiency</a></li>
       </ul>
-
       <article id="article1">
         <h3>Business Transformation with AI</h3>
-        <p>
-          This article explores how AI is revolutionizing business operations, transforming legacy systems, and driving innovation through automation and advanced analytics.
-        </p>
+        <p>This article explores how AI is revolutionizing business operations, transforming legacy systems, and driving innovation through automation and advanced analytics.</p>
       </article>
       <article id="article2">
         <h3>LLMs in Automation</h3>
-        <p>
-          A deep dive into the integration of large language models for streamlining and automating processes across industries.
-        </p>
+        <p>A deep dive into the integration of large language models for streamlining and automating processes across industries.</p>
       </article>
       <article id="article3">
         <h3>Building Chatbots without Backend</h3>
-        <p>
-          Discover how to build efficient and responsive chatbots with minimal backend infrastructure while ensuring scalability and security.
-        </p>
+        <p>Discover how to build efficient and responsive chatbots with minimal backend infrastructure while ensuring scalability and security.</p>
       </article>
       <article id="article4">
         <h3>RAG System Implementations & Advanced LLM Efficiency</h3>
-        <p>
-          Learn the best practices for implementing retrieval-augmented generation systems and optimizing large language models for enhanced performance.
-        </p>
+        <p>Learn the best practices for implementing retrieval-augmented generation systems and optimizing large language models for enhanced performance.</p>
       </article>
     </section>
-
-    <!-- LinkedIn Newsletters Section (replacing Prototypes) -->
+    <!-- LinkedIn Newsletters Section -->
     <section id="newsletters">
       <h2>LinkedIn Newsletters & Articles</h2>
       <ul>
@@ -221,38 +256,55 @@
         <li class="newsletter-item">
           <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
             Three AI Mega-Trends Shaping Technology, Healthcare, and Society (2025–2035)
-          </a> &mdash; 38 min read
+          </a> — 38 min read
         </li>
         <li class="newsletter-item">
           <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
             Unlocking the Power of AI: Insights into ML, Python Automation, and RAG
-          </a> &mdash; 2 min read
+          </a> — 2 min read
         </li>
         <li class="newsletter-item">
           <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
             How AI is Revolutionizing Cancer Treatment: A Deep Dive into the Technology Transforming Oncology
-          </a> &mdash; 20 min read
+          </a> — 20 min read
         </li>
         <li class="newsletter-item">
           <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
             Comprehensive Guide to ChromaDB for Beginners and Advanced Users
-          </a> &mdash; 2 min read
+          </a> — 2 min read
         </li>
         <li class="newsletter-item">
           <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">
             Mastering Pinecone: A Comprehensive Guide for New and Advanced Users
-          </a> &mdash; 2 min read
+          </a> — 2 min read
         </li>
       </ul>
       <p>View more on my <a href="https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/" target="_blank">LinkedIn Newsletters</a>.</p>
     </section>
+    <!-- AI Agent Demo Section -->
+    <section id="ai-agent">
+      <h2>Try My AI Agent</h2>
+      <p>Interact with my AI agent to explore its capabilities.</p>
+      <div style="width:100%; height:800px">
+        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b"
+                frameborder="0" 
+                allowtransparency="true" 
+                style="background-color: transparent; width:100%; height:100%;">
+        </iframe>
+      </div>
+    </section>
   </div>
-
   <footer>
     <p>&copy; 2025 Aaron Skills Portfolio. All rights reserved.</p>
   </footer>
-
-  <!-- AI Agent Bubble Integration -->
-  <script src="https://chatbot.simplified.com/chat.min.js" data-chat-id="41bf68b6-b23d-47e5-a848-43142525835b" data-chat-position="left" defer></script>
+  <!-- Dark Mode Toggle Script -->
+  <script>
+    const toggleButton = document.getElementById('theme-toggle');
+    toggleButton.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+    });
+  </script>
 </body>
 </html>
