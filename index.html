@@ -298,18 +298,26 @@
     }
     /* Portrait Orientation Adjustments for Mobile */
     @media (max-width: 600px) and (orientation: portrait) {
-      /* Increase container vertical space for AI Agent */
+      /* Increase AI Agent container vertical space */
       .ai-agent-frame {
         max-width: 95%;
-        height: 600px; /* Increased vertical height */
+        height: 700px; /* Increased vertical height */
       }
-      /* Scale down iframe content to make chat history and text smaller */
+      /* Scale down iframe content to make chat texts smaller */
       .ai-agent-frame iframe {
-        transform: scale(0.85);
+        transform: scale(0.75);
         transform-origin: top left;
-        /* Increase width/height to compensate for scaling */
-        width: 117%;
-        height: 117%;
+        width: 133%;
+        height: 133%;
+      }
+      /* Adjust filter-control tabs to fit on one line */
+      .filter-controls {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+      .filter-controls button {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.5rem;
       }
     }
   </style>
@@ -340,7 +348,7 @@
     <!-- AI Agent Section -->
     <div class="bubble ai-agent-container" id="ai-agent">
       <h2>Example of AI Agent Aaron 2.0</h2>
-      <p>Experience cutting-edge AI in real time! Interact with my agent and see how it transforms conversation with creative prompts and dynamic responses.</p>
+      <p>Interact in real-time with Aaron 2.0, a cutting-edge AI Agent meticulously trained to dynamically share insights from my extensive professional experiences.</p>
       <div class="ai-agent-frame">
         <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b"
                 frameborder="0" 
