@@ -27,17 +27,16 @@
       --accent-bg: #1a1a1a;
       --bubble-bg: #1e1e1e;
     }
-    /* Base Styles & Subtle Repeating Background Pattern */
+    /* Base Styles & Fallback Background Pattern */
     body {
       position: relative;
       font-family: 'Roboto', sans-serif;
       background-color: var(--background-color);
       color: var(--text-color);
       line-height: 1.6;
-      /* Fallback simple grid pattern */
       background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 10px);
     }
-    /* New: Enhanced SVG Background Overlay with overlapping diamonds & formulas */
+    /* Enhanced SVG Background Overlay with overlapping diamonds & larger formulas */
     body::before {
       content: "";
       position: fixed;
@@ -45,14 +44,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1; /* behind all content */
+      z-index: -1;
       pointer-events: none;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><!-- Large diamond --> <polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23888888' stroke-width='1'/><!-- Overlapping smaller diamonds --> <polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23888888' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23888888' stroke-width='0.7'/><!-- Formulas overlay --> <text x='20' y='50' font-size='8' fill='%23888888' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='8' fill='%23888888' transform='rotate(-10 70 90)'>F=ma</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23888888' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23888888' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23888888' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23888888' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23888888' transform='rotate(-10 70 90)'>F=ma</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
       opacity: 0.25;
     }
-    /* Dark theme SVG with white strokes */
+    /* Dark mode SVG with white strokes & larger formulas */
     [data-theme="dark"] body::before {
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23FFFFFF' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><text x='20' y='50' font-size='8' fill='%23FFFFFF' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='8' fill='%23FFFFFF' transform='rotate(-10 70 90)'>F=ma</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23FFFFFF' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23FFFFFF' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23FFFFFF' transform='rotate(-10 70 90)'>F=ma</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
     }
     a {
       color: var(--primary-color);
@@ -63,9 +62,9 @@
       transform: translateY(-3px);
       text-decoration: underline;
     }
-    /* Header */
+    /* Header with a linear gradient from dark blue to lighter blue */
     header {
-      background-color: var(--primary-color);
+      background: linear-gradient(135deg, #00509e, #007acc);
       color: var(--white);
       text-align: center;
       padding: 2rem 1rem;
@@ -75,7 +74,7 @@
       font-size: 2.8rem;
       margin-bottom: 0.3rem;
     }
-    /* Quote styled with a different font & bold emphasis */
+    /* Quote styling */
     .quote {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem;
@@ -84,22 +83,23 @@
     .quote strong {
       font-weight: bold;
     }
-    /* Dark Mode Toggle Button */
+    /* Dark Mode Toggle Button with a 3D design */
     #theme-toggle {
       position: absolute;
       top: 1rem;
       right: 1rem;
       padding: 0.5rem 1rem;
       border: none;
-      background-color: var(--white);
-      color: var(--primary-color);
-      border-radius: 4px;
+      background: linear-gradient(145deg, #444, #222);
+      color: #ddd;
+      border-radius: 6px;
+      box-shadow: 0 4px 0 #111;
       cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    #theme-toggle:hover {
-      background-color: var(--primary-color);
-      color: var(--white);
+    #theme-toggle:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #111;
     }
     /* Navigation */
     nav {
@@ -116,7 +116,7 @@
     nav a:hover {
       background-color: #444;
     }
-    /* Container & Bubble Sections */
+    /* Container & Bubble Sections with extra 3D shading */
     .container {
       max-width: 960px;
       margin: 2rem auto;
@@ -129,11 +129,9 @@
       margin-bottom: 2rem;
       position: relative;
       z-index: 1;
-      /* Enhanced shadow for a 3D, bubbly look */
       box-shadow: 0 4px 15px rgba(0,0,0,0.15);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    /* Pseudo-element for extra shading behind bubbles */
     .bubble::before {
       content: "";
       position: absolute;
