@@ -77,6 +77,19 @@
       padding: 2rem 1rem;
       position: relative;
     }
+    /* Header Title: Logo and Main Title Side by Side */
+    .header-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .header-logo {
+      height: 60px;
+      width: auto;
+      object-fit: cover;
+    }
     header h1 {
       font-size: 2.8rem;
       margin-bottom: 0.3rem;
@@ -324,7 +337,10 @@
 </head>
 <body data-theme="light">
   <header>
-    <h1>Aaron's Portfolio</h1>
+    <div class="header-title">
+      <img src="images/aaron_logo.png" alt="Aaron Logo" class="header-logo">
+      <h1>Aaron's Portfolio</h1>
+    </div>
     <p class="quote">"Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> ignite change."</p>
     <p>
       <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">Visit my LinkedIn Profile</a>
