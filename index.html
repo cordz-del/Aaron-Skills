@@ -41,13 +41,7 @@
       background-color: var(--background-color);
       color: var(--text-color);
       line-height: 1.6;
-      background-image: repeating-linear-gradient(
-        45deg,
-        rgba(0,0,0,0.03) 0,
-        rgba(0,0,0,0.03) 1px,
-        transparent 1px,
-        transparent 10px
-      );
+      background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 10px);
     }
     /* Enhanced SVG Background Overlay with overlapping diamonds & varied formulas */
     body::before {
@@ -321,7 +315,7 @@
       /* Increase AI Agent container vertical space */
       .ai-agent-frame {
         max-width: 95%;
-        height: 700px; /* Increased vertical height */
+        height: 700px;
       }
       /* Scale down iframe content to make chat texts smaller */
       .ai-agent-frame iframe {
@@ -424,10 +418,8 @@
       <h2>Projects</h2>
       <div class="filter-controls" id="projects-tabs">
         <button data-filter="all" class="active">All</button>
-        <button data-filter="chatbots">Chatbots</button>
-        <button data-filter="automation">Automation</button>
-        <button data-filter="ai">AI</button>
-        <button data-filter="fullstack">Full-Stack</button>
+        <button data-filter="repo">Repositories</button>
+        <button data-filter="webpage">Live Webpages</button>
         <input type="text" id="projects-search" placeholder="Search projects..." />
       </div>
       <div id="projects-container"></div>
@@ -459,8 +451,7 @@
       { category: 'article', title: 'Three AI Mega-Trends Shaping Technology, Healthcare, and Society (2025–2035)', description: '38 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/' },
       { category: 'article', title: 'Unlocking the Power of AI: Insights into ML, Python Automation, and RAG', description: '2 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/' },
       { category: 'article', title: 'How AI is Revolutionizing Cancer Treatment: A Deep Dive', description: '20 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/' },
-      { category: 'newsletter', title: 'Newsletter Example 2', description: 'Sample description', link: '#' },
-      // ... add more items as needed
+      { category: 'newsletter', title: 'Newsletter Example 2', description: 'Sample description', link: '#' }
     ];
     const skillsData = [
       { category: 'programming', title: 'Python Development: 8+ years' },
@@ -468,21 +459,147 @@
       { category: 'ai', title: 'Retrieval-Augmented Generation (RAG)' },
       { category: 'ai', title: 'Vector Databases: Pinecone, ChromaDB' },
       { category: 'automation', title: 'AI-Driven Chatbots & Automation' },
-      { category: 'fullstack', title: 'Full Stack & DevOps: AWS, Azure, Flask, Django, React, Docker, Kubernetes, CI/CD' },
-      // ... simulate 100+ items here
+      { category: 'fullstack', title: 'Full Stack & DevOps: AWS, Azure, Flask, Django, React, Docker, Kubernetes, CI/CD' }
     ];
     const certificationsData = [
       { category: 'ml', title: 'Machine Learning Specialization, Stanford', hours: '120 hrs' },
       { category: 'llmops', title: 'LLMOps Specialization, Duke', hours: '80 hrs' },
       { category: 'cloud', title: 'Generative AI, Google Cloud', hours: '60 hrs' },
-      { category: 'testing', title: 'Test Automation & API Testing', hours: '50 hrs' },
-      // ... add up to 351 items
+      { category: 'testing', title: 'Test Automation & API Testing', hours: '50 hrs' }
     ];
     const projectsData = [
-      { category: 'chatbots ai', title: 'Amie SEL Chatbot', description: 'An AI-powered chatbot.' },
-      { category: 'automation ai', title: 'SecureChatRAG', description: 'A secure retrieval-augmented generation system.' },
-      { category: 'automation fullstack', title: 'Automation Workflow Tools', description: 'Scripts to automate business processes.' },
-      // ... add up to 54 items
+      {
+        category: 'repo',
+        title: 'AI-Prompt Engineering Amie',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/AI-Prompt_Engineering_Amie'
+      },
+      {
+        category: 'repo',
+        title: 'Amie-SEL',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/Amie-SEL'
+      },
+      {
+        category: 'repo',
+        title: 'Mood Record Page',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/Mood-Record-Page'
+      },
+      {
+        category: 'webpage',
+        title: 'Mood Record Page (Live)',
+        description: 'Live Webpage',
+        link: 'https://cordz-del.github.io/Mood-Record-Page/'
+      },
+      {
+        category: 'repo',
+        title: 'Amie-Skills',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/Amie-Skills'
+      },
+      {
+        category: 'webpage',
+        title: 'Amie-Skills (Live)',
+        description: 'Live Webpage',
+        link: 'https://cordz-del.github.io/Amie-Skills/'
+      },
+      {
+        category: 'repo',
+        title: 'AI-Driven Chatbot Automation',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/ai-driven-chatbot-automation'
+      },
+      {
+        category: 'repo',
+        title: 'AI-Automation CI/CD',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/AI-Automation-CI-CD'
+      },
+      {
+        category: 'repo',
+        title: 'Log-in Amie',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/Log-in-Amie'
+      },
+      {
+        category: 'webpage',
+        title: 'Log-in Amie (Live)',
+        description: 'Live Webpage',
+        link: 'https://cordz-del.github.io/Log-in-Amie/'
+      },
+      {
+        category: 'repo',
+        title: 'Amie Chatbot Frontend',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/Amie-Chatbot-Frontend'
+      },
+      {
+        category: 'webpage',
+        title: 'Amie Chatbot Frontend (Live)',
+        description: 'Live Webpage',
+        link: 'https://cordz-del.github.io/Amie-Chatbot-Frontend/'
+      },
+      {
+        category: 'repo',
+        title: 'Retrieval-Augmented Generation Example',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/retrieval-augmented-generation-example'
+      },
+      {
+        category: 'repo',
+        title: 'Retrieval-Augmented Generation',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/retrieval-augmented-generation'
+      },
+      {
+        category: 'repo',
+        title: 'Advanced Prompt Engineering',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/Advanced-Prompt-Engineering'
+      },
+      {
+        category: 'repo',
+        title: 'AI Frameworks Showcase',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/AI-Frameworks-Showcase'
+      },
+      {
+        category: 'repo',
+        title: 'AI Job Search Agent',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/AI-Job-Search-Agent'
+      },
+      {
+        category: 'repo',
+        title: 'Cybersecurity AI Prototype',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/Cybersecurity-AI-Prototype'
+      },
+      {
+        category: 'repo',
+        title: 'Large Language Models Examples',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/Large-Language-Models-Examples'
+      },
+      {
+        category: 'repo',
+        title: 'MLOps Continuous Training Pipelines',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/MLOps-Continuous-Training-Pipelines'
+      },
+      {
+        category: 'repo',
+        title: 'Prompt Engineering Examples',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/Prompt-Engineering-Examples'
+      },
+      {
+        category: 'repo',
+        title: 'Generative AI LLMs Demo',
+        description: 'Repository',
+        link: 'https://github.com/cordz-del/generative-ai-llms-demo'
+      }
     ];
 
     /* =======================
@@ -500,9 +617,21 @@
       const start = (page - 1) * itemsPerPage;
       const items = filtered.slice(start, start + itemsPerPage);
       items.forEach(item => {
+        let itemHTML = "";
+        if (item.link) {
+          itemHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+        } else {
+          itemHTML = `<span>${item.title}</span>`;
+        }
+        if (item.description) {
+          itemHTML += ' — ' + item.description;
+        }
+        if (item.hours) {
+          itemHTML += ' (' + item.hours + ')';
+        }
         const div = document.createElement('div');
         div.className = 'item';
-        div.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>${item.description ? ' — ' + item.description : ''}${item.hours ? ' (' + item.hours + ')' : ''}`;
+        div.innerHTML = itemHTML;
         container.appendChild(div);
       });
       document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
