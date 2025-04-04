@@ -5,16 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aaron's Portfolio</title>
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Roboto for body and Playfair Display for the quote -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* CSS Reset */
+    /* CSS Reset for Consistency */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    /* Light Theme Variables */
+    /* Default (Light) Theme Variables */
     :root {
       --primary-color: #007acc;
       --secondary-color: #333;
@@ -34,7 +34,7 @@
       --accent-bg: #1a1a1a;
       --bubble-bg: #1e1e1e;
     }
-    /* Base Styles */
+    /* Base Styles & Fallback Background Pattern */
     body {
       position: relative;
       font-family: 'Roboto', sans-serif;
@@ -43,7 +43,7 @@
       line-height: 1.6;
       background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 10px);
     }
-    /* SVG Background Overlay */
+    /* Enhanced SVG Background Overlay with overlapping diamonds & varied formulas */
     body::before {
       content: "";
       position: fixed;
@@ -56,10 +56,10 @@
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23888888' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23888888' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23888888' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23888888' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23888888' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23888888' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23888888' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23888888' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
       opacity: 0.25;
     }
+    /* Dark mode SVG with white strokes & same varied formulas */
     [data-theme="dark"] body::before {
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23FFFFFF' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23FFFFFF' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23FFFFFF' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23FFFFFF' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23FFFFFF' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23FFFFFF' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
     }
-    /* Link Styles */
     a {
       color: var(--primary-color);
       text-decoration: none;
@@ -69,7 +69,7 @@
       transform: translateY(-3px);
       text-decoration: underline;
     }
-    /* Header */
+    /* Header with a linear gradient from dark blue to lighter blue */
     header {
       background: linear-gradient(135deg, #00509e, #007acc);
       color: var(--white);
@@ -77,6 +77,7 @@
       padding: 2rem 1rem;
       position: relative;
     }
+    /* Header Title: Logo and Main Title Side by Side */
     .header-title {
       display: flex;
       align-items: center;
@@ -93,6 +94,7 @@
       font-size: 2.8rem;
       margin-bottom: 0.3rem;
     }
+    /* Sub-header LinkedIn link with bright 3D white text and hover jump effect */
     header .linkedin-link {
       color: #fff;
       font-weight: bold;
@@ -103,6 +105,7 @@
     header .linkedin-link:hover {
       transform: translateY(-5px);
     }
+    /* Quote styling */
     .quote {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem;
@@ -111,7 +114,7 @@
     .quote strong {
       font-weight: bold;
     }
-    /* Dark Mode Toggle Button */
+    /* Dark Mode Toggle Button with a 3D design */
     #theme-toggle {
       position: absolute;
       top: 1rem;
@@ -144,7 +147,7 @@
     nav a:hover {
       background-color: #444;
     }
-    /* Container & Bubble Sections */
+    /* Container & Bubble Sections with extra 3D shading */
     .container {
       max-width: 960px;
       margin: 2rem auto;
@@ -169,12 +172,13 @@
       height: 100%;
       border-radius: 20px;
       z-index: -1;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
     .bubble:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
+    /* Section Titles */
     .bubble h2 {
       font-size: 2rem;
       color: var(--primary-color);
@@ -182,20 +186,151 @@
       padding-bottom: 0.5rem;
       margin-bottom: 1rem;
     }
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      nav { flex-direction: column; }
-      nav a { padding: 0.75rem; }
-      #theme-toggle { font-size: 0.8rem; padding: 0.3rem 0.7rem; }
-      .ai-agent-frame { max-width: 90%; aspect-ratio: 16 / 9; }
+    /* Lists */
+    ul {
+      list-style: none;
+      margin-bottom: 1rem;
+      padding-left: 0;
     }
+    li {
+      margin-bottom: 0.75rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+    li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
+    /* Articles Styling */
+    article {
+      margin: 1rem 0;
+      padding: 1rem;
+      background-color: var(--accent-bg);
+      border-left: 4px solid var(--primary-color);
+      border-radius: 4px;
+    }
+    /* Filter Controls for Tabs & Search */
+    .filter-controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .filter-controls button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .filter-controls button:hover, .filter-controls button.active {
+      background-color: #444;
+    }
+    .filter-controls input[type="text"] {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      flex: 1;
+    }
+    /* Pagination Controls */
+    .pagination {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .pagination button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 0.5rem;
+    }
+    .pagination button:hover {
+      background-color: #444;
+    }
+    /* Footer Centering */
+    footer {
+      text-align: center;
+      padding: 1rem;
+    }
+    /* Responsive AI Agent Container & Chat Frame */
+    .ai-agent-container {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      padding: 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .ai-agent-container h2 {
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    /* Use aspect-ratio for the AI Agent frame */
+    .ai-agent-frame {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .ai-agent-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    /* Mobile Adjustments */
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+      nav a {
+        padding: 0.75rem;
+      }
+      /* Smaller toggle button */
+      #theme-toggle {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.7rem;
+      }
+      /* Adjust AI Agent Frame for landscape mode on mobile */
+      .ai-agent-frame {
+        max-width: 90%;
+        aspect-ratio: 16 / 9;
+      }
+    }
+    /* Portrait Orientation Adjustments for Mobile */
     @media (max-width: 600px) and (orientation: portrait) {
-      .ai-agent-frame { max-width: 95%; height: 700px; }
+      /* Increase AI Agent container vertical space */
+      .ai-agent-frame {
+        max-width: 95%;
+        height: 700px; /* Increased vertical height */
+      }
+      /* Scale down iframe content to make chat texts smaller */
       .ai-agent-frame iframe {
         transform: scale(0.75);
         transform-origin: top left;
         width: 133%;
         height: 133%;
+      }
+      /* Adjust filter-control tabs to fit on one line */
+      .filter-controls {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+      }
+      .filter-controls button {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.5rem;
       }
     }
   </style>
@@ -203,12 +338,10 @@
 <body data-theme="light">
   <header>
     <div class="header-title">
-      <img src="images/ChatGPT%20Image%20Apr%202,%202025,%2008_06_04%20AM.png" alt="Portfolio Logo" class="header-logo">
+      <img src="images/aaron_logo.png" alt="Aaron Logo" class="header-logo">
       <h1>Aaron's Portfolio</h1>
     </div>
-    <p class="quote">
-      "Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> ignite change."
-    </p>
+    <p class="quote">"Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> ignite change."</p>
     <p>
       <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">Visit my LinkedIn Profile</a>
     </p>
@@ -226,53 +359,68 @@
     <!-- Biography Section -->
     <div class="bubble" id="biography">
       <h2>Biography</h2>
-      <p>
-        Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full‑stack solutions, I possess <strong>secret strengths</strong> that fuel my creative vision. My deep <strong>love for AI</strong> drives me to build innovative technologies designed for the <strong>betterment</strong> of all people—unifying diverse communities and empowering individuals to achieve their full potential. I create with <strong>heart</strong> and <strong>purpose</strong>, believing that every breakthrough is an act of love and a beacon for the future of work.
-      </p>
+      <p>Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full‑stack solutions, I possess <strong>secret strengths</strong> that fuel my creative vision. My deep <strong>love for AI</strong> drives me to build innovative technologies designed for the <strong>betterment</strong> of all people—unifying diverse communities and empowering individuals to achieve their full potential. I create with <strong>heart</strong> and <strong>purpose</strong>, believing that every breakthrough is an act of love and a beacon for the future of work.</p>
     </div>
-
     <!-- AI Agent Section -->
     <div class="bubble ai-agent-container" id="ai-agent">
       <h2>Example of AI Agent Aaron 2.0</h2>
-      <p>
-        Interact in real-time with Aaron 2.0, a cutting-edge AI Agent meticulously trained to dynamically share insights from my extensive professional experiences.
-      </p>
+      <p>Interact in real-time with Aaron 2.0, a cutting-edge AI Agent meticulously trained to dynamically share insights from my extensive professional experiences.</p>
       <div class="ai-agent-frame">
-        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b" frameborder="0" allowtransparency="true"></iframe>
+        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b"
+                frameborder="0" 
+                allowtransparency="true">
+        </iframe>
       </div>
     </div>
-
-    <!-- Newsletters & Articles Section (Loaded via Partial) -->
+    <!-- LinkedIn Newsletters & Articles Section (Paginated) -->
     <div class="bubble" id="newsletters">
       <h2>LinkedIn Newsletters &amp; Articles</h2>
-      <div id="newsletters-content">
-        <!-- Content from newsletters.html will be loaded here -->
+      <div class="filter-controls" id="newsletters-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="newsletter">Newsletters</button>
+        <button data-filter="article">Articles</button>
+        <input type="text" id="newsletters-search" placeholder="Search newsletters/articles..." />
+      </div>
+      <div id="newsletters-container"></div>
+      <div class="pagination" id="newsletters-pagination">
+        <button id="newsletters-prev">Previous</button>
+        <span id="newsletters-page-info"></span>
+        <button id="newsletters-next">Next</button>
       </div>
     </div>
-
-    <!-- Skills Section (Loaded via Partial) -->
+    <!-- Skills Section -->
     <div class="bubble" id="skills">
       <h2>Skills</h2>
-      <div id="skills-content">
-        <!-- Content from skills.html will be loaded here -->
-      </div>
+      <input type="text" id="skills-search" placeholder="Search skills..." />
+      <ul id="skills-list"></ul>
     </div>
-
-    <!-- Licenses & Certifications Section (Loaded via Partial) -->
+    <!-- Licenses & Certifications Section -->
     <div class="bubble" id="certifications">
       <h2>Licenses &amp; Certifications</h2>
-      <div id="certifications-content">
-        <!-- Content from certifications.html will be loaded here -->
+      <div class="filter-controls" id="certs-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="ml">Machine Learning</button>
+        <button data-filter="llmops">LLMOps</button>
+        <button data-filter="cloud">Cloud</button>
+        <button data-filter="testing">Testing</button>
+        <input type="text" id="certs-search" placeholder="Search certifications..." />
+      </div>
+      <div id="certs-container"></div>
+      <div class="pagination" id="certs-pagination">
+        <button id="certs-prev">Previous</button>
+        <span id="certs-page-info"></span>
+        <button id="certs-next">Next</button>
       </div>
     </div>
-
-    <!-- Projects Section (Dynamically Fetched from GitHub) -->
+    <!-- Projects Section -->
     <div class="bubble" id="projects">
       <h2>Projects</h2>
       <div class="filter-controls" id="projects-tabs">
         <button data-filter="all" class="active">All</button>
-        <button data-filter="repo">Repositories</button>
-        <button data-filter="webpage">Live Webpages</button>
+        <button data-filter="chatbots">Chatbots</button>
+        <button data-filter="automation">Automation</button>
+        <button data-filter="ai">AI</button>
+        <button data-filter="fullstack">Full-Stack</button>
         <input type="text" id="projects-search" placeholder="Search projects..." />
       </div>
       <div id="projects-container"></div>
@@ -283,11 +431,9 @@
       </div>
     </div>
   </div>
-
   <footer>
     <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
   </footer>
-
   <script>
     // Dark Mode Toggle
     const toggleButton = document.getElementById('theme-toggle');
@@ -297,55 +443,44 @@
       document.documentElement.setAttribute('data-theme', newTheme);
     });
 
-    /* Global Pagination Variables (for sections loaded via partials, if needed) */
-    let newslettersPage = 1, projectsPage = 1;
-    const newslettersPerPage = 5, projectsPerPage = 5;
+    /* =======================
+       Sample Data Arrays
+       (Replace these with your actual LinkedIn data)
+       ======================= */
+    const newslettersData = [
+      { category: 'newsletter', title: 'AI Chatbot Insights Newsletter', description: 'Published weekly | 340 subscribers', link: '#' },
+      { category: 'article', title: 'Three AI Mega-Trends Shaping Technology, Healthcare, and Society (2025–2035)', description: '38 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/' },
+      { category: 'article', title: 'Unlocking the Power of AI: Insights into ML, Python Automation, and RAG', description: '2 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/' },
+      { category: 'article', title: 'How AI is Revolutionizing Cancer Treatment: A Deep Dive', description: '20 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/' },
+      { category: 'newsletter', title: 'Newsletter Example 2', description: 'Sample description', link: '#' },
+      // ... add more items as needed
+    ];
+    const skillsData = [
+      { category: 'programming', title: 'Python Development: 8+ years' },
+      { category: 'ai', title: 'Generative AI & LLMs: GPT-4, Claude, LangChain' },
+      { category: 'ai', title: 'Retrieval-Augmented Generation (RAG)' },
+      { category: 'ai', title: 'Vector Databases: Pinecone, ChromaDB' },
+      { category: 'automation', title: 'AI-Driven Chatbots & Automation' },
+      { category: 'fullstack', title: 'Full Stack & DevOps: AWS, Azure, Flask, Django, React, Docker, Kubernetes, CI/CD' },
+      // ... simulate 100+ items here
+    ];
+    const certificationsData = [
+      { category: 'ml', title: 'Machine Learning Specialization, Stanford', hours: '120 hrs' },
+      { category: 'llmops', title: 'LLMOps Specialization, Duke', hours: '80 hrs' },
+      { category: 'cloud', title: 'Generative AI, Google Cloud', hours: '60 hrs' },
+      { category: 'testing', title: 'Test Automation & API Testing', hours: '50 hrs' },
+      // ... add up to 351 items
+    ];
+    const projectsData = [
+      { category: 'chatbots ai', title: 'Amie SEL Chatbot', description: 'An AI-powered chatbot.' },
+      { category: 'automation ai', title: 'SecureChatRAG', description: 'A secure retrieval-augmented generation system.' },
+      { category: 'automation fullstack', title: 'Automation Workflow Tools', description: 'Scripts to automate business processes.' },
+      // ... add up to 54 items
+    ];
 
-    /* Function to load external partial files into a container */
-    function loadPartial(url, containerId) {
-      fetch(url)
-        .then(response => response.text())
-        .then(text => {
-          document.getElementById(containerId).innerHTML = text;
-        })
-        .catch(error => console.error('Error loading', url, error));
-    }
-
-    // Load the partial files (ensure these files are on the same server and are fragments)
-    loadPartial('newsletters.html', 'newsletters-content');
-    loadPartial('skills.html', 'skills-content');
-    loadPartial('certifications.html', 'certifications-content');
-
-    // Projects section: Fetch projects dynamically from GitHub
-    let projectsData = [];
-    async function fetchProjects() {
-      try {
-        const response = await fetch('https://api.github.com/users/cordz-del/repos?per_page=107');
-        const repos = await response.json();
-        projectsData = [];
-        repos.forEach(repo => {
-          projectsData.push({
-            category: 'repo',
-            title: repo.name,
-            description: 'Repository',
-            link: repo.html_url
-          });
-          if (repo.homepage && repo.homepage.trim() !== '') {
-            projectsData.push({
-              category: 'webpage',
-              title: repo.name + ' (Live)',
-              description: 'Live Webpage',
-              link: repo.homepage
-            });
-          }
-        });
-        renderProjects();
-      } catch (e) {
-        console.error('Error fetching projects:', e);
-      }
-    }
-
-    /* Generic Pagination Rendering Function for Projects */
+    /* =======================
+       Generic Pagination Rendering Function
+       ======================= */
     function renderPaginatedSection(data, containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
       const container = document.getElementById(containerId);
       container.innerHTML = '';
@@ -358,20 +493,38 @@
       const start = (page - 1) * itemsPerPage;
       const items = filtered.slice(start, start + itemsPerPage);
       items.forEach(item => {
-        let itemHTML = item.link ? `<a href="${item.link}" target="_blank">${item.title}</a>` : `<span>${item.title}</span>`;
-        if (item.description) {
-          itemHTML += ' — ' + item.description;
-        }
         const div = document.createElement('div');
         div.className = 'item';
-        div.innerHTML = itemHTML;
+        div.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>${item.description ? ' — ' + item.description : ''}${item.hours ? ' (' + item.hours + ')' : ''}`;
         container.appendChild(div);
       });
       document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
       return totalPages;
     }
 
-    /* Render Projects Function */
+    /* =======================
+       Pagination Variables
+       ======================= */
+    let newslettersPage = 1, certsPage = 1, projectsPage = 1;
+    const newslettersPerPage = 5, certsPerPage = 10, projectsPerPage = 5;
+
+    /* =======================
+       Render Functions for Each Section
+       ======================= */
+    function renderNewsletters() {
+      const activeButton = document.querySelector('#newsletters-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('newsletters-search').value.toLowerCase();
+      const totalPages = renderPaginatedSection(newslettersData, 'newsletters-container', newslettersPage, newslettersPerPage, currentFilter, searchTerm, 'newsletters-page-info');
+      return totalPages;
+    }
+    function renderCerts() {
+      const activeButton = document.querySelector('#certs-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('certs-search').value.toLowerCase();
+      const totalPages = renderPaginatedSection(certificationsData, 'certs-container', certsPage, certsPerPage, currentFilter, searchTerm, 'certs-page-info');
+      return totalPages;
+    }
     function renderProjects() {
       const activeButton = document.querySelector('#projects-tabs button.active');
       const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
@@ -379,28 +532,78 @@
       const totalPages = renderPaginatedSection(projectsData, 'projects-container', projectsPage, projectsPerPage, currentFilter, searchTerm, 'projects-page-info');
       return totalPages;
     }
+    function renderSkills() {
+      const searchTerm = document.getElementById('skills-search').value.toLowerCase();
+      const container = document.getElementById('skills-list');
+      container.innerHTML = '';
+      const filtered = skillsData.filter(item => item.title.toLowerCase().includes(searchTerm));
+      filtered.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.title;
+        container.appendChild(li);
+      });
+    }
 
-    // Setup Pagination for Projects
+    /* =======================
+       Setup Tab Event Listeners for Each Section
+       ======================= */
+    function setupTabs(tabsContainerId, renderFunction) {
+      const tabsContainer = document.getElementById(tabsContainerId);
+      const buttons = tabsContainer.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          buttons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          // Reset to page 1 on filter change
+          if(tabsContainerId === 'newsletters-tabs') newslettersPage = 1;
+          if(tabsContainerId === 'certs-tabs') certsPage = 1;
+          if(tabsContainerId === 'projects-tabs') projectsPage = 1;
+          renderFunction();
+        });
+      });
+    }
+    setupTabs('newsletters-tabs', renderNewsletters);
+    setupTabs('certs-tabs', renderCerts);
+    setupTabs('projects-tabs', renderProjects);
+
+    /* =======================
+       Setup Search Event Listeners
+       ======================= */
+    document.getElementById('newsletters-search').addEventListener('input', renderNewsletters);
+    document.getElementById('certs-search').addEventListener('input', renderCerts);
+    document.getElementById('projects-search').addEventListener('input', renderProjects);
+    document.getElementById('skills-search').addEventListener('input', renderSkills);
+
+    /* =======================
+       Setup Pagination Button Event Listeners
+       ======================= */
+    document.getElementById('newsletters-prev').addEventListener('click', () => {
+      if(newslettersPage > 1) { newslettersPage--; renderNewsletters(); }
+    });
+    document.getElementById('newsletters-next').addEventListener('click', () => {
+      const totalPages = renderNewsletters();
+      if(newslettersPage < totalPages) { newslettersPage++; renderNewsletters(); }
+    });
+    document.getElementById('certs-prev').addEventListener('click', () => {
+      if(certsPage > 1) { certsPage--; renderCerts(); }
+    });
+    document.getElementById('certs-next').addEventListener('click', () => {
+      const totalPages = renderCerts();
+      if(certsPage < totalPages) { certsPage++; renderCerts(); }
+    });
     document.getElementById('projects-prev').addEventListener('click', () => {
-      if (projectsPage > 1) { projectsPage--; renderProjects(); }
+      if(projectsPage > 1) { projectsPage--; renderProjects(); }
     });
     document.getElementById('projects-next').addEventListener('click', () => {
       const totalPages = renderProjects();
-      if (projectsPage < totalPages) { projectsPage++; renderProjects(); }
-    });
-    document.getElementById('projects-search').addEventListener('input', renderProjects);
-    const projectsTabs = document.getElementById('projects-tabs').querySelectorAll('button');
-    projectsTabs.forEach(button => {
-      button.addEventListener('click', () => {
-        projectsTabs.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        projectsPage = 1;
-        renderProjects();
-      });
+      if(projectsPage < totalPages) { projectsPage++; renderProjects(); }
     });
 
-    // Initial rendering of projects
-    fetchProjects();
+    // Initial Render
+    renderNewsletters();
+    renderCerts();
+    renderProjects();
+    renderSkills();
   </script>
 </body>
 </html>
