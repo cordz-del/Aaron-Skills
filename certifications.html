@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Licenses & Certifications</title>
+  <style>
+    /* Minimal styles for the Certifications section */
+    #certifications-section {
+      padding: 1rem;
+      font-family: Arial, sans-serif;
+    }
+    #certifications-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .filter-controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .filter-controls button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #007acc;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .filter-controls button.active,
+    .filter-controls button:hover {
+      background-color: #444;
+    }
+    .filter-controls input[type="text"] {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      flex: 1;
+    }
+    #certs-container .item {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+    #certs-container .item strong {
+      font-weight: bold;
+    }
+    .pagination {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .pagination button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #007acc;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .pagination button:hover {
+      background-color: #444;
+    }
+    #certs-summary {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+    #certs-summary h3 {
+      margin-bottom: 0.5rem;
+    }
+    #certs-summary ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    #certs-summary li {
+      margin-bottom: 0.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="certifications-section">
+    <h2>Licenses &amp; Certifications</h2>
+    <!-- Summary Breakdown -->
+    <div id="certs-summary"></div>
+    <div class="filter-controls" id="certs-tabs">
+      <button data-filter="all" class="active">All</button>
+      <button data-filter="specialization">Specializations</button>
+      <button data-filter="course">Courses</button>
+      <button data-filter="linkedin">LinkedIn</button>
+      <button data-filter="training">Training</button>
+      <button data-filter="frontier">Frontier</button>
+      <input type="text" id="certs-search" placeholder="Search certifications..." />
+    </div>
+    <div id="certs-container"></div>
+    <div class="pagination" id="certs-pagination">
+      <button id="certs-prev">Previous</button>
+      <span id="certs-page-info"></span>
+      <button id="certs-next">Next</button>
+    </div>
+  </div>
+
+  <script>
+    // Global Pagination Variables for Certifications
+    let certsPage = 1;
+    const certsPerPage = 20;
+
+    // Certifications Data – A comprehensive (sample) list. Extend this array with additional entries as needed.
+    const certificationsData = [
+      // Google Cloud & Duke University / DeepLearning.AI entries
+      { category: 'training', title: 'Generative AI', provider: 'Google Cloud Skills Boost', issued: 'Dec 2024' },
+      { category: 'training', title: 'Large Language Model Operations', provider: 'Duke University', issued: 'Dec 2024' },
+      { category: 'course', title: 'Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization', provider: 'DeepLearning.AI', issued: 'Oct 2024', credential: 'XM5GX5LELZI3' },
+      { category: 'course', title: 'Sequence Models', provider: 'DeepLearning.AI', issued: 'Oct 2024', credential: '2T7ZEGIBJLD3' },
+      { category: 'course', title: 'Structuring Machine Learning Projects', provider: 'DeepLearning.AI', issued: 'Oct 2024', credential: 'C3V2UXB2KH2E' },
+      { category: 'course', title: 'Neural Networks and Deep Learning', provider: 'DeepLearning.AI', issued: 'Sep 2024', credential: 'X3GU9ODWAZ1G' },
+      { category: 'training', title: 'Introduction to Generative AI', provider: 'Duke University', issued: 'Aug 2024', credential: 'BHI3D5H4S7JF' },
+      { category: 'specialization', title: 'Machine Learning Specialization', provider: 'DeepLearning.AI, Stanford University', issued: 'Aug 2024', credential: '2RE6LR3QZXIC' },
+      { category: 'course', title: 'Unsupervised Learning, Recommenders, Reinforcement Learning', provider: 'DeepLearning.AI, Stanford University', issued: 'Aug 2024', credential: '75KEPU9F0VEQ' },
+      { category: 'course', title: 'Advanced Learning Algorithms', provider: 'DeepLearning.AI, Stanford University', issued: 'Jul 2024', credential: 'XP4AMM988RU2' },
+      { category: 'course', title: 'Supervised Machine Learning: Regression and Classification', provider: 'DeepLearning.AI, Stanford University', issued: 'Jul 2024', credential: 'DC9D75V9JQ4A' },
+      { category: 'specialization', title: 'Introduction to Generative AI Learning Path Specialization', provider: 'Google Cloud', issued: 'Jun 2024', credential: 'WS864DZLGGMS' },
+      
+      // LinkedIn Certifications (sample entries)
+      { category: 'linkedin', title: 'Azure DevOps: Continuous Delivery with YAML Pipelines', provider: 'LinkedIn', issued: 'May 2024' },
+      { category: 'linkedin', title: 'Cisco Certified DevNet Associate DEVASC 1.1 (200-901) Cert Prep', provider: 'LinkedIn', issued: 'May 2024' },
+      { category: 'linkedin', title: 'Google Cloud Professional Cloud Security Engineer Cert Prep', provider: 'LinkedIn', issued: 'May 2024' },
+      { category: 'linkedin', title: 'Vue.js: Testing and Debugging', provider: 'LinkedIn', issued: 'May 2024' },
+      { category: 'linkedin', title: 'API Testing Foundations', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'AWS Certified Solutions Architect - Associate (SAA-C03) Cert Prep: 8 Databases', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Agile Project Management with Jira Cloud: 1 Projects, Boards, and Issues', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Agile Software Development: Cloud Architecture', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'DevOps Institute Cert Prep: SRE Foundation (SRE)', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Essentials of MLOps with Azure: 1 Introduction', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'LinkedIn Premium Quick Tips', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Managing Anxiety in the Workplace', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Nail Your Python Interview', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Practical GitHub Actions', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Problem-Solving Techniques', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'SQL for Testers', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Salesforce Essential Training', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Salesforce for Marketers', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Salesforce: Sales Automation for Salespeople', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Software Testing Foundations: Test Strategy', provider: 'LinkedIn', issued: 'Apr 2024' },
+      
+      // Frontier Internet Certifications (sample entries)
+      { category: 'frontier', title: 'Accredited Integration Specialist - HP Software Testing Foundation v9 (AIS-STFv9)', provider: 'Frontier Internet', issued: 'Nov 2018' },
+      { category: 'frontier', title: 'AccessData Summation Certified End-user', provider: 'Frontier Internet', issued: 'May 2018' },
+      { category: 'frontier', title: 'Manual Service Order Administration', provider: 'Frontier Internet', issued: 'Apr 2018' },
+      { category: 'frontier', title: 'Accredited Integration Specialist - IP Telephony [2010] (AIS-IPTel10)', provider: 'Frontier Internet', issued: 'Oct 2017' },
+      { category: 'frontier', title: 'Cisco IP Telephony Operations Specialist', provider: 'Frontier Internet', issued: 'Oct 2017' },
+      { category: 'frontier', title: 'End User Training', provider: 'Frontier Internet', issued: 'May 2017' },
+      { category: 'frontier', title: 'Emergency Preparedness', provider: 'Frontier Internet', issued: 'May 2017' },
+      { category: 'frontier', title: 'EWL Equivalent Working Length', provider: 'Frontier Internet', issued: 'May 2017' },
+      { category: 'frontier', title: 'FAST FiOS Field Support', provider: 'Frontier Internet', issued: 'May 2017' },
+      
+      // United Latino Students Association Certifications
+      { category: 'linkedin', title: 'Introduction to Generative AI', provider: 'United Latino Students Association', issued: 'Dec 2023', credential: 'SS3FQ68LUT2X' },
+      { category: 'linkedin', title: 'Introduction to Large Language Models', provider: 'United Latino Students Association', issued: 'Dec 2023', credential: 'BPPF9R7TKDZN' },
+      { category: 'linkedin', title: 'Introduction to Responsible AI', provider: 'United Latino Students Association', issued: 'Dec 2023', credential: 'EGU8NHBJ7WBQ' },
+      { category: 'linkedin', title: 'Responsible AI: Applying AI Principles with Google Cloud', provider: 'United Latino Students Association', issued: 'Dec 2023', credential: 'MBS3QMA6NQCY' },
+      
+      // Additional LinkedIn & Coursera certifications (sample entries)
+      { category: 'linkedin', title: 'Azure DevOps: Continuous Delivery with YAML Pipelines', provider: 'LinkedIn', issued: 'May 2024' },
+      { category: 'linkedin', title: 'Cisco Certified DevNet Associate DEVASC 1.1 (200-901) Cert Prep', provider: 'LinkedIn', issued: 'May 2024' },
+      { category: 'linkedin', title: 'Google Cloud Professional Cloud Security Engineer Cert Prep', provider: 'LinkedIn', issued: 'May 2024' },
+      { category: 'linkedin', title: 'Vue.js: Testing and Debugging', provider: 'LinkedIn', issued: 'May 2024' },
+      { category: 'linkedin', title: 'API Testing Foundations', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'AWS Certified Solutions Architect - Associate (SAA-C03) Cert Prep: 8 Databases', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Agile Project Management with Jira Cloud: 1 Projects, Boards, and Issues', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Agile Software Development: Cloud Architecture', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'DevOps Institute Cert Prep: SRE Foundation (SRE)', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Essentials of MLOps with Azure: 1 Introduction', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'LinkedIn Premium Quick Tips', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Managing Anxiety in the Workplace', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Nail Your Python Interview', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Practical GitHub Actions', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Problem-Solving Techniques', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'SQL for Testers', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Salesforce Essential Training', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Salesforce for Marketers', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Salesforce: Sales Automation for Salespeople', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Software Testing Foundations: Test Strategy', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'Training Neural Networks in Python', provider: 'LinkedIn', issued: 'Apr 2024' },
+      { category: 'linkedin', title: 'AWS Certified Machine Learning - Specialty (MLS-C01) Cert Prep: 1 Data Engineering', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS Certified Machine Learning - Specialty (MLS-C01) Cert Prep: 2 Exploratory Data Analysis', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS Certified Machine Learning - Specialty (MLS-C01) Cert Prep: 3 Modeling', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS Certified Machine Learning - Specialty (MLS-C01) Cert Prep: 4 Machine Learning Implementation and Operations', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS Certified Solutions Architect - Associate (SAA-C03) Cert Prep: 1 Cloud Services Overview', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS Certified Solutions Architect - Associate (SAA-C03) Cert Prep: 2 Storage Design', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS Certified Solutions Architect - Associate (SAA-C03) Cert Prep: 3 Virtual Private Cloud', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS Certified Solutions Architect - Associate (SAA-C03) Cert Prep: 4 Compute Services', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS Certified Solutions Architect - Associate (SAA-C03) Cert Prep: 5 Identity and Access Management', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS Certified Solutions Architect - Associate (SAA-C03) Cert Prep: 6 Auto Scaling and Virtual Network Services', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS Certified Solutions Architect - Associate (SAA-C03) Cert Prep: 9 Services and Design Scenarios', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS: Deployment, Provisioning, and Automation', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS: Networking', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'AWS: Security and Compliance', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Advanced Kubernetes: 1 Core Concepts', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Advanced Terraform', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Ansible Essential Training', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Applied AI: Building NLP Apps with Hugging Face Transformers', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Artificial Intelligence and Business Strategy', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Azure Administration Essential Training', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Azure Kubernetes Service (AKS): Deploying Microservices', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Building Apps with AI Tools: ChatGPT, Semantic Kernel, and Langchain', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Building Serverless Applications in AWS', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Cert Prep: Certified Kubernetes Administrator (CKA)', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Cloud Security Concepts: Services and Compliance', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Creating a Dev Environment in AWS with Terraform', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Deep Learning: Model Optimization and Tuning', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'DevOps Foundations: DevSecOps', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'DevOps Foundations: Infrastructure as Code', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'DevOps Foundations: Site Reliability Engineering', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'DevOps Foundations: Your First Project', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Developing CI/CD Solutions with Azure DevOps', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Essentials of MLOps with Azure: 2 Databricks MLflow and MLflow Tracking', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Exam Review: Designing and Implementing a Data Science Solution on Azure (DP-100)', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Exam Tips: Azure Administrator (AZ-104)', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'GitHub Actions for CI/CD', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'GitOps Foundations', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Google Cloud Foundations', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Hands-On Generative AI: Applying Your Tabular Data With ChatGPT, GPT-4, and LangChain', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Hands-On Natural Language Processing', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Introduction to Large Language Models', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Introduction to Terraform on Azure', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Kubernetes: Cloud Native Ecosystem', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Kubernetes: GitOps with ArgoCD', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Kubernetes: The Documentary', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'LPIC-2 Linux Engineer (202-450): 2 Web Services', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Learning Azure Kubernetes Service (AKS)', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Learning Bash Scripting', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Learning Docker Compose', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Learning GitHub Actions', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'LinkedIn AI Academy AI-100: 2 Supervised Learning with Neural Networks', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Machine Learning with Python: Decision Trees', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Machine Learning with Python: Logistic Regression', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure Administrator (AZ-104) Cert Prep: 1 Manage Azure Identities and Governance', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure Administrator (AZ-104) Cert Prep: 2 Manage Storage Accounts', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure Administrator (AZ-104) Cert Prep: 3 Deploy and Manage Azure Compute Resources', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure Administrator (AZ-104) Cert Prep: 4 Configure and Manage Virtual Networking', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure Administrator (AZ-104) Cert Prep: 5 Monitor and Maintain Azure Resources', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure DevOps Engineer Expert (AZ-400) Cert Prep: 1 Configure Processes and Communications by Microsoft Press', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure DevOps Engineer Expert (AZ-400) Cert Prep: 4 Design and Implement Build and Release Pipelines by Microsoft Press', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure Fundamentals (AZ-900) Cert Prep: 2 Azure Architecture and Security', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure Machine Learning Fundamentals', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure Security Technologies (AZ-500) Cert Prep: 1 Manage Identity and Access', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure Security Technologies (AZ-500) Cert Prep: 2 Implement Platform Protection', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure: Networking Concepts', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure: Security Concepts', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Microsoft Entra ID: Basics', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Monitoring and Observability with Datadog', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'NetOps (DevOps for Network Engineers): Automating Networks', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'OpenCV for Python Developers', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Prepare for the AWS Certified Cloud Practitioner (CLF-C01) Certification Exam', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Red Hat Certified Engineer (EX294) Cert Prep: 1 Foundations of Ansible', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Running Jenkins on AWS', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Running Kubernetes on AWS (EKS)', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Self-Supervised Machine Learning', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Succeeding in DevOps', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Tableau for Data Scientists', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'TensorFlow 2.0: Working with Images', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Top 10 Skills for NLP Specialists', provider: 'LinkedIn', issued: 'Mar 2024' },
+      { category: 'linkedin', title: 'Advanced Cypress', provider: 'LinkedIn', issued: 'Feb 2024' },
+      { category: 'linkedin', title: 'End-to-End JavaScript Testing with Cypress.io', provider: 'LinkedIn', issued: 'Feb 2024' },
+      { category: 'linkedin', title: 'Learning Java Collections', provider: 'LinkedIn', issued: 'Feb 2024' },
+      { category: 'linkedin', title: 'AWS Essential Training for Developers', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Advanced SQL for Data Scientists', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Advanced Web APIs with ASP.NET Core in .NET 6', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Angular Essential Training', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Artificial Intelligence Foundations: Machine Learning', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Building Skills with Semantic Kernel', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Artificial Intelligence (AI) · Generative AI', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Building Web APIs with ASP.NET Core in .NET', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'C# and .NET Essential Training', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Cert Prep: Salesforce Certified Administrator', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Confident Communication for Introverts', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Cybersecurity at Work', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Data Science Foundations: Fundamentals', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Decision Intelligence', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Designing RESTful APIs', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'DevOps Foundations: Continuous Delivery/Continuous Integration', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Docker for Developers', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Excel Essential Training (Microsoft 365)', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Inclusive Tech: Retaining Diverse Talent', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Java: Lambdas and Streams', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Learning Data Analytics Part 2: Extending and Applying Core Knowledge', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Learning Data Analytics: 1 Foundations', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Learning Excel: Data Analysis', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Learning Jenkins', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Learning Linux Command Line', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Learning Next.js', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Learning SOLID Programming Principles', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Learning Salesforce.com Development', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Learning Terraform', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Learning the OWASP Top 10', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Microsoft Azure Fundamentals (AZ-900) Cert Prep: 1 Cloud Concepts', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Pair Programming with AI', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Power BI Essential Training', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Practical Engineering', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Python for Algorithmic Thinking: Problem-Solving Skills', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Python: Design Patterns', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'React.js Essential Training', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'React: Design Patterns', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Reinforcement Learning Foundations', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Robot Framework Test Automation: Level 1 (Selenium)', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Root Cause Analysis: Getting to the Root of Business Problems', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'SQL Server Integration Services', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'SQL for Data Analysis', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'SQL: Data Reporting and Analysis', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Scrum: Advanced', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Scrum: The Basics', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Security Testing Essential Training', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Selenium Essential Training', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Software Testing Foundations: Test Preparation', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Software Testing Foundations: Test Techniques', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Software Testing Foundations: Transitioning from Manual to Automation', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Automated Software Testing', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Software Testing: Alpha Testing in an Agile World', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Software Testing · Agile Software Development', provider: 'LinkedIn', issued: 'Jan 2024' },
+      { category: 'linkedin', title: 'Streamlining Your Work with Copilot (formerly Bing Chat/Bing Chat Enterprise)', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Succeeding in Software Testing', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Tech on the Go: Building a Software Test Department', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'TensorFlow: Working with NLP', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Test Automation Foundations', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Test Automation with Python: 1 Introduction to Automated Testing', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Test Automation with Python: 2 Python for Testers', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Test Automation with Python: 3 Testing Web and Mobile', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Test Automation with Python: 4 The WebDriver Automation Architecture', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Test Automation with Python: 5 Web Browser Automation with Selenium', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Test Automation with Python: 6 Elements and Selectors', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Test Automation with Python: 8 Additional Appium Features', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Test Automation with Python: 9 Designing Your Test Suite', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Time Management Fundamentals', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Transformers: Text Classification for NLP Using BERT', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'TypeScript Essential Training', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Unconscious Bias', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Understanding Manual Testing', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'Quality Assurance', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'What Is Business Analysis?', provider: 'LinkedIn', issued: 'Dec 2023' },
+      { category: 'linkedin', title: 'What Is Generative AI?', provider: 'LinkedIn', issued: 'Dec 2023' },
+      
+      // Frontier Internet Certifications (continued)
+      { category: 'frontier', title: 'Accredited Integration Specialist - HP Software Testing Foundation v9 (AIS-STFv9)', provider: 'Frontier Internet', issued: 'Nov 2018' },
+      { category: 'frontier', title: 'AccessData Summation Certified End-user', provider: 'Frontier Internet', issued: 'May 2018' },
+      { category: 'frontier', title: 'Manual Service Order Administration', provider: 'Frontier Internet', issued: 'Apr 2018' },
+      { category: 'frontier', title: 'Accredited Integration Specialist - IP Telephony [2010] (AIS-IPTel10)', provider: 'Frontier Internet', issued: 'Oct 2017' },
+      { category: 'frontier', title: 'Cisco IP Telephony Operations Specialist', provider: 'Frontier Internet', issued: 'Oct 2017' },
+      { category: 'frontier', title: 'End User Training', provider: 'Frontier Internet', issued: 'May 2017' },
+      { category: 'frontier', title: 'Emergency Preparedness', provider: 'Frontier Internet', issued: 'May 2017' },
+      { category: 'frontier', title: 'EWL Equivalent Working Length', provider: 'Frontier Internet', issued: 'May 2017' },
+      { category: 'frontier', title: 'FAST FiOS Field Support', provider: 'Frontier Internet', issued: 'May 2017' },
+      { category: 'frontier', title: 'M6 Completing a Task', provider: 'Frontier Internet', issued: 'Mar 2016' },
+      { category: 'frontier', title: 'CRM Sterling 7', provider: 'Frontier Internet', issued: 'Apr 2017' },
+      { category: 'frontier', title: 'Certified Risk Manager (CRM)', provider: 'Frontier Internet', issued: 'Apr 2017' },
+      { category: 'frontier', title: 'IBM Certified Implementation Professional - Sterling Order Management V9.4', provider: 'Frontier Internet', issued: 'Apr 2017' },
+      { category: 'frontier', title: 'Triad', provider: 'Frontier Internet', issued: 'Feb 2017' },
+      { category: 'frontier', title: 'POTS Programming', provider: 'Frontier Internet', issued: 'Jan 2017' },
+      { category: 'frontier', title: 'Copper Advanced Telephony', provider: 'Frontier Internet', issued: 'Oct 2016' },
+      { category: 'frontier', title: 'Facilities', provider: 'Frontier Internet', issued: 'Oct 2016' },
+      { category: 'frontier', title: 'Fiber Optics Technician-Inside Plant', provider: 'Frontier Internet', issued: 'Oct 2016' },
+      { category: 'frontier', title: 'TC Fallout', provider: 'Frontier Internet', issued: 'Oct 2016' },
+      { category: 'frontier', title: 'Workflow Manager', provider: 'Frontier Internet', issued: 'Oct 2016' },
+      { category: 'frontier', title: 'Accredited Integration Specialist - Application Lifecycle Management v11 (AID-ALM11)', provider: 'Frontier Internet', issued: 'Jan 2016' },
+      { category: 'frontier', title: 'WV Home Study Basic Electricity Exam', provider: 'Frontier Internet', issued: 'May 2014' },
+      { category: 'frontier', title: 'IT Security Awareness Policy Training', provider: 'Frontier Internet', issued: 'Apr 2014' },
+      { category: 'frontier', title: 'Altec AT200A and AT235 Aerial Units', provider: 'Frontier Internet', issued: 'Feb 2014' },
+      { category: 'frontier', title: 'CPNI - Customer Proprietary Network Information', provider: 'Frontier Internet', issued: 'Feb 2014' },
+      { category: 'frontier', title: 'Central Office', provider: 'Frontier Internet', issued: 'Feb 2014' },
+      { category: 'frontier', title: 'Dealing with Difficult Customers', provider: 'Frontier Internet', issued: 'Feb 2014' },
+      { category: 'frontier', title: 'Enhanced Messaging MetaSwitch Provisioning', provider: 'Frontier Internet', issued: 'Feb 2014' },
+      { category: 'frontier', title: 'ADSL2+ Annex M Technical Overview', provider: 'Frontier Internet', issued: 'Jan 2014' },
+      { category: 'frontier', title: 'Actiontec F2250 Gateway Introduction', provider: 'Frontier Internet', issued: 'Jan 2014' },
+      { category: 'frontier', title: 'Records Retention', provider: 'Frontier Internet', issued: 'Nov 2013' },
+      { category: 'frontier', title: 'SOA for Assignment', provider: 'Frontier Internet', issued: 'Oct 2013' },
+      { category: 'frontier', title: 'Tandem Order Process and Programming', provider: 'Frontier Internet', issued: 'Jul 2013' },
+      { category: 'frontier', title: 'Premium Broadband', provider: 'Frontier Internet', issued: 'Jun 2013' },
+      { category: 'frontier', title: 'ADSL Bonded Technician Review', provider: 'Frontier Internet', issued: 'Sep 2012' },
+      { category: 'frontier', title: 'LoopCare DSL Testing Tool Training', provider: 'Frontier Internet', issued: 'Sep 2012' },
+      { category: 'frontier', title: 'Basic & Advanced Telephony for Plant Service Center Employees', provider: 'Frontier Internet', issued: 'Oct 2010' },
+      { category: 'frontier', title: 'Broadband Voice over Internet Protocol (B-VoIP)', provider: 'Frontier Internet', issued: 'Oct 2010' },
+      { category: 'frontier', title: 'DPI Assignment Training', provider: 'Frontier Internet', issued: 'Oct 2010' },
+      { category: 'frontier', title: 'HSI In-depth', provider: 'Frontier Internet', issued: 'Oct 2010' },
+      { category: 'frontier', title: 'Conversion Training', provider: 'Frontier Internet', issued: 'Jul 2010' },
+      { category: 'frontier', title: '5ESS', provider: 'Frontier Internet', issued: 'Jun 2010' },
+      { category: 'frontier', title: 'Adtran', provider: 'Frontier Internet', issued: 'Jun 2010' },
+      { category: 'frontier', title: 'Alcatel', provider: 'Frontier Internet', issued: 'Jun 2010' },
+      { category: 'frontier', title: 'BT (Boston Technology) Voicemail Programming', provider: 'Frontier Internet', issued: 'Jun 2010' },
+      { category: 'frontier', title: 'Calex', provider: 'Frontier Internet', issued: 'Jun 2010' },
+      { category: 'frontier', title: 'Conversion/Shadow Training', provider: 'Frontier Internet', issued: 'Jun 2010' },
+      { category: 'frontier', title: 'DCO', provider: 'Frontier Internet', issued: 'Jun 2010' },
+      { category: 'frontier', title: 'DMS-10', provider: 'Frontier Internet', issued: 'Jun 2010' },
+      { category: 'frontier', title: 'DMS-100', provider: 'Frontier Internet', issued: 'Jun 2010' },
+      { category: 'frontier', title: 'EWSD Switch POTS Programming', provider: 'Frontier Internet', issued: 'Jun 2010' },
+      { category: 'frontier', title: 'GTD-5', provider: 'Frontier Internet', issued: 'Jun 2010' }
+    ];
+
+    // Deduplicate certifications based on title and provider (case-insensitive)
+    const dedupedCerts = [];
+    const seen = new Set();
+    certificationsData.forEach(cert => {
+      const key = cert.title.trim().toLowerCase() + '|' + cert.provider.trim().toLowerCase();
+      if (!seen.has(key)) {
+        seen.add(key);
+        dedupedCerts.push(cert);
+      }
+    });
+
+    // Render Certifications Summary (shows total hours by provider, if hours are provided)
+    function renderCertsSummary() {
+      const summaryContainer = document.getElementById('certs-summary');
+      const summary = {};
+      let totalHours = 0;
+      dedupedCerts.forEach(cert => {
+        if(cert.hours) {
+          totalHours += cert.hours;
+          const provider = cert.provider;
+          summary[provider] = (summary[provider] || 0) + cert.hours;
+        }
+      });
+      let summaryHTML = '<h3>Certification Hours Breakdown:</h3><ul>';
+      for(const provider in summary) {
+        summaryHTML += `<li>${provider}: ${summary[provider]} hours</li>`;
+      }
+      summaryHTML += `</ul><p><strong>Total Certification Hours: ${totalHours} hours</strong></p>`;
+      summaryContainer.innerHTML = summaryHTML;
+    }
+
+    // Generic Pagination Rendering Function for Certifications
+    function renderPaginatedCerts(containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      let filtered = dedupedCerts.filter(item => {
+        return (currentFilter === 'all' || item.category.toLowerCase() === currentFilter.toLowerCase()) &&
+               item.title.toLowerCase().includes(searchTerm);
+      });
+      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
+      const start = (page - 1) * itemsPerPage;
+      const items = filtered.slice(start, start + itemsPerPage);
+      items.forEach(item => {
+        const itemHTML = `<div class="item"><strong>${item.title.trim()}</strong> — ${item.provider.trim()} ${item.issued ? '(' + item.issued + ')' : ''} ${item.credential ? ' [Credential ID ' + item.credential + ']' : ''}</div>`;
+        container.innerHTML += itemHTML;
+      });
+      document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
+      return totalPages;
+    }
+
+    // Render Certifications Function
+    function renderCertifications() {
+      const activeButton = document.querySelector('#certs-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('certs-search').value.toLowerCase();
+      const totalPages = renderPaginatedCerts('certs-container', certsPage, certsPerPage, currentFilter, searchTerm, 'certs-page-info');
+      return totalPages;
+    }
+
+    // Setup event listeners for search, pagination, and tab filtering
+    document.getElementById('certs-search').addEventListener('input', () => { certsPage = 1; renderCertifications(); });
+    document.getElementById('certs-prev').addEventListener('click', () => {
+      if(certsPage > 1) { certsPage--; renderCertifications(); }
+    });
+    document.getElementById('certs-next').addEventListener('click', () => {
+      const totalPages = renderCertifications();
+      if(certsPage < totalPages) { certsPage++; renderCertifications(); }
+    });
+    const certsTabs = document.getElementById('certs-tabs').querySelectorAll('button');
+    certsTabs.forEach(button => {
+      button.addEventListener('click', () => {
+        certsTabs.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        certsPage = 1;
+        renderCertifications();
+      });
+    });
+
+    // Initial rendering
+    renderCertsSummary();
+    renderCertifications();
+  </script>
+</body>
+</html>
