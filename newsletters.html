@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>LinkedIn Newsletters & Articles</title>
+  <style>
+    /* Minimal styles for the newsletters section */
+    #newsletters-section {
+      padding: 1rem;
+    }
+    #newsletters-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .filter-controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .filter-controls button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #007acc;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .filter-controls button.active,
+    .filter-controls button:hover {
+      background-color: #444;
+    }
+    .filter-controls input[type="text"] {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      flex: 1;
+    }
+    #newsletters-container .item {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+    .pagination {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .pagination button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #007acc;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .pagination button:hover {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div id="newsletters-section">
+    <h2>LinkedIn Newsletters & Articles</h2>
+    <div class="filter-controls" id="newsletters-tabs">
+      <button data-filter="all" class="active">All</button>
+      <button data-filter="article">Articles</button>
+      <input type="text" id="newsletters-search" placeholder="Search newsletters/articles..." />
+    </div>
+    <div id="newsletters-container"></div>
+    <div class="pagination" id="newsletters-pagination">
+      <button id="newsletters-prev">Previous</button>
+      <span id="newsletters-page-info"></span>
+      <button id="newsletters-next">Next</button>
+    </div>
+  </div>
+
+  <script>
+    // Global Pagination Variables for the newsletters section
+    let newslettersPage = 1;
+    const newslettersPerPage = 5;
+
+    // Data Array for LinkedIn Newsletters & Articles
+    const newslettersData = [
+      { category: 'article', title: 'Building AI Agent for Day-to-Day Requests: Comprehensive How-To', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/building-ai-agent-day-to-day-requests-comprehensive-how-to-graham-1x3te/' },
+      { category: 'article', title: 'AI Chatbots for Mental Health Support: Promise, Challenges, and the Future', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/ai-chatbots-mental-health-support-promise-challenges-future-graham-hxvse/' },
+      { category: 'article', title: 'Building AI Chatbot without Traditional Backend: Modern Approaches', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/building-ai-chatbot-without-traditional-backend-modern-robert-graham-44ede/' },
+      { category: 'article', title: 'AI-Driven Python Automation & QA: Unleashing Selenium & LLMs', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/ai-driven-python-automation-qa-unleashing-selenium-llms-robert-graham-bsvee/' },
+      { category: 'article', title: 'Three AI Mega-Trends Shaping Technology, Healthcare, and Society', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/three-ai-mega-trends-shaping-technology-healthcare-society-graham-8fave/?trackingId=fEWkP0RuQviIoefU2OYuiA%3D%3D' },
+      { category: 'article', title: 'How AI is Revolutionizing Cancer Treatment: A Deep Dive in Oncology', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/how-ai-revolutionizing-cancer-treatment-deep-dive-oncology-graham-jidme/?trackingId=9MLOT2bpTXiyLUX1MADW5Q%3D%3D' },
+      { category: 'article', title: 'Comprehensive Guide to ChromaDB for Beginners & Advanced Users', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/comprehensive-guide-chromadb-beginners-advanced-users-robert-graham-pz0pf/?trackingId=652DvIcAR1W4BsFs1bJqSA%3D%3D' },
+      { category: 'article', title: 'Comprehensive Guide to CI/CD Integration for ML Models', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/comprehensive-guide-cicd-integration-ml-models-robert-graham-whw3c/?trackingId=2o94p3MrQlWCJUcUGFasAg%3D%3D' },
+      { category: 'article', title: 'Bridging AI & Automation: How LLMs are Revolutionizing Testing', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/bridging-ai-automation-how-llms-revolutionizing-testing-robert-graham-dv2me/?trackingId=RPDZyam1TCuWQ787rGMQeQ%3D%3D' },
+      { category: 'article', title: 'Scaling MLOps for Enterprise Applications', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/scaling-mlops-enterprise-applications-robert-graham-fsdxe/?trackingId=pTfTOHfjRuuKgnknc0PAWQ%3D%3D' },
+      { category: 'article', title: 'Advanced Guide to Facial Recognition with Python', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/advanced-guide-facial-recognition-python-robert-graham-gqzqe/?trackingId=bQrxYzgqTNaOUZNG%2BFNT5Q%3D%3D' }
+    ];
+
+    // Function to render paginated content for the newsletters section
+    function renderPaginatedSection(data, containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      let filtered = data.filter(item => {
+        return (currentFilter === 'all' || item.category.includes(currentFilter)) &&
+               (item.title.toLowerCase().includes(searchTerm) ||
+                (item.description && item.description.toLowerCase().includes(searchTerm)));
+      });
+      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
+      const start = (page - 1) * itemsPerPage;
+      const items = filtered.slice(start, start + itemsPerPage);
+      items.forEach(item => {
+        let itemHTML = "";
+        if (item.link) {
+          itemHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+        } else {
+          itemHTML = `<span>${item.title}</span>`;
+        }
+        if (item.description) {
+          itemHTML += ' — ' + item.description;
+        }
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = itemHTML;
+        container.appendChild(div);
+      });
+      document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
+      return totalPages;
+    }
+
+    // Function to render newsletters
+    function renderNewsletters() {
+      const activeButton = document.querySelector('#newsletters-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('newsletters-search').value.toLowerCase();
+      const totalPages = renderPaginatedSection(newslettersData, 'newsletters-container', newslettersPage, newslettersPerPage, currentFilter, searchTerm, 'newsletters-page-info');
+      return totalPages;
+    }
+
+    // Setup event listeners for search and pagination
+    document.getElementById('newsletters-search').addEventListener('input', () => { newslettersPage = 1; renderNewsletters(); });
+    document.getElementById('newsletters-prev').addEventListener('click', () => {
+      if(newslettersPage > 1) { newslettersPage--; renderNewsletters(); }
+    });
+    document.getElementById('newsletters-next').addEventListener('click', () => {
+      const totalPages = renderNewsletters();
+      if(newslettersPage < totalPages) { newslettersPage++; renderNewsletters(); }
+    });
+
+    // Setup tabs for filtering
+    const newslettersTabs = document.getElementById('newsletters-tabs').querySelectorAll('button');
+    newslettersTabs.forEach(button => {
+      button.addEventListener('click', () => {
+        newslettersTabs.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        newslettersPage = 1;
+        renderNewsletters();
+      });
+    });
+
+    // Initial render
+    renderNewsletters();
+  </script>
+</body>
+</html>
