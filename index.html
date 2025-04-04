@@ -47,8 +47,10 @@
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
       z-index: -1;
       pointer-events: none;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23888888' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23888888' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23888888' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23888888' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23888888' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23888888' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23888888' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23888888' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
@@ -385,6 +387,7 @@
         <button data-filter="specialization">Specializations</button>
         <button data-filter="course">Courses</button>
         <button data-filter="linkedin">LinkedIn</button>
+        <button data-filter="training">Training</button>
         <input type="text" id="certs-search" placeholder="Search certifications..." />
       </div>
       <div id="certs-container"></div>
@@ -431,77 +434,22 @@
        Data Arrays
        ======================= */
 
-    // LinkedIn Newsletters & Articles (Use your actual article titles)
+    // LinkedIn Newsletters & Articles
     const newslettersData = [
-      {
-        category: 'article',
-        title: 'Building AI Agent for Day-to-Day Requests: Comprehensive How-To',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/building-ai-agent-day-to-day-requests-comprehensive-how-to-graham-1x3te/'
-      },
-      {
-        category: 'article',
-        title: 'AI Chatbots for Mental Health Support: Promise, Challenges, and the Future',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/ai-chatbots-mental-health-support-promise-challenges-future-graham-hxvse/'
-      },
-      {
-        category: 'article',
-        title: 'Building AI Chatbot without Traditional Backend: Modern Approaches',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/building-ai-chatbot-without-traditional-backend-modern-robert-graham-44ede/'
-      },
-      {
-        category: 'article',
-        title: 'AI-Driven Python Automation & QA: Unleashing Selenium & LLMs',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/ai-driven-python-automation-qa-unleashing-selenium-llms-robert-graham-bsvee/'
-      },
-      {
-        category: 'article',
-        title: 'Three AI Mega-Trends Shaping Technology, Healthcare, and Society',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/three-ai-mega-trends-shaping-technology-healthcare-society-graham-8fave/?trackingId=fEWkP0RuQviIoefU2OYuiA%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'How AI is Revolutionizing Cancer Treatment: A Deep Dive in Oncology',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/how-ai-revolutionizing-cancer-treatment-deep-dive-oncology-graham-jidme/?trackingId=9MLOT2bpTXiyLUX1MADW5Q%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'Comprehensive Guide to ChromaDB for Beginners & Advanced Users',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/comprehensive-guide-chromadb-beginners-advanced-users-robert-graham-pz0pf/?trackingId=652DvIcAR1W4BsFs1bJqSA%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'Comprehensive Guide to CI/CD Integration for ML Models',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/comprehensive-guide-cicd-integration-ml-models-robert-graham-whw3c/?trackingId=2o94p3MrQlWCJUcUGFasAg%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'Bridging AI & Automation: How LLMs are Revolutionizing Testing',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/bridging-ai-automation-how-llms-revolutionizing-testing-robert-graham-dv2me/?trackingId=RPDZyam1TCuWQ787rGMQeQ%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'Scaling MLOps for Enterprise Applications',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/scaling-mlops-enterprise-applications-robert-graham-fsdxe/?trackingId=pTfTOHfjRuuKgnknc0PAWQ%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'Advanced Guide to Facial Recognition with Python',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/advanced-guide-facial-recognition-python-robert-graham-gqzqe/?trackingId=bQrxYzgqTNaOUZNG%2BFNT5Q%3D%3D'
-      }
+      { category: 'article', title: 'Building AI Agent for Day-to-Day Requests: Comprehensive How-To', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/building-ai-agent-day-to-day-requests-comprehensive-how-to-graham-1x3te/' },
+      { category: 'article', title: 'AI Chatbots for Mental Health Support: Promise, Challenges, and the Future', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/ai-chatbots-mental-health-support-promise-challenges-future-graham-hxvse/' },
+      { category: 'article', title: 'Building AI Chatbot without Traditional Backend: Modern Approaches', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/building-ai-chatbot-without-traditional-backend-modern-robert-graham-44ede/' },
+      { category: 'article', title: 'AI-Driven Python Automation & QA: Unleashing Selenium & LLMs', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/ai-driven-python-automation-qa-unleashing-selenium-llms-robert-graham-bsvee/' },
+      { category: 'article', title: 'Three AI Mega-Trends Shaping Technology, Healthcare, and Society', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/three-ai-mega-trends-shaping-technology-healthcare-society-graham-8fave/?trackingId=fEWkP0RuQviIoefU2OYuiA%3D%3D' },
+      { category: 'article', title: 'How AI is Revolutionizing Cancer Treatment: A Deep Dive in Oncology', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/how-ai-revolutionizing-cancer-treatment-deep-dive-oncology-graham-jidme/?trackingId=9MLOT2bpTXiyLUX1MADW5Q%3D%3D' },
+      { category: 'article', title: 'Comprehensive Guide to ChromaDB for Beginners & Advanced Users', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/comprehensive-guide-chromadb-beginners-advanced-users-robert-graham-pz0pf/?trackingId=652DvIcAR1W4BsFs1bJqSA%3D%3D' },
+      { category: 'article', title: 'Comprehensive Guide to CI/CD Integration for ML Models', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/comprehensive-guide-cicd-integration-ml-models-robert-graham-whw3c/?trackingId=2o94p3MrQlWCJUcUGFasAg%3D%3D' },
+      { category: 'article', title: 'Bridging AI & Automation: How LLMs are Revolutionizing Testing', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/bridging-ai-automation-how-llms-revolutionizing-testing-robert-graham-dv2me/?trackingId=RPDZyam1TCuWQ787rGMQeQ%3D%3D' },
+      { category: 'article', title: 'Scaling MLOps for Enterprise Applications', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/scaling-mlops-enterprise-applications-robert-graham-fsdxe/?trackingId=pTfTOHfjRuuKgnknc0PAWQ%3D%3D' },
+      { category: 'article', title: 'Advanced Guide to Facial Recognition with Python', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/advanced-guide-facial-recognition-python-robert-graham-gqzqe/?trackingId=bQrxYzgqTNaOUZNG%2BFNT5Q%3D%3D' }
     ];
 
-    // Skills Data (All real skills provided)
+    // Skills Data
     const skillsData = [
       { group: 'AI & Machine Learning', title: 'Generative AI (Advanced)' },
       { group: 'AI & Machine Learning', title: 'Natural Language Processing (NLP) (Advanced)' },
@@ -565,7 +513,7 @@
       { group: 'Professional & Soft Skills', title: 'Analytical & Critical Thinking (Expert)' }
     ];
 
-    // Certifications Data (Using real certification names and hours)
+    // Certifications Data – All your certifications cataloged
     const certificationsData = [
       {
         category: 'specialization',
@@ -672,21 +620,22 @@
         hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/SS3FQ68LUT2X'
       },
-      // LinkedIn Certifications (from your LinkedIn details)
+      // LinkedIn Certifications
       {
         category: 'linkedin',
         title: 'Certified Data Scientist',
         provider: 'LinkedIn Learning',
         hours: 30,
-        link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/123456789'
+        link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/CertifiedDataScientist'
       },
       {
         category: 'linkedin',
         title: 'Advanced Python Programming',
         provider: 'LinkedIn Learning',
         hours: 25,
-        link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/987654321'
+        link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/AdvancedPythonProgramming'
       }
+      // You can add any additional certifications from your LinkedIn profile here.
     ];
 
     // Projects Data will be fetched dynamically from GitHub
@@ -701,14 +650,12 @@
         const repos = await response.json();
         projectsData = [];
         repos.forEach(repo => {
-          // Add repository item
           projectsData.push({
             category: 'repo',
             title: repo.name,
             description: 'Repository',
             link: repo.html_url
           });
-          // If a live homepage exists, add it as a webpage item
           if (repo.homepage && repo.homepage.trim() !== '') {
             projectsData.push({
               category: 'webpage',
@@ -833,12 +780,9 @@
        Setup Search Event Listeners
        ======================= */
     document.getElementById('newsletters-search').addEventListener('input', renderNewsletters);
-    document.getElementById('certs-search').addEventListener('input', renderCerts);
+    document.getElementById('certs-search').addEventListener('input', () => { certsPage = 1; renderCerts(); });
     document.getElementById('projects-search').addEventListener('input', renderProjects);
-    document.getElementById('skills-search').addEventListener('input', () => {
-      skillsPage = 1;
-      renderSkills();
-    });
+    document.getElementById('skills-search').addEventListener('input', () => { skillsPage = 1; renderSkills(); });
 
     /* =======================
        Setup Pagination Button Event Listeners
@@ -880,7 +824,7 @@
     });
 
     /* =======================
-       Certifications Summary
+       Render Certifications Summary
        ======================= */
     function renderCertsSummary() {
       const summaryContainer = document.getElementById('certs-summary');
@@ -888,9 +832,9 @@
       let totalHours = 0;
       certificationsData.forEach(cert => {
         if(cert.hours) {
-          totalHours += parseInt(cert.hours);
+          totalHours += parseFloat(cert.hours);
           const provider = cert.provider;
-          summary[provider] = (summary[provider] || 0) + parseInt(cert.hours);
+          summary[provider] = (summary[provider] || 0) + parseFloat(cert.hours);
         }
       });
       let summaryHTML = '<h3>Certification Hours Breakdown:</h3><ul>';
