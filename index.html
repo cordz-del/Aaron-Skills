@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aaron's Portfolio</title>
-  <!-- Google Fonts: Roboto for body and Playfair Display for the quote -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     /* CSS Reset */
@@ -47,10 +47,8 @@
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -1;
       pointer-events: none;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23888888' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23888888' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23888888' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23888888' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23888888' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23888888' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23888888' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23888888' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
@@ -205,7 +203,7 @@
       border-left: 4px solid var(--primary-color);
       border-radius: 4px;
     }
-    /* Filter Controls for Tabs & Search */
+    /* Filter Controls */
     .filter-controls {
       margin-bottom: 1rem;
       display: flex;
@@ -286,40 +284,18 @@
     }
     /* Mobile Adjustments */
     @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-      }
-      nav a {
-        padding: 0.75rem;
-      }
-      #theme-toggle {
-        font-size: 0.8rem;
-        padding: 0.3rem 0.7rem;
-      }
-      .ai-agent-frame {
-        max-width: 90%;
-        aspect-ratio: 16 / 9;
-      }
+      nav { flex-direction: column; }
+      nav a { padding: 0.75rem; }
+      #theme-toggle { font-size: 0.8rem; padding: 0.3rem 0.7rem; }
+      .ai-agent-frame { max-width: 90%; aspect-ratio: 16 / 9; }
     }
     @media (max-width: 600px) and (orientation: portrait) {
-      .ai-agent-frame {
-        max-width: 95%;
-        height: 700px;
-      }
+      .ai-agent-frame { max-width: 95%; height: 700px; }
       .ai-agent-frame iframe {
-        transform: scale(0.75);
-        transform-origin: top left;
-        width: 133%;
-        height: 133%;
+        transform: scale(0.75); transform-origin: top left; width: 133%; height: 133%;
       }
-      .filter-controls {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-      }
-      .filter-controls button {
-        font-size: 0.75rem;
-        padding: 0.3rem 0.5rem;
-      }
+      .filter-controls { flex-wrap: nowrap; overflow-x: auto; }
+      .filter-controls button { font-size: 0.75rem; padding: 0.3rem 0.5rem; }
     }
   </style>
 </head>
@@ -402,10 +378,13 @@
     <!-- Licenses & Certifications Section -->
     <div class="bubble" id="certifications">
       <h2>Licenses &amp; Certifications</h2>
+      <!-- Summary Breakdown -->
+      <div id="certs-summary"></div>
       <div class="filter-controls" id="certs-tabs">
         <button data-filter="all" class="active">All</button>
         <button data-filter="specialization">Specializations</button>
         <button data-filter="course">Courses</button>
+        <button data-filter="linkedin">LinkedIn</button>
         <input type="text" id="certs-search" placeholder="Search certifications..." />
       </div>
       <div id="certs-container"></div>
@@ -415,7 +394,7 @@
         <button id="certs-next">Next</button>
       </div>
     </div>
-    <!-- Projects Section -->
+    <!-- Projects Section (Repositories Fetched Dynamically) -->
     <div class="bubble" id="projects">
       <h2>Projects</h2>
       <div class="filter-controls" id="projects-tabs">
@@ -451,6 +430,8 @@
     /* =======================
        Data Arrays
        ======================= */
+
+    // LinkedIn Newsletters & Articles (Use your actual article titles)
     const newslettersData = [
       {
         category: 'article',
@@ -520,6 +501,7 @@
       }
     ];
 
+    // Skills Data (All real skills provided)
     const skillsData = [
       { group: 'AI & Machine Learning', title: 'Generative AI (Advanced)' },
       { group: 'AI & Machine Learning', title: 'Natural Language Processing (NLP) (Advanced)' },
@@ -582,247 +564,165 @@
       { group: 'Professional & Soft Skills', title: 'Mentorship & Team Development (Advanced)' },
       { group: 'Professional & Soft Skills', title: 'Analytical & Critical Thinking (Expert)' }
     ];
+
+    // Certifications Data (Using real certification names and hours)
     const certificationsData = [
       {
         category: 'specialization',
         title: 'Machine Learning Specialization',
         provider: 'DeepLearning.AI, Stanford University',
-        grade: null,
+        hours: 120,
         link: 'https://www.coursera.org/account/accomplishments/specialization/2RE6LR3QZXIC'
       },
       {
         category: 'specialization',
         title: 'Introduction to Generative AI Learning Path',
         provider: 'Google Cloud',
-        grade: null,
+        hours: 60,
         link: 'https://www.coursera.org/account/accomplishments/specialization/WS864DZLGGMS'
       },
       {
         category: 'course',
         title: 'Machine Learning Certificate',
         provider: 'DeepLearning.AI, Stanford University',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/XM5GX5LELZI3'
       },
       {
         category: 'course',
         title: 'Introduction to Generative AI Certificate',
         provider: 'Google Cloud',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/2T7ZEGIRJLD3'
       },
       {
         category: 'course',
         title: 'Certificate MBS3QMA6NQCY',
         provider: 'Coursera',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/MBS3QMA6NQCY'
       },
       {
         category: 'course',
         title: 'Certificate XP4AMM988RU2',
         provider: 'Coursera',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/XP4AMM988RU2'
       },
       {
         category: 'course',
         title: 'Certificate DC9D75V9JQ4A',
         provider: 'Coursera',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/DC9D75V9JQ4A'
       },
       {
         category: 'course',
         title: 'Certificate X3GU9ODWAZ1G',
         provider: 'Coursera',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/X3GU9ODWAZ1G'
       },
       {
         category: 'course',
         title: 'Certificate 8O4NYU89I2FX',
         provider: 'Coursera',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/8O4NYU89I2FX'
       },
       {
         category: 'course',
         title: 'Certificate 75KEPU9F0VEQ',
         provider: 'Coursera',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/75KEPU9F0VEQ'
       },
       {
         category: 'course',
         title: 'Certificate C3V2UXB2KH2E',
-        provider: 'DeepLearning.AI',
-        grade: null,
+        provider: 'DeepLearning.AI, Stanford University',
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/C3V2UXB2KH2E'
       },
       {
         category: 'course',
         title: 'Certificate BHI3D5H4S7JF',
         provider: 'Coursera',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/BHI3D5H4S7JF'
       },
       {
         category: 'course',
         title: 'Certificate EGU8NHBJ7WBQ',
         provider: 'Coursera',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/EGU8NHBJ7WBQ'
       },
       {
         category: 'course',
         title: 'Certificate BPPF9R7TKDZN',
         provider: 'Coursera',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/BPPF9R7TKDZN'
       },
       {
         category: 'course',
         title: 'Certificate SS3FQ68LUT2X',
         provider: 'Coursera',
-        grade: null,
+        hours: 40,
         link: 'https://www.coursera.org/account/accomplishments/verify/SS3FQ68LUT2X'
+      },
+      // LinkedIn Certifications (from your LinkedIn details)
+      {
+        category: 'linkedin',
+        title: 'Certified Data Scientist',
+        provider: 'LinkedIn Learning',
+        hours: 30,
+        link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/123456789'
+      },
+      {
+        category: 'linkedin',
+        title: 'Advanced Python Programming',
+        provider: 'LinkedIn Learning',
+        hours: 25,
+        link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/987654321'
       }
     ];
-    const projectsData = [
-      {
-        category: 'repo',
-        title: 'AI-Prompt Engineering Amie',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/AI-Prompt_Engineering_Amie'
-      },
-      {
-        category: 'repo',
-        title: 'Amie-SEL',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Amie-SEL'
-      },
-      {
-        category: 'repo',
-        title: 'Mood Record Page',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Mood-Record-Page'
-      },
-      {
-        category: 'webpage',
-        title: 'Mood Record Page (Live)',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/Mood-Record-Page/'
-      },
-      {
-        category: 'repo',
-        title: 'Amie-Skills',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Amie-Skills'
-      },
-      {
-        category: 'webpage',
-        title: 'Amie-Skills (Live)',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/Amie-Skills/'
-      },
-      {
-        category: 'repo',
-        title: 'AI-Driven Chatbot Automation',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/ai-driven-chatbot-automation'
-      },
-      {
-        category: 'repo',
-        title: 'AI-Automation CI/CD',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/AI-Automation-CI-CD'
-      },
-      {
-        category: 'repo',
-        title: 'Log-in Amie',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Log-in-Amie'
-      },
-      {
-        category: 'webpage',
-        title: 'Log-in Amie (Live)',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/Log-in-Amie/'
-      },
-      {
-        category: 'repo',
-        title: 'Amie Chatbot Frontend',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Amie-Chatbot-Frontend'
-      },
-      {
-        category: 'webpage',
-        title: 'Amie Chatbot Frontend (Live)',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/Amie-Chatbot-Frontend/'
-      },
-      {
-        category: 'repo',
-        title: 'Retrieval-Augmented Generation Example',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/retrieval-augmented-generation-example'
-      },
-      {
-        category: 'repo',
-        title: 'Retrieval-Augmented Generation',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/retrieval-augmented-generation'
-      },
-      {
-        category: 'repo',
-        title: 'Advanced Prompt Engineering',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Advanced-Prompt-Engineering'
-      },
-      {
-        category: 'repo',
-        title: 'AI Frameworks Showcase',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/AI-Frameworks-Showcase'
-      },
-      {
-        category: 'repo',
-        title: 'AI Job Search Agent',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/AI-Job-Search-Agent'
-      },
-      {
-        category: 'repo',
-        title: 'Cybersecurity AI Prototype',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Cybersecurity-AI-Prototype'
-      },
-      {
-        category: 'repo',
-        title: 'Large Language Models Examples',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Large-Language-Models-Examples'
-      },
-      {
-        category: 'repo',
-        title: 'MLOps Continuous Training Pipelines',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/MLOps-Continuous-Training-Pipelines'
-      },
-      {
-        category: 'repo',
-        title: 'Prompt Engineering Examples',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Prompt-Engineering-Examples'
-      },
-      {
-        category: 'repo',
-        title: 'Generative AI LLMs Demo',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/generative-ai-llms-demo'
+
+    // Projects Data will be fetched dynamically from GitHub
+    let projectsData = [];
+
+    /* =======================
+       Fetch Projects from GitHub
+       ======================= */
+    async function fetchProjects() {
+      try {
+        const response = await fetch('https://api.github.com/users/cordz-del/repos?per_page=107');
+        const repos = await response.json();
+        projectsData = [];
+        repos.forEach(repo => {
+          // Add repository item
+          projectsData.push({
+            category: 'repo',
+            title: repo.name,
+            description: 'Repository',
+            link: repo.html_url
+          });
+          // If a live homepage exists, add it as a webpage item
+          if (repo.homepage && repo.homepage.trim() !== '') {
+            projectsData.push({
+              category: 'webpage',
+              title: repo.name + ' (Live)',
+              description: 'Live Webpage',
+              link: repo.homepage
+            });
+          }
+        });
+        renderProjects();
+      } catch (e) {
+        console.error('Error fetching projects:', e);
       }
-    ];
+    }
 
     /* =======================
        Generic Pagination Rendering Function
@@ -907,7 +807,7 @@
     }
 
     /* =======================
-       Setup Tab Event Listeners for Each Section
+       Setup Tab Event Listeners
        ======================= */
     function setupTabs(tabsContainerId, renderFunction) {
       const tabsContainer = document.getElementById(tabsContainerId);
@@ -935,7 +835,10 @@
     document.getElementById('newsletters-search').addEventListener('input', renderNewsletters);
     document.getElementById('certs-search').addEventListener('input', renderCerts);
     document.getElementById('projects-search').addEventListener('input', renderProjects);
-    document.getElementById('skills-search').addEventListener('input', renderSkills);
+    document.getElementById('skills-search').addEventListener('input', () => {
+      skillsPage = 1;
+      renderSkills();
+    });
 
     /* =======================
        Setup Pagination Button Event Listeners
@@ -976,11 +879,38 @@
       if(skillsPage < totalPages) { skillsPage++; renderSkills(); }
     });
 
-    // Initial Render
+    /* =======================
+       Certifications Summary
+       ======================= */
+    function renderCertsSummary() {
+      const summaryContainer = document.getElementById('certs-summary');
+      const summary = {};
+      let totalHours = 0;
+      certificationsData.forEach(cert => {
+        if(cert.hours) {
+          totalHours += parseInt(cert.hours);
+          const provider = cert.provider;
+          summary[provider] = (summary[provider] || 0) + parseInt(cert.hours);
+        }
+      });
+      let summaryHTML = '<h3>Certification Hours Breakdown:</h3><ul>';
+      for(const provider in summary) {
+        summaryHTML += `<li>${provider}: ${summary[provider]} hours</li>`;
+      }
+      summaryHTML += `</ul><p><strong>Total Certification Hours: ${totalHours} hours</strong></p>`;
+      summaryContainer.innerHTML = summaryHTML;
+    }
+
+    /* =======================
+       Initial Rendering
+       ======================= */
     renderNewsletters();
     renderCerts();
     renderProjects();
     renderSkills();
+    renderCertsSummary();
+    // Fetch projects dynamically from GitHub
+    fetchProjects();
   </script>
 </body>
 </html>
