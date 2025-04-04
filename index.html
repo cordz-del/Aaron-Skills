@@ -294,7 +294,10 @@
     @media (max-width: 600px) and (orientation: portrait) {
       .ai-agent-frame { max-width: 95%; height: 700px; }
       .ai-agent-frame iframe {
-        transform: scale(0.75); transform-origin: top left; width: 133%; height: 133%;
+        transform: scale(0.75);
+        transform-origin: top left;
+        width: 133%;
+        height: 133%;
       }
       .filter-controls { flex-wrap: nowrap; overflow-x: auto; }
       .filter-controls button { font-size: 0.75rem; padding: 0.3rem 0.5rem; }
@@ -350,7 +353,7 @@
         <button id="newsletters-next">Next</button>
       </div>
     </div>
-    <!-- Skills Section with Tabs and Pagination -->
+    <!-- Skills Section with Tabs and Pagination (20 per page) -->
     <div class="bubble" id="skills">
       <h2>Skills</h2>
       <div class="filter-controls" id="skills-tabs">
@@ -428,12 +431,11 @@
 
     /* Global Pagination Variables */
     let newslettersPage = 1, certsPage = 1, projectsPage = 1, skillsPage = 1;
-    const newslettersPerPage = 5, certsPerPage = 10, projectsPerPage = 5, skillsPerPage = 10;
+    const newslettersPerPage = 5, certsPerPage = 10, projectsPerPage = 5, skillsPerPage = 20;
 
     /* =======================
        Data Arrays
        ======================= */
-
     // LinkedIn Newsletters & Articles
     const newslettersData = [
       { category: 'article', title: 'Building AI Agent for Day-to-Day Requests: Comprehensive How-To', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/building-ai-agent-day-to-day-requests-comprehensive-how-to-graham-1x3te/' },
@@ -449,193 +451,99 @@
       { category: 'article', title: 'Advanced Guide to Facial Recognition with Python', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/advanced-guide-facial-recognition-python-robert-graham-gqzqe/?trackingId=bQrxYzgqTNaOUZNG%2BFNT5Q%3D%3D' }
     ];
 
-    // Skills Data
+    // Skills Data – Updated with your provided skills and grouped accordingly.
     const skillsData = [
-      { group: 'AI & Machine Learning', title: 'Generative AI (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Natural Language Processing (NLP) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Retrieval-Augmented Generation (RAG) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Prompt Engineering (GPT-4, Claude, ChatGPT, CoPilot) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Large Language Models (LLMs) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'AI Agent Development (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Speech-to-Text (STT) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Text-to-Speech (TTS) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Conversational Design (Voice UX, Chatbots) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Emotionally Intelligent AI (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Voice Interaction & Dialog Flow (Advanced)' },
-      { group: 'Programming & Development', title: 'Python (Expert)' },
-      { group: 'Programming & Development', title: 'JavaScript (Advanced)' },
-      { group: 'Programming & Development', title: 'TypeScript (Advanced)' },
-      { group: 'Programming & Development', title: 'SQL (Advanced)' },
-      { group: 'Frameworks & Libraries', title: 'LangChain (Advanced)' },
-      { group: 'Frameworks & Libraries', title: 'TensorFlow (Intermediate)' },
-      { group: 'Frameworks & Libraries', title: 'PyTorch (Intermediate)' },
-      { group: 'Frameworks & Libraries', title: 'Hugging Face (Intermediate)' },
-      { group: 'Frameworks & Libraries', title: 'Flask (Intermediate)' },
-      { group: 'Frameworks & Libraries', title: 'FastAPI (Intermediate)' },
-      { group: 'API Integration & Microservices', title: 'OpenAI API (Advanced)' },
-      { group: 'API Integration & Microservices', title: 'Google Cloud API (Advanced)' },
-      { group: 'API Integration & Microservices', title: 'Deepgram API (Advanced)' },
-      { group: 'API Integration & Microservices', title: 'Azure Cognitive Services (Intermediate)' },
-      { group: 'API Integration & Microservices', title: 'RESTful API Development (Advanced)' },
-      { group: 'Cloud & DevOps', title: 'AWS SageMaker, Lambda, Elastic Beanstalk (Advanced)' },
-      { group: 'Cloud & DevOps', title: 'Azure AI (Intermediate)' },
-      { group: 'Cloud & DevOps', title: 'Google Cloud (Intermediate)' },
-      { group: 'Cloud & DevOps', title: 'Docker (Intermediate)' },
-      { group: 'Cloud & DevOps', title: 'Kubernetes (Intermediate)' },
-      { group: 'Cloud & DevOps', title: 'CI/CD Pipelines (GitHub Actions, Jenkins) (Intermediate)' },
-      { group: 'Cloud & DevOps', title: 'Terraform (Intermediate)' },
-      { group: 'Automation & QA Testing', title: 'Selenium (Expert)' },
-      { group: 'Automation & QA Testing', title: 'Hammer Automation (Intermediate)' },
-      { group: 'Automation & QA Testing', title: 'PyTest (Advanced)' },
-      { group: 'Automation & QA Testing', title: 'UAT Testing (Expert)' },
-      { group: 'Automation & QA Testing', title: 'Regression Testing (Expert)' },
-      { group: 'Automation & QA Testing', title: 'Functional Testing (Expert)' },
-      { group: 'Automation & QA Testing', title: 'Performance Testing (Expert)' },
-      { group: 'Automation & QA Testing', title: 'Issue Tracking (Jira, Azure DevOps) (Expert)' },
-      { group: 'Data Analytics & Visualization', title: 'Data Analysis (Pandas, NumPy) (Advanced)' },
-      { group: 'Data Analytics & Visualization', title: 'Tableau, Power BI (Intermediate)' },
-      { group: 'Infrastructure & System Integration', title: 'System Architecture (Advanced)' },
-      { group: 'Infrastructure & System Integration', title: 'Microservices Architecture (Advanced)' },
-      { group: 'Robotics & STEM Education', title: 'Robotics Instruction (VEX Robotics) (Advanced)' },
-      { group: 'Robotics & STEM Education', title: 'Curriculum Development & Coaching (Advanced)' },
-      { group: 'Technical Writing & Communication', title: 'Technical Documentation (Expert)' },
-      { group: 'Technical Writing & Communication', title: 'AI-focused Articles & Publications (Advanced)' },
-      { group: 'Technical Writing & Communication', title: 'Stakeholder Communication (Expert)' },
-      { group: 'Compliance & Ethical AI Practices', title: 'FERPA, COPPA, GDPR (Advanced)' },
-      { group: 'Compliance & Ethical AI Practices', title: 'Ethical AI & Bias Mitigation (Advanced)' },
-      { group: 'Project & Product Management', title: 'Agile Methodologies (Expert)' },
-      { group: 'Project & Product Management', title: 'Scrum Framework (Expert)' },
-      { group: 'Project & Product Management', title: 'Project & Strategic Execution (Advanced)' },
-      { group: 'Professional & Soft Skills', title: 'Strategic Vision & Innovation (Advanced)' },
-      { group: 'Professional & Soft Skills', title: 'Creative Problem Solving (Advanced)' },
-      { group: 'Professional & Soft Skills', title: 'Cross-Functional Collaboration (Expert)' },
-      { group: 'Professional & Soft Skills', title: 'Mentorship & Team Development (Advanced)' },
-      { group: 'Professional & Soft Skills', title: 'Analytical & Critical Thinking (Expert)' }
-    ];
-
-    // Certifications Data – All your certifications cataloged
-    const certificationsData = [
-      {
-        category: 'specialization',
-        title: 'Machine Learning Specialization',
-        provider: 'DeepLearning.AI, Stanford University',
-        hours: 120,
-        link: 'https://www.coursera.org/account/accomplishments/specialization/2RE6LR3QZXIC'
-      },
-      {
-        category: 'specialization',
-        title: 'Introduction to Generative AI Learning Path',
-        provider: 'Google Cloud',
-        hours: 60,
-        link: 'https://www.coursera.org/account/accomplishments/specialization/WS864DZLGGMS'
-      },
-      {
-        category: 'course',
-        title: 'Machine Learning Certificate',
-        provider: 'DeepLearning.AI, Stanford University',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/XM5GX5LELZI3'
-      },
-      {
-        category: 'course',
-        title: 'Introduction to Generative AI Certificate',
-        provider: 'Google Cloud',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/2T7ZEGIRJLD3'
-      },
-      {
-        category: 'course',
-        title: 'Certificate MBS3QMA6NQCY',
-        provider: 'Coursera',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/MBS3QMA6NQCY'
-      },
-      {
-        category: 'course',
-        title: 'Certificate XP4AMM988RU2',
-        provider: 'Coursera',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/XP4AMM988RU2'
-      },
-      {
-        category: 'course',
-        title: 'Certificate DC9D75V9JQ4A',
-        provider: 'Coursera',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/DC9D75V9JQ4A'
-      },
-      {
-        category: 'course',
-        title: 'Certificate X3GU9ODWAZ1G',
-        provider: 'Coursera',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/X3GU9ODWAZ1G'
-      },
-      {
-        category: 'course',
-        title: 'Certificate 8O4NYU89I2FX',
-        provider: 'Coursera',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/8O4NYU89I2FX'
-      },
-      {
-        category: 'course',
-        title: 'Certificate 75KEPU9F0VEQ',
-        provider: 'Coursera',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/75KEPU9F0VEQ'
-      },
-      {
-        category: 'course',
-        title: 'Certificate C3V2UXB2KH2E',
-        provider: 'DeepLearning.AI, Stanford University',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/C3V2UXB2KH2E'
-      },
-      {
-        category: 'course',
-        title: 'Certificate BHI3D5H4S7JF',
-        provider: 'Coursera',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/BHI3D5H4S7JF'
-      },
-      {
-        category: 'course',
-        title: 'Certificate EGU8NHBJ7WBQ',
-        provider: 'Coursera',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/EGU8NHBJ7WBQ'
-      },
-      {
-        category: 'course',
-        title: 'Certificate BPPF9R7TKDZN',
-        provider: 'Coursera',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/BPPF9R7TKDZN'
-      },
-      {
-        category: 'course',
-        title: 'Certificate SS3FQ68LUT2X',
-        provider: 'Coursera',
-        hours: 40,
-        link: 'https://www.coursera.org/account/accomplishments/verify/SS3FQ68LUT2X'
-      },
-      // LinkedIn Certifications
-      {
-        category: 'linkedin',
-        title: 'Certified Data Scientist',
-        provider: 'LinkedIn Learning',
-        hours: 30,
-        link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/CertifiedDataScientist'
-      },
-      {
-        category: 'linkedin',
-        title: 'Advanced Python Programming',
-        provider: 'LinkedIn Learning',
-        hours: 25,
-        link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/AdvancedPythonProgramming'
-      }
-      // You can add any additional certifications from your LinkedIn profile here.
+      { group: 'Programming & Development', title: 'Python – 5+ years – Expert' },
+      { group: 'AI & Machine Learning', title: 'Machine Learning – 4+ years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Generative AI (GPT-3.5 / GPT-4 / Claude / PaLM / LLaMA / Cohere) – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Large Language Models (LLMs) – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Retrieval-Augmented Generation (RAG) – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Prompt Engineering – 2 years – Advanced' },
+      { group: 'Frameworks & Libraries', title: 'LangChain – 1.5 years – Intermediate' },
+      { group: 'Frameworks & Libraries', title: 'LlamaIndex – 1.5 years – Intermediate' },
+      { group: 'Frameworks & Libraries', title: 'Haystack – 1.5 years – Intermediate' },
+      { group: 'Frameworks & Libraries', title: 'Hugging Face Transformers – 1.5 years – Intermediate' },
+      { group: 'API Integration & Microservices', title: 'OpenAI API – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Sentiment Analysis – 2 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'Emotion Recognition – 2 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'Named Entity Recognition (NER) – 1 year – Beginner' },
+      { group: 'AI & Machine Learning', title: 'NLP Pipeline Design – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Tokenization / Embeddings – 2 years – Intermediate' },
+      { group: 'Data Engineering', title: 'Vector Databases (Pinecone, FAISS, Chroma, Weaviate) – 1.5 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'Knowledge Graphs (RAG Integration) – 1 year – Beginner' },
+      { group: 'AI & Machine Learning', title: 'Speech Recognition (Google Speech, Deepgram, wav2vec2) – 1.5 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'Text-to-Speech (Amazon Polly, Azure TTS, Google Cloud TTS, gTTS) – 1.5 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'SSML for Voice Emotion Tuning – 1 year – Beginner' },
+      { group: 'AI & Machine Learning', title: 'AI Voice UX & Voice Emotion Design – 1.5 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'Multi-lingual AI Agent Support – 1 year – Beginner' },
+      { group: 'Compliance & Ethical AI Practices', title: 'AI Ethics & Bias Mitigation – 2 years – Advanced' },
+      { group: 'Compliance & Ethical AI Practices', title: 'AI Safety & Ethical Guardrails – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Contextual AI Responses (SEL-aligned) – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Conversational AI Design (Multi-turn, Age-specific) – 2 years – Advanced' },
+      { group: 'Programming & Development', title: 'JavaScript – 3 years – Intermediate' },
+      { group: 'Programming & Development', title: 'TypeScript – 2 years – Intermediate' },
+      { group: 'Programming & Development', title: 'SQL – 5+ years – Advanced' },
+      { group: 'Programming & Development', title: 'C++ – 3 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Java – 2 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Node.js – 2.5 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Express.js – 2 years – Intermediate' },
+      { group: 'Frameworks & Libraries', title: 'React (basic) – 1 year – Beginner' },
+      { group: 'Programming & Development', title: 'HTML/CSS – 3+ years – Intermediate' },
+      { group: 'Frameworks & Libraries', title: 'FastAPI – 2.5 years – Advanced' },
+      { group: 'Frameworks & Libraries', title: 'Flask – 3 years – Advanced' },
+      { group: 'API Integration & Microservices', title: 'REST API Design – 4+ years – Expert' },
+      { group: 'API Integration & Microservices', title: 'API Security & Token Handling – 2 years – Advanced' },
+      { group: 'API Integration & Microservices', title: 'OAuth / JWT / SAML Authentication – 2 years – Intermediate' },
+      { group: 'Infrastructure & System Integration', title: 'Microservices Architecture – 3 years – Advanced' },
+      { group: 'Cloud & DevOps', title: 'Serverless Architecture (AWS Lambda, GCP Functions) – 3 years – Advanced' },
+      { group: 'Cloud & DevOps', title: 'Secure Web App Development – 3 years – Advanced' },
+      { group: 'Programming & Development', title: 'Responsive UI/UX Design – 3 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Frontend Animation (JS / CSS Transitions) – 2 years – Intermediate' },
+      { group: 'Data Analytics & Visualization', title: 'Chart.js / D3.js – 1.5 years – Intermediate' },
+      { group: 'Data Analytics & Visualization', title: 'Real-time Data Visualization (Mood Trackers, Dashboards) – 2 years – Intermediate' },
+      { group: 'Programming & Development', title: 'LocalStorage & Browser State Management – 2 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Journaling / Mood-Tracking UX – 1.5 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Thought Bubble Interaction Design – 1.5 years – Intermediate' },
+      { group: 'Cloud & DevOps', title: 'AWS (Lambda, SageMaker, API Gateway, S3, DynamoDB, Redshift, CloudFormation) – 4+ years – Advanced' },
+      { group: 'Cloud & DevOps', title: 'Google Cloud (Vertex AI) – 1.5 years – Intermediate' },
+      { group: 'Cloud & DevOps', title: 'Azure AI & DevOps – 2.5 years – Intermediate' },
+      { group: 'Cloud & DevOps', title: 'Docker – 3 years – Advanced' },
+      { group: 'Cloud & DevOps', title: 'Kubernetes – 2.5 years – Intermediate' },
+      { group: 'Cloud & DevOps', title: 'Terraform – 2 years – Intermediate' },
+      { group: 'Cloud & DevOps', title: 'CI/CD (GitHub Actions, Jenkins, Azure DevOps) – 3+ years – Advanced' },
+      { group: 'Cloud & DevOps', title: 'Monitoring (WhyLabs, Datadog, Splunk) – 2 years – Intermediate' },
+      { group: 'Data Analytics & Visualization', title: 'Data Engineering (ETL, Pipelines, Vectorization) – 3+ years – Advanced' },
+      { group: 'Data Analytics & Visualization', title: 'Data Visualization (Matplotlib, Plotly) – 3 years – Advanced' },
+      { group: 'Data Analytics & Visualization', title: 'Data Drift / Model Drift Monitoring – 1.5 years – Intermediate' },
+      { group: 'MLOps', title: 'Deep Learning Model Deployment – 2 years – Intermediate' },
+      { group: 'MLOps', title: 'MLOps Practices – 3 years – Advanced' },
+      { group: 'MLOps', title: 'End-to-End ML Pipelines – 3 years – Advanced' },
+      { group: 'MLOps', title: 'Deployment: Serverless / Containerized Models – 3 years – Advanced' },
+      { group: 'Programming & Development', title: 'MongoDB / NoSQL – 4+ years – Advanced' },
+      { group: 'API Integration & Microservices', title: 'Frontend-Backend Integration (REST APIs) – 3+ years – Expert' },
+      { group: 'Project & Product Management', title: 'Agile / Scrum – 5+ years – Expert' },
+      { group: 'Project & Product Management', title: 'Agile Sprint Planning & Retrospectives – 5+ years – Expert' },
+      { group: 'Technical Writing & Communication', title: 'Technical Documentation & Planning – 5+ years – Expert' },
+      { group: 'Project & Product Management', title: 'Product Requirement Documents (PRD) – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'MVP Roadmapping & Launch – 2 years – Advanced' },
+      { group: 'Compliance & Ethical AI Practices', title: 'FERPA / COPPA / GDPR Compliance – 2 years – Advanced' },
+      { group: 'Compliance & Ethical AI Practices', title: 'Compliance Implementation (EdTech Law) – 2 years – Advanced' },
+      { group: 'Project & Product Management', title: 'SEL Framework Integration (BPS SEL) – 1.5 years – Advanced' },
+      { group: 'Project & Product Management', title: 'Age-Based Prompt Tuning – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Content Moderation for SEL Chatbots – 1.5 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'Customizable Multi-Tenant SaaS Architecture – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'Stakeholder Engagement (Districts, Educators) – 2 years – Advanced' },
+      { group: 'Project & Product Management', title: 'Startup Strategy & Fundraising Prep – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'Investor Pitch & GTM Strategy – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'B2B & D2C Strategy (AI/EdTech) – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'Grant Research, Proposal Writing, Matching – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'Hackathon/Collaboration Projects – 2+ years – Advanced' },
+      { group: 'Project & Product Management', title: 'Open-Source Collaboration – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'AI Team Leadership (Amie Project) – 2+ years – Advanced' },
+      { group: 'Robotics & STEM Education', title: 'VEX Robotics Coaching – 3 years – Advanced' },
+      { group: 'Professional & Soft Skills', title: 'Public Speaking & Thought Leadership – 2 years – Advanced' },
+      { group: 'Project & Product Management', title: 'LinkedIn Automation Strategy (AI Agents) – 1 year – Intermediate' },
+      { group: 'Professional & Soft Skills', title: 'Cross-functional Collaboration – 5+ years – Expert' }
     ];
 
     // Projects Data will be fetched dynamically from GitHub
