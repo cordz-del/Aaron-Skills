@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skills Section</title>
+  <style>
+    /* Minimal styles for the Skills section */
+    #skills-section {
+      padding: 1rem;
+    }
+    #skills-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .filter-controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .filter-controls button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #007acc;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .filter-controls button.active,
+    .filter-controls button:hover {
+      background-color: #444;
+    }
+    .filter-controls input[type="text"] {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      flex: 1;
+    }
+    #skills-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    #skills-list li {
+      margin-bottom: 0.75rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+    #skills-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #007acc;
+    }
+    .pagination {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .pagination button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #007acc;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .pagination button:hover {
+      background-color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div id="skills-section">
+    <h2>Skills</h2>
+    <div class="filter-controls" id="skills-tabs">
+      <button data-filter="all" class="active">All</button>
+      <button data-filter="AI & Machine Learning">AI &amp; Machine Learning</button>
+      <button data-filter="Programming & Development">Programming &amp; Development</button>
+      <button data-filter="Frameworks & Libraries">Frameworks &amp; Libraries</button>
+      <button data-filter="API Integration & Microservices">API Integration &amp; Microservices</button>
+      <button data-filter="Cloud & DevOps">Cloud &amp; DevOps</button>
+      <button data-filter="Automation & QA Testing">Automation &amp; QA Testing</button>
+      <button data-filter="Data Analytics & Visualization">Data Analytics &amp; Visualization</button>
+      <button data-filter="Infrastructure & System Integration">Infrastructure &amp; System Integration</button>
+      <button data-filter="Robotics & STEM Education">Robotics &amp; STEM Education</button>
+      <button data-filter="Technical Writing & Communication">Technical Writing &amp; Communication</button>
+      <button data-filter="Compliance & Ethical AI Practices">Compliance &amp; Ethical AI Practices</button>
+      <button data-filter="Project & Product Management">Project &amp; Product Management</button>
+      <button data-filter="Professional & Soft Skills">Professional &amp; Soft Skills</button>
+      <input type="text" id="skills-search" placeholder="Search skills..." />
+    </div>
+    <ul id="skills-list"></ul>
+    <div class="pagination" id="skills-pagination">
+      <button id="skills-prev">Previous</button>
+      <span id="skills-page-info"></span>
+      <button id="skills-next">Next</button>
+    </div>
+  </div>
+
+  <script>
+    // Global pagination variable for skills
+    let skillsPage = 1;
+    const skillsPerPage = 20;
+
+    // Skills Data – Updated with your provided skills
+    const skillsData = [
+      { group: 'Programming & Development', title: 'Python – 5+ years – Expert' },
+      { group: 'AI & Machine Learning', title: 'Machine Learning – 4+ years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Generative AI (GPT-3.5 / GPT-4 / Claude / PaLM / LLaMA / Cohere) – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Large Language Models (LLMs) – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Retrieval-Augmented Generation (RAG) – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Prompt Engineering – 2 years – Advanced' },
+      { group: 'Frameworks & Libraries', title: 'LangChain – 1.5 years – Intermediate' },
+      { group: 'Frameworks & Libraries', title: 'LlamaIndex – 1.5 years – Intermediate' },
+      { group: 'Frameworks & Libraries', title: 'Haystack – 1.5 years – Intermediate' },
+      { group: 'Frameworks & Libraries', title: 'Hugging Face Transformers – 1.5 years – Intermediate' },
+      { group: 'API Integration & Microservices', title: 'OpenAI API – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Sentiment Analysis – 2 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'Emotion Recognition – 2 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'Named Entity Recognition (NER) – 1 year – Beginner' },
+      { group: 'AI & Machine Learning', title: 'NLP Pipeline Design – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Tokenization / Embeddings – 2 years – Intermediate' },
+      { group: 'Data Engineering', title: 'Vector Databases (Pinecone, FAISS, Chroma, Weaviate) – 1.5 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'Knowledge Graphs (RAG Integration) – 1 year – Beginner' },
+      { group: 'AI & Machine Learning', title: 'Speech Recognition (Google Speech, Deepgram, wav2vec2) – 1.5 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'Text-to-Speech (Amazon Polly, Azure TTS, Google Cloud TTS, gTTS) – 1.5 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'SSML for Voice Emotion Tuning – 1 year – Beginner' },
+      { group: 'AI & Machine Learning', title: 'AI Voice UX & Voice Emotion Design – 1.5 years – Intermediate' },
+      { group: 'AI & Machine Learning', title: 'Multi-lingual AI Agent Support – 1 year – Beginner' },
+      { group: 'Compliance & Ethical AI Practices', title: 'AI Ethics & Bias Mitigation – 2 years – Advanced' },
+      { group: 'Compliance & Ethical AI Practices', title: 'AI Safety & Ethical Guardrails – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Contextual AI Responses (SEL-aligned) – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Conversational AI Design (Multi-turn, Age-specific) – 2 years – Advanced' },
+      { group: 'Programming & Development', title: 'JavaScript – 3 years – Intermediate' },
+      { group: 'Programming & Development', title: 'TypeScript – 2 years – Intermediate' },
+      { group: 'Programming & Development', title: 'SQL – 5+ years – Advanced' },
+      { group: 'Programming & Development', title: 'C++ – 3 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Java – 2 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Node.js – 2.5 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Express.js – 2 years – Intermediate' },
+      { group: 'Frameworks & Libraries', title: 'React (basic) – 1 year – Beginner' },
+      { group: 'Programming & Development', title: 'HTML/CSS – 3+ years – Intermediate' },
+      { group: 'Frameworks & Libraries', title: 'FastAPI – 2.5 years – Advanced' },
+      { group: 'Frameworks & Libraries', title: 'Flask – 3 years – Advanced' },
+      { group: 'API Integration & Microservices', title: 'REST API Design – 4+ years – Expert' },
+      { group: 'API Integration & Microservices', title: 'API Security & Token Handling – 2 years – Advanced' },
+      { group: 'API Integration & Microservices', title: 'OAuth / JWT / SAML Authentication – 2 years – Intermediate' },
+      { group: 'Infrastructure & System Integration', title: 'Microservices Architecture – 3 years – Advanced' },
+      { group: 'Cloud & DevOps', title: 'Serverless Architecture (AWS Lambda, GCP Functions) – 3 years – Advanced' },
+      { group: 'Cloud & DevOps', title: 'Secure Web App Development – 3 years – Advanced' },
+      { group: 'Programming & Development', title: 'Responsive UI/UX Design – 3 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Frontend Animation (JS / CSS Transitions) – 2 years – Intermediate' },
+      { group: 'Data Analytics & Visualization', title: 'Chart.js / D3.js – 1.5 years – Intermediate' },
+      { group: 'Data Analytics & Visualization', title: 'Real-time Data Visualization (Mood Trackers, Dashboards) – 2 years – Intermediate' },
+      { group: 'Programming & Development', title: 'LocalStorage & Browser State Management – 2 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Journaling / Mood-Tracking UX – 1.5 years – Intermediate' },
+      { group: 'Programming & Development', title: 'Thought Bubble Interaction Design – 1.5 years – Intermediate' },
+      { group: 'Cloud & DevOps', title: 'AWS (Lambda, SageMaker, API Gateway, S3, DynamoDB, Redshift, CloudFormation) – 4+ years – Advanced' },
+      { group: 'Cloud & DevOps', title: 'Google Cloud (Vertex AI) – 1.5 years – Intermediate' },
+      { group: 'Cloud & DevOps', title: 'Azure AI & DevOps – 2.5 years – Intermediate' },
+      { group: 'Cloud & DevOps', title: 'Docker – 3 years – Advanced' },
+      { group: 'Cloud & DevOps', title: 'Kubernetes – 2.5 years – Intermediate' },
+      { group: 'Cloud & DevOps', title: 'Terraform – 2 years – Intermediate' },
+      { group: 'Cloud & DevOps', title: 'CI/CD (GitHub Actions, Jenkins, Azure DevOps) – 3+ years – Advanced' },
+      { group: 'Cloud & DevOps', title: 'Monitoring (WhyLabs, Datadog, Splunk) – 2 years – Intermediate' },
+      { group: 'Data Analytics & Visualization', title: 'Data Engineering (ETL, Pipelines, Vectorization) – 3+ years – Advanced' },
+      { group: 'Data Analytics & Visualization', title: 'Data Visualization (Matplotlib, Plotly) – 3 years – Advanced' },
+      { group: 'Data Analytics & Visualization', title: 'Data Drift / Model Drift Monitoring – 1.5 years – Intermediate' },
+      { group: 'MLOps', title: 'Deep Learning Model Deployment – 2 years – Intermediate' },
+      { group: 'MLOps', title: 'MLOps Practices – 3 years – Advanced' },
+      { group: 'MLOps', title: 'End-to-End ML Pipelines – 3 years – Advanced' },
+      { group: 'MLOps', title: 'Deployment: Serverless / Containerized Models – 3 years – Advanced' },
+      { group: 'Programming & Development', title: 'MongoDB / NoSQL – 4+ years – Advanced' },
+      { group: 'API Integration & Microservices', title: 'Frontend-Backend Integration (REST APIs) – 3+ years – Expert' },
+      { group: 'Project & Product Management', title: 'Agile / Scrum – 5+ years – Expert' },
+      { group: 'Project & Product Management', title: 'Agile Sprint Planning & Retrospectives – 5+ years – Expert' },
+      { group: 'Technical Writing & Communication', title: 'Technical Documentation & Planning – 5+ years – Expert' },
+      { group: 'Project & Product Management', title: 'Product Requirement Documents (PRD) – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'MVP Roadmapping & Launch – 2 years – Advanced' },
+      { group: 'Compliance & Ethical AI Practices', title: 'FERPA / COPPA / GDPR Compliance – 2 years – Advanced' },
+      { group: 'Compliance & Ethical AI Practices', title: 'Compliance Implementation (EdTech Law) – 2 years – Advanced' },
+      { group: 'Project & Product Management', title: 'SEL Framework Integration (BPS SEL) – 1.5 years – Advanced' },
+      { group: 'Project & Product Management', title: 'Age-Based Prompt Tuning – 2 years – Advanced' },
+      { group: 'AI & Machine Learning', title: 'Content Moderation for SEL Chatbots – 1.5 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'Customizable Multi-Tenant SaaS Architecture – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'Stakeholder Engagement (Districts, Educators) – 2 years – Advanced' },
+      { group: 'Project & Product Management', title: 'Startup Strategy & Fundraising Prep – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'Investor Pitch & GTM Strategy – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'B2B & D2C Strategy (AI/EdTech) – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'Grant Research, Proposal Writing, Matching – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'Hackathon/Collaboration Projects – 2+ years – Advanced' },
+      { group: 'Project & Product Management', title: 'Open-Source Collaboration – 2 years – Intermediate' },
+      { group: 'Project & Product Management', title: 'AI Team Leadership (Amie Project) – 2+ years – Advanced' },
+      { group: 'Robotics & STEM Education', title: 'VEX Robotics Coaching – 3 years – Advanced' },
+      { group: 'Professional & Soft Skills', title: 'Public Speaking & Thought Leadership – 2 years – Advanced' },
+      { group: 'Project & Product Management', title: 'LinkedIn Automation Strategy (AI Agents) – 1 year – Intermediate' },
+      { group: 'Professional & Soft Skills', title: 'Cross-functional Collaboration – 5+ years – Expert' }
+    ];
+
+    /* =======================
+       Generic Pagination Rendering Function for Skills
+       ======================= */
+    function renderPaginatedSection(data, containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      let filtered = data.filter(item => {
+        return (currentFilter === 'all' || item.group.toLowerCase().includes(currentFilter.toLowerCase())) &&
+               (item.title.toLowerCase().includes(searchTerm));
+      });
+      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
+      const start = (page - 1) * itemsPerPage;
+      const items = filtered.slice(start, start + itemsPerPage);
+      items.forEach(item => {
+        container.innerHTML += `<li>${item.title}</li>`;
+      });
+      document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
+      return totalPages;
+    }
+
+    /* =======================
+       Render Skills Section
+       ======================= */
+    function renderSkills() {
+      const searchTerm = document.getElementById('skills-search').value.toLowerCase();
+      const activeButton = document.querySelector('#skills-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      renderPaginatedSection(skillsData, 'skills-list', skillsPage, skillsPerPage, currentFilter, searchTerm, 'skills-page-info');
+    }
+
+    /* =======================
+       Setup Tab Event Listeners for Skills Section
+       ======================= */
+    function setupSkillsTabs() {
+      const tabsContainer = document.getElementById('skills-tabs');
+      const buttons = tabsContainer.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          buttons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          skillsPage = 1;
+          renderSkills();
+        });
+      });
+    }
+    setupSkillsTabs();
+
+    /* =======================
+       Setup Search and Pagination for Skills Section
+       ======================= */
+    document.getElementById('skills-search').addEventListener('input', () => { skillsPage = 1; renderSkills(); });
+    document.getElementById('skills-prev').addEventListener('click', () => {
+      if(skillsPage > 1) { skillsPage--; renderSkills(); }
+    });
+    document.getElementById('skills-next').addEventListener('click', () => {
+      const activeButton = document.querySelector('#skills-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      let filtered = skillsData;
+      if(currentFilter !== 'all'){
+        filtered = filtered.filter(skill => skill.group.toLowerCase() === currentFilter.toLowerCase());
+      }
+      filtered = filtered.filter(skill => skill.title.toLowerCase().includes(document.getElementById('skills-search').value.toLowerCase()));
+      const totalPages = Math.ceil(filtered.length / skillsPerPage) || 1;
+      if(skillsPage < totalPages) { skillsPage++; renderSkills(); }
+    });
+
+    // Initial render for skills
+    renderSkills();
+  </script>
+</body>
+</html>
