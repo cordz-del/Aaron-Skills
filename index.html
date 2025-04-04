@@ -8,13 +8,13 @@
   <!-- Google Fonts: Roboto for body and Playfair Display for the quote -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* CSS Reset for Consistency */
+    /* CSS Reset */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-    /* Default (Light) Theme Variables */
+    /* Light Theme Variables */
     :root {
       --primary-color: #007acc;
       --secondary-color: #333;
@@ -34,7 +34,7 @@
       --accent-bg: #1a1a1a;
       --bubble-bg: #1e1e1e;
     }
-    /* Base Styles & Fallback Background Pattern */
+    /* Base Styles */
     body {
       position: relative;
       font-family: 'Roboto', sans-serif;
@@ -43,7 +43,7 @@
       line-height: 1.6;
       background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 10px);
     }
-    /* Enhanced SVG Background Overlay */
+    /* SVG Background Overlay */
     body::before {
       content: "";
       position: fixed;
@@ -59,6 +59,7 @@
     [data-theme="dark"] body::before {
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23FFFFFF' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23FFFFFF' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23FFFFFF' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23FFFFFF' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23FFFFFF' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23FFFFFF' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
     }
+    /* Link Styles */
     a {
       color: var(--primary-color);
       text-decoration: none;
@@ -353,9 +354,7 @@
       <h2>Example of AI Agent Aaron 2.0</h2>
       <p>Interact in real-time with Aaron 2.0, a cutting-edge AI Agent meticulously trained to dynamically share insights from my extensive professional experiences.</p>
       <div class="ai-agent-frame">
-        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b"
-                frameborder="0" 
-                allowtransparency="true"></iframe>
+        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b" frameborder="0" allowtransparency="true"></iframe>
       </div>
     </div>
     <!-- LinkedIn Newsletters & Articles Section -->
@@ -445,15 +444,12 @@
       document.documentElement.setAttribute('data-theme', newTheme);
     });
 
-    /* =======================
-       Global Pagination Variables
-       ======================= */
-    let newslettersPage = 1, certsPage = 1, projectsPage = 1;
-    let skillsPage = 1;
+    /* Global Pagination Variables */
+    let newslettersPage = 1, certsPage = 1, projectsPage = 1, skillsPage = 1;
     const newslettersPerPage = 5, certsPerPage = 10, projectsPerPage = 5, skillsPerPage = 10;
 
     /* =======================
-       Sample Data Arrays
+       Data Arrays
        ======================= */
     const newslettersData = [
       {
@@ -523,8 +519,8 @@
         link: 'https://www.linkedin.com/pulse/advanced-guide-facial-recognition-python-robert-graham-gqzqe/?trackingId=bQrxYzgqTNaOUZNG%2BFNT5Q%3D%3D'
       }
     ];
+
     const skillsData = [
-      // AI & Machine Learning
       { group: 'AI & Machine Learning', title: 'Generative AI (Advanced)' },
       { group: 'AI & Machine Learning', title: 'Natural Language Processing (NLP) (Advanced)' },
       { group: 'AI & Machine Learning', title: 'Retrieval-Augmented Generation (RAG) (Advanced)' },
@@ -536,25 +532,21 @@
       { group: 'AI & Machine Learning', title: 'Conversational Design (Voice UX, Chatbots) (Advanced)' },
       { group: 'AI & Machine Learning', title: 'Emotionally Intelligent AI (Advanced)' },
       { group: 'AI & Machine Learning', title: 'Voice Interaction & Dialog Flow (Advanced)' },
-      // Programming & Development
       { group: 'Programming & Development', title: 'Python (Expert)' },
       { group: 'Programming & Development', title: 'JavaScript (Advanced)' },
       { group: 'Programming & Development', title: 'TypeScript (Advanced)' },
       { group: 'Programming & Development', title: 'SQL (Advanced)' },
-      // Frameworks & Libraries
       { group: 'Frameworks & Libraries', title: 'LangChain (Advanced)' },
       { group: 'Frameworks & Libraries', title: 'TensorFlow (Intermediate)' },
       { group: 'Frameworks & Libraries', title: 'PyTorch (Intermediate)' },
       { group: 'Frameworks & Libraries', title: 'Hugging Face (Intermediate)' },
       { group: 'Frameworks & Libraries', title: 'Flask (Intermediate)' },
       { group: 'Frameworks & Libraries', title: 'FastAPI (Intermediate)' },
-      // API Integration & Microservices
       { group: 'API Integration & Microservices', title: 'OpenAI API (Advanced)' },
       { group: 'API Integration & Microservices', title: 'Google Cloud API (Advanced)' },
       { group: 'API Integration & Microservices', title: 'Deepgram API (Advanced)' },
       { group: 'API Integration & Microservices', title: 'Azure Cognitive Services (Intermediate)' },
       { group: 'API Integration & Microservices', title: 'RESTful API Development (Advanced)' },
-      // Cloud & DevOps
       { group: 'Cloud & DevOps', title: 'AWS SageMaker, Lambda, Elastic Beanstalk (Advanced)' },
       { group: 'Cloud & DevOps', title: 'Azure AI (Intermediate)' },
       { group: 'Cloud & DevOps', title: 'Google Cloud (Intermediate)' },
@@ -562,7 +554,6 @@
       { group: 'Cloud & DevOps', title: 'Kubernetes (Intermediate)' },
       { group: 'Cloud & DevOps', title: 'CI/CD Pipelines (GitHub Actions, Jenkins) (Intermediate)' },
       { group: 'Cloud & DevOps', title: 'Terraform (Intermediate)' },
-      // Automation & QA Testing
       { group: 'Automation & QA Testing', title: 'Selenium (Expert)' },
       { group: 'Automation & QA Testing', title: 'Hammer Automation (Intermediate)' },
       { group: 'Automation & QA Testing', title: 'PyTest (Advanced)' },
@@ -571,27 +562,20 @@
       { group: 'Automation & QA Testing', title: 'Functional Testing (Expert)' },
       { group: 'Automation & QA Testing', title: 'Performance Testing (Expert)' },
       { group: 'Automation & QA Testing', title: 'Issue Tracking (Jira, Azure DevOps) (Expert)' },
-      // Data Analytics & Visualization
       { group: 'Data Analytics & Visualization', title: 'Data Analysis (Pandas, NumPy) (Advanced)' },
       { group: 'Data Analytics & Visualization', title: 'Tableau, Power BI (Intermediate)' },
-      // Infrastructure & System Integration
       { group: 'Infrastructure & System Integration', title: 'System Architecture (Advanced)' },
       { group: 'Infrastructure & System Integration', title: 'Microservices Architecture (Advanced)' },
-      // Robotics & STEM Education
       { group: 'Robotics & STEM Education', title: 'Robotics Instruction (VEX Robotics) (Advanced)' },
       { group: 'Robotics & STEM Education', title: 'Curriculum Development & Coaching (Advanced)' },
-      // Technical Writing & Communication
       { group: 'Technical Writing & Communication', title: 'Technical Documentation (Expert)' },
       { group: 'Technical Writing & Communication', title: 'AI-focused Articles & Publications (Advanced)' },
       { group: 'Technical Writing & Communication', title: 'Stakeholder Communication (Expert)' },
-      // Compliance & Ethical AI Practices
       { group: 'Compliance & Ethical AI Practices', title: 'FERPA, COPPA, GDPR (Advanced)' },
       { group: 'Compliance & Ethical AI Practices', title: 'Ethical AI & Bias Mitigation (Advanced)' },
-      // Project & Product Management
       { group: 'Project & Product Management', title: 'Agile Methodologies (Expert)' },
       { group: 'Project & Product Management', title: 'Scrum Framework (Expert)' },
       { group: 'Project & Product Management', title: 'Project & Strategic Execution (Advanced)' },
-      // Professional & Soft Skills
       { group: 'Professional & Soft Skills', title: 'Strategic Vision & Innovation (Advanced)' },
       { group: 'Professional & Soft Skills', title: 'Creative Problem Solving (Advanced)' },
       { group: 'Professional & Soft Skills', title: 'Cross-Functional Collaboration (Expert)' },
@@ -741,31 +725,8 @@
         title: 'Amie-Skills (Live)',
         description: 'Live Webpage',
         link: 'https://cordz-del.github.io/Amie-Skills/'
-      },    {
-        category: 'repo',
-        title: 'New Repository',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/new-repository'
-    },
-    {
-        category: 'webpage',
-        title: 'New Live Webpage',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/new-live-webpage/'
-    }
+      },
       {
-    {
-        category: 'repo',
-        title: 'Retrieval-Augmented Generation',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/retrieval-augmented-generation'
-    },
-    {
-        category: 'webpage',
-        title: 'Retrieval-Augmented Generation (Live)',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/retrieval-augmented-generation-example/
-    },
         category: 'repo',
         title: 'AI-Driven Chatbot Automation',
         description: 'Repository',
@@ -1004,14 +965,13 @@
       if(skillsPage > 1) { skillsPage--; renderSkills(); }
     });
     document.getElementById('skills-next').addEventListener('click', () => {
-      const searchTerm = document.getElementById('skills-search').value.toLowerCase();
       const activeButton = document.querySelector('#skills-tabs button.active');
       const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
       let filtered = skillsData;
       if(currentFilter !== 'all'){
         filtered = filtered.filter(skill => skill.group === currentFilter);
       }
-      filtered = filtered.filter(skill => skill.title.toLowerCase().includes(searchTerm));
+      filtered = filtered.filter(skill => skill.title.toLowerCase().includes(document.getElementById('skills-search').value.toLowerCase()));
       const totalPages = Math.ceil(filtered.length / skillsPerPage) || 1;
       if(skillsPage < totalPages) { skillsPage++; renderSkills(); }
     });
