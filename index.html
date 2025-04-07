@@ -5,10 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aaron's Portfolio</title>
-  <!-- Google Fonts: Roboto for body and Playfair Display for the quote -->
+  <!-- Google Fonts: Roboto and Playfair Display -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* CSS Reset for Consistency */
+    /* CSS Reset */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -181,72 +181,6 @@
       padding-bottom: 0.5rem;
       margin-bottom: 1rem;
     }
-    ul {
-      list-style: none;
-      margin-bottom: 1rem;
-      padding-left: 0;
-    }
-    li {
-      margin-bottom: 0.75rem;
-      padding-left: 1rem;
-      position: relative;
-    }
-    li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--primary-color);
-    }
-    article {
-      margin: 1rem 0;
-      padding: 1rem;
-      background-color: var(--accent-bg);
-      border-left: 4px solid var(--primary-color);
-      border-radius: 4px;
-    }
-    /* Filter Controls for Tabs & Search */
-    .filter-controls {
-      margin-bottom: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .filter-controls button {
-      padding: 0.5rem 1rem;
-      border: none;
-      background-color: var(--primary-color);
-      color: var(--white);
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .filter-controls button:hover,
-    .filter-controls button.active {
-      background-color: #444;
-    }
-    .filter-controls input[type="text"] {
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      flex: 1;
-    }
-    /* Pagination Controls */
-    .pagination {
-      text-align: center;
-      margin-top: 1rem;
-    }
-    .pagination button {
-      padding: 0.5rem 1rem;
-      border: none;
-      background-color: var(--primary-color);
-      color: var(--white);
-      border-radius: 4px;
-      cursor: pointer;
-      margin: 0 0.5rem;
-    }
-    .pagination button:hover {
-      background-color: #444;
-    }
     /* Footer */
     footer {
       text-align: center;
@@ -311,14 +245,6 @@
         width: 133%;
         height: 133%;
       }
-      .filter-controls {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-      }
-      .filter-controls button {
-        font-size: 0.75rem;
-        padding: 0.3rem 0.5rem;
-      }
     }
   </style>
 </head>
@@ -343,99 +269,37 @@
     <a href="#projects">Projects</a>
   </nav>
   <div class="container">
-    <!-- Biography Section -->
+    <!-- Biography Section (Inline) -->
     <div class="bubble" id="biography">
       <h2>Biography</h2>
       <p>Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full‑stack solutions, I possess <strong>secret strengths</strong> that fuel my creative vision. My deep <strong>love for AI</strong> drives me to build innovative technologies designed for the <strong>betterment</strong> of all people—unifying diverse communities and empowering individuals to achieve their full potential. I create with <strong>heart</strong> and <strong>purpose</strong>, believing that every breakthrough is an act of love and a beacon for the future of work.</p>
     </div>
-    <!-- AI Agent Section -->
+    <!-- AI Agent Section (Inline) -->
     <div class="bubble ai-agent-container" id="ai-agent">
       <h2>Example of AI Agent Aaron 2.0</h2>
       <p>Interact in real-time with Aaron 2.0, a cutting-edge AI Agent meticulously trained to dynamically share insights from my extensive professional experiences.</p>
       <div class="ai-agent-frame">
-        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b"
-                frameborder="0" 
-                allowtransparency="true"></iframe>
+        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b" frameborder="0" allowtransparency="true"></iframe>
       </div>
     </div>
-    <!-- LinkedIn Newsletters & Articles Section -->
+    <!-- The following sections are loaded via external files -->
     <div class="bubble" id="newsletters">
-      <h2>LinkedIn Newsletters &amp; Articles</h2>
-      <div class="filter-controls" id="newsletters-tabs">
-        <button data-filter="all" class="active">All</button>
-        <button data-filter="article">Articles</button>
-        <input type="text" id="newsletters-search" placeholder="Search newsletters/articles..." />
-      </div>
-      <div id="newsletters-container"></div>
-      <div class="pagination" id="newsletters-pagination">
-        <button id="newsletters-prev">Previous</button>
-        <span id="newsletters-page-info"></span>
-        <button id="newsletters-next">Next</button>
-      </div>
+      <!-- Content from newsletters.html will be loaded here -->
     </div>
-    <!-- Skills Section with Tabs and Pagination -->
     <div class="bubble" id="skills">
-      <h2>Skills</h2>
-      <div class="filter-controls" id="skills-tabs">
-        <button data-filter="all" class="active">All</button>
-        <button data-filter="AI & Machine Learning">AI &amp; Machine Learning</button>
-        <button data-filter="Programming & Development">Programming &amp; Development</button>
-        <button data-filter="Frameworks & Libraries">Frameworks &amp; Libraries</button>
-        <button data-filter="API Integration & Microservices">API Integration &amp; Microservices</button>
-        <button data-filter="Cloud & DevOps">Cloud &amp; DevOps</button>
-        <button data-filter="Automation & QA Testing">Automation &amp; QA Testing</button>
-        <button data-filter="Data Analytics & Visualization">Data Analytics &amp; Visualization</button>
-        <button data-filter="Infrastructure & System Integration">Infrastructure &amp; System Integration</button>
-        <button data-filter="Robotics & STEM Education">Robotics &amp; STEM Education</button>
-        <button data-filter="Technical Writing & Communication">Technical Writing &amp; Communication</button>
-        <button data-filter="Compliance & Ethical AI Practices">Compliance &amp; Ethical AI Practices</button>
-        <button data-filter="Project & Product Management">Project &amp; Product Management</button>
-        <button data-filter="Professional & Soft Skills">Professional &amp; Soft Skills</button>
-        <input type="text" id="skills-search" placeholder="Search skills..." />
-      </div>
-      <ul id="skills-list"></ul>
-      <div class="pagination" id="skills-pagination">
-        <button id="skills-prev">Previous</button>
-        <span id="skills-page-info"></span>
-        <button id="skills-next">Next</button>
-      </div>
+      <!-- Content from skills.html will be loaded here -->
     </div>
-    <!-- Licenses & Certifications Section -->
     <div class="bubble" id="certifications">
-      <h2>Licenses &amp; Certifications</h2>
-      <div class="filter-controls" id="certs-tabs">
-        <button data-filter="all" class="active">All</button>
-        <button data-filter="specialization">Specializations</button>
-        <button data-filter="course">Courses</button>
-        <input type="text" id="certs-search" placeholder="Search certifications..." />
-      </div>
-      <div id="certs-container"></div>
-      <div class="pagination" id="certs-pagination">
-        <button id="certs-prev">Previous</button>
-        <span id="certs-page-info"></span>
-        <button id="certs-next">Next</button>
-      </div>
+      <!-- Content from certifications.html will be loaded here -->
     </div>
-    <!-- Projects Section -->
     <div class="bubble" id="projects">
-      <h2>Projects</h2>
-      <div class="filter-controls" id="projects-tabs">
-        <button data-filter="all" class="active">All</button>
-        <button data-filter="repo">Repositories</button>
-        <button data-filter="webpage">Live Webpages</button>
-        <input type="text" id="projects-search" placeholder="Search projects..." />
-      </div>
-      <div id="projects-container"></div>
-      <div class="pagination" id="projects-pagination">
-        <button id="projects-prev">Previous</button>
-        <span id="projects-page-info"></span>
-        <button id="projects-next">Next</button>
-      </div>
+      <!-- Content from projects.html will be loaded here -->
     </div>
   </div>
   <footer>
     <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
   </footer>
+  
   <script>
     // Dark Mode Toggle
     const toggleButton = document.getElementById('theme-toggle');
@@ -445,602 +309,28 @@
       document.documentElement.setAttribute('data-theme', newTheme);
     });
 
-    /* =======================
-       Global Pagination Variables
-       ======================= */
-    let newslettersPage = 1, certsPage = 1, projectsPage = 1;
-    let skillsPage = 1;
-    const newslettersPerPage = 5, certsPerPage = 10, projectsPerPage = 5, skillsPerPage = 10;
-
-    /* =======================
-       Sample Data Arrays
-       ======================= */
-    const newslettersData = [
-      {
-        category: 'article',
-        title: 'Building AI Agent for Day-to-Day Requests: Comprehensive How-To',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/building-ai-agent-day-to-day-requests-comprehensive-how-to-graham-1x3te/'
-      },
-      {
-        category: 'article',
-        title: 'AI Chatbots for Mental Health Support: Promise, Challenges, and the Future',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/ai-chatbots-mental-health-support-promise-challenges-future-graham-hxvse/'
-      },
-      {
-        category: 'article',
-        title: 'Building AI Chatbot without Traditional Backend: Modern Approaches',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/building-ai-chatbot-without-traditional-backend-modern-robert-graham-44ede/'
-      },
-      {
-        category: 'article',
-        title: 'AI-Driven Python Automation & QA: Unleashing Selenium & LLMs',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/ai-driven-python-automation-qa-unleashing-selenium-llms-robert-graham-bsvee/'
-      },
-      {
-        category: 'article',
-        title: 'Three AI Mega-Trends Shaping Technology, Healthcare, and Society',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/three-ai-mega-trends-shaping-technology-healthcare-society-graham-8fave/?trackingId=fEWkP0RuQviIoefU2OYuiA%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'How AI is Revolutionizing Cancer Treatment: A Deep Dive in Oncology',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/how-ai-revolutionizing-cancer-treatment-deep-dive-oncology-graham-jidme/?trackingId=9MLOT2bpTXiyLUX1MADW5Q%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'Comprehensive Guide to ChromaDB for Beginners & Advanced Users',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/comprehensive-guide-chromadb-beginners-advanced-users-robert-graham-pz0pf/?trackingId=652DvIcAR1W4BsFs1bJqSA%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'Comprehensive Guide to CI/CD Integration for ML Models',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/comprehensive-guide-cicd-integration-ml-models-robert-graham-whw3c/?trackingId=2o94p3MrQlWCJUcUGFasAg%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'Bridging AI & Automation: How LLMs are Revolutionizing Testing',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/bridging-ai-automation-how-llms-revolutionizing-testing-robert-graham-dv2me/?trackingId=RPDZyam1TCuWQ787rGMQeQ%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'Scaling MLOps for Enterprise Applications',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/scaling-mlops-enterprise-applications-robert-graham-fsdxe/?trackingId=pTfTOHfjRuuKgnknc0PAWQ%3D%3D'
-      },
-      {
-        category: 'article',
-        title: 'Advanced Guide to Facial Recognition with Python',
-        description: 'LinkedIn Article',
-        link: 'https://www.linkedin.com/pulse/advanced-guide-facial-recognition-python-robert-graham-gqzqe/?trackingId=bQrxYzgqTNaOUZNG%2BFNT5Q%3D%3D'
-      }
-    ];
-    const skillsData = [
-      // AI & Machine Learning
-      { group: 'AI & Machine Learning', title: 'Generative AI (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Natural Language Processing (NLP) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Retrieval-Augmented Generation (RAG) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Prompt Engineering (GPT-4, Claude, ChatGPT, CoPilot) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Large Language Models (LLMs) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'AI Agent Development (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Speech-to-Text (STT) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Text-to-Speech (TTS) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Conversational Design (Voice UX, Chatbots) (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Emotionally Intelligent AI (Advanced)' },
-      { group: 'AI & Machine Learning', title: 'Voice Interaction & Dialog Flow (Advanced)' },
-      // Programming & Development
-      { group: 'Programming & Development', title: 'Python (Expert)' },
-      { group: 'Programming & Development', title: 'JavaScript (Advanced)' },
-      { group: 'Programming & Development', title: 'TypeScript (Advanced)' },
-      { group: 'Programming & Development', title: 'SQL (Advanced)' },
-      // Frameworks & Libraries
-      { group: 'Frameworks & Libraries', title: 'LangChain (Advanced)' },
-      { group: 'Frameworks & Libraries', title: 'TensorFlow (Intermediate)' },
-      { group: 'Frameworks & Libraries', title: 'PyTorch (Intermediate)' },
-      { group: 'Frameworks & Libraries', title: 'Hugging Face (Intermediate)' },
-      { group: 'Frameworks & Libraries', title: 'Flask (Intermediate)' },
-      { group: 'Frameworks & Libraries', title: 'FastAPI (Intermediate)' },
-      // API Integration & Microservices
-      { group: 'API Integration & Microservices', title: 'OpenAI API (Advanced)' },
-      { group: 'API Integration & Microservices', title: 'Google Cloud API (Advanced)' },
-      { group: 'API Integration & Microservices', title: 'Deepgram API (Advanced)' },
-      { group: 'API Integration & Microservices', title: 'Azure Cognitive Services (Intermediate)' },
-      { group: 'API Integration & Microservices', title: 'RESTful API Development (Advanced)' },
-      // Cloud & DevOps
-      { group: 'Cloud & DevOps', title: 'AWS SageMaker, Lambda, Elastic Beanstalk (Advanced)' },
-      { group: 'Cloud & DevOps', title: 'Azure AI (Intermediate)' },
-      { group: 'Cloud & DevOps', title: 'Google Cloud (Intermediate)' },
-      { group: 'Cloud & DevOps', title: 'Docker (Intermediate)' },
-      { group: 'Cloud & DevOps', title: 'Kubernetes (Intermediate)' },
-      { group: 'Cloud & DevOps', title: 'CI/CD Pipelines (GitHub Actions, Jenkins) (Intermediate)' },
-      { group: 'Cloud & DevOps', title: 'Terraform (Intermediate)' },
-      // Automation & QA Testing
-      { group: 'Automation & QA Testing', title: 'Selenium (Expert)' },
-      { group: 'Automation & QA Testing', title: 'Hammer Automation (Intermediate)' },
-      { group: 'Automation & QA Testing', title: 'PyTest (Advanced)' },
-      { group: 'Automation & QA Testing', title: 'UAT Testing (Expert)' },
-      { group: 'Automation & QA Testing', title: 'Regression Testing (Expert)' },
-      { group: 'Automation & QA Testing', title: 'Functional Testing (Expert)' },
-      { group: 'Automation & QA Testing', title: 'Performance Testing (Expert)' },
-      { group: 'Automation & QA Testing', title: 'Issue Tracking (Jira, Azure DevOps) (Expert)' },
-      // Data Analytics & Visualization
-      { group: 'Data Analytics & Visualization', title: 'Data Analysis (Pandas, NumPy) (Advanced)' },
-      { group: 'Data Analytics & Visualization', title: 'Tableau, Power BI (Intermediate)' },
-      // Infrastructure & System Integration
-      { group: 'Infrastructure & System Integration', title: 'System Architecture (Advanced)' },
-      { group: 'Infrastructure & System Integration', title: 'Microservices Architecture (Advanced)' },
-      // Robotics & STEM Education
-      { group: 'Robotics & STEM Education', title: 'Robotics Instruction (VEX Robotics) (Advanced)' },
-      { group: 'Robotics & STEM Education', title: 'Curriculum Development & Coaching (Advanced)' },
-      // Technical Writing & Communication
-      { group: 'Technical Writing & Communication', title: 'Technical Documentation (Expert)' },
-      { group: 'Technical Writing & Communication', title: 'AI-focused Articles & Publications (Advanced)' },
-      { group: 'Technical Writing & Communication', title: 'Stakeholder Communication (Expert)' },
-      // Compliance & Ethical AI Practices
-      { group: 'Compliance & Ethical AI Practices', title: 'FERPA, COPPA, GDPR (Advanced)' },
-      { group: 'Compliance & Ethical AI Practices', title: 'Ethical AI & Bias Mitigation (Advanced)' },
-      // Project & Product Management
-      { group: 'Project & Product Management', title: 'Agile Methodologies (Expert)' },
-      { group: 'Project & Product Management', title: 'Scrum Framework (Expert)' },
-      { group: 'Project & Product Management', title: 'Project & Strategic Execution (Advanced)' },
-      // Professional & Soft Skills
-      { group: 'Professional & Soft Skills', title: 'Strategic Vision & Innovation (Advanced)' },
-      { group: 'Professional & Soft Skills', title: 'Creative Problem Solving (Advanced)' },
-      { group: 'Professional & Soft Skills', title: 'Cross-Functional Collaboration (Expert)' },
-      { group: 'Professional & Soft Skills', title: 'Mentorship & Team Development (Advanced)' },
-      { group: 'Professional & Soft Skills', title: 'Analytical & Critical Thinking (Expert)' }
-    ];
-    const certificationsData = [
-      {
-        category: 'specialization',
-        title: 'Machine Learning Specialization',
-        provider: 'DeepLearning.AI, Stanford University',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/specialization/2RE6LR3QZXIC'
-      },
-      {
-        category: 'specialization',
-        title: 'Introduction to Generative AI Learning Path',
-        provider: 'Google Cloud',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/specialization/WS864DZLGGMS'
-      },
-      {
-        category: 'course',
-        title: 'Machine Learning Certificate',
-        provider: 'DeepLearning.AI, Stanford University',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/XM5GX5LELZI3'
-      },
-      {
-        category: 'course',
-        title: 'Introduction to Generative AI Certificate',
-        provider: 'Google Cloud',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/2T7ZEGIRJLD3'
-      },
-      {
-        category: 'course',
-        title: 'Certificate MBS3QMA6NQCY',
-        provider: 'Coursera',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/MBS3QMA6NQCY'
-      },
-      {
-        category: 'course',
-        title: 'Certificate XP4AMM988RU2',
-        provider: 'Coursera',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/XP4AMM988RU2'
-      },
-      {
-        category: 'course',
-        title: 'Certificate DC9D75V9JQ4A',
-        provider: 'Coursera',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/DC9D75V9JQ4A'
-      },
-      {
-        category: 'course',
-        title: 'Certificate X3GU9ODWAZ1G',
-        provider: 'Coursera',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/X3GU9ODWAZ1G'
-      },
-      {
-        category: 'course',
-        title: 'Certificate 8O4NYU89I2FX',
-        provider: 'Coursera',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/8O4NYU89I2FX'
-      },
-      {
-        category: 'course',
-        title: 'Certificate 75KEPU9F0VEQ',
-        provider: 'Coursera',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/75KEPU9F0VEQ'
-      },
-      {
-        category: 'course',
-        title: 'Certificate C3V2UXB2KH2E',
-        provider: 'DeepLearning.AI',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/C3V2UXB2KH2E'
-      },
-      {
-        category: 'course',
-        title: 'Certificate BHI3D5H4S7JF',
-        provider: 'Coursera',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/BHI3D5H4S7JF'
-      },
-      {
-        category: 'course',
-        title: 'Certificate EGU8NHBJ7WBQ',
-        provider: 'Coursera',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/EGU8NHBJ7WBQ'
-      },
-      {
-        category: 'course',
-        title: 'Certificate BPPF9R7TKDZN',
-        provider: 'Coursera',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/BPPF9R7TKDZN'
-      },
-      {
-        category: 'course',
-        title: 'Certificate SS3FQ68LUT2X',
-        provider: 'Coursera',
-        grade: null,
-        link: 'https://www.coursera.org/account/accomplishments/verify/SS3FQ68LUT2X'
-      }
-    ];
-    const projectsData = [
-      {
-        category: 'repo',
-        title: 'AI-Prompt Engineering Amie',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/AI-Prompt_Engineering_Amie'
-      },
-      {
-        category: 'repo',
-        title: 'Amie-SEL',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Amie-SEL'
-      },
-      {
-        category: 'repo',
-        title: 'Mood Record Page',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Mood-Record-Page'
-      },
-      {
-        category: 'webpage',
-        title: 'Mood Record Page (Live)',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/Mood-Record-Page/'
-      },
-      {
-        category: 'repo',
-        title: 'Amie-Skills',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Amie-Skills'
-      },
-      {
-        category: 'webpage',
-        title: 'Amie-Skills (Live)',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/Amie-Skills/'
-      },
-      {
-        category: 'repo',
-        title: 'AI-Driven Chatbot Automation',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/ai-driven-chatbot-automation'
-      },
-      {
-        category: 'repo',
-        title: 'AI-Automation CI/CD',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/AI-Automation-CI-CD'
-      },
-      {
-        category: 'repo',
-        title: 'Log-in Amie',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Log-in-Amie'
-      },
-      {
-        category: 'webpage',
-        title: 'Log-in Amie (Live)',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/Log-in-Amie/'
-      },
-      {
-        category: 'repo',
-        title: 'Amie Chatbot Frontend',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Amie-Chatbot-Frontend'
-      },
-      {
-        category: 'webpage',
-        title: 'Amie Chatbot Frontend (Live)',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/Amie-Chatbot-Frontend/'
-      },
-      {
-        category: 'repo',
-        title: 'Retrieval-Augmented Generation Example',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/retrieval-augmented-generation-example'
-      },
-      {
-        category: 'repo',
-        title: 'Retrieval-Augmented Generation',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/retrieval-augmented-generation'
-      },
-      {
-        category: 'repo',
-        title: 'Advanced Prompt Engineering',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Advanced-Prompt-Engineering'
-      },
-      {
-        category: 'repo',
-        title: 'AI Frameworks Showcase',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/AI-Frameworks-Showcase'
-      },
-      {
-        category: 'repo',
-        title: 'AI Job Search Agent',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/AI-Job-Search-Agent'
-      },
-      {
-        category: 'repo',
-        title: 'Cybersecurity AI Prototype',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Cybersecurity-AI-Prototype'
-      },
-      {
-        category: 'repo',
-        title: 'Large Language Models Examples',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Large-Language-Models-Examples'
-      },
-      {
-        category: 'repo',
-        title: 'MLOps Continuous Training Pipelines',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/MLOps-Continuous-Training-Pipelines'
-      },
-      {
-        category: 'repo',
-        title: 'Prompt Engineering Examples',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/Prompt-Engineering-Examples'
-      },
-      {
-        category: 'repo',
-        title: 'Generative AI LLMs Demo',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/generative-ai-llms-demo'
-      },
-      // New projects added below:
-      {
-        category: 'webpage',
-        title: 'Testing Tools Demo',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/TestingTools-Demo/'
-      },
-      {
-        category: 'webpage',
-        title: 'LLM RAG Python Demo',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/LLMRAGPython-Demo/'
-      },
-      {
-        category: 'webpage',
-        title: 'Data Analytics Demo',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/DataAnalytics-Demo/'
-      },
-      {
-        category: 'webpage',
-        title: 'Programming & Development Demo',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/ProgrammingDev-Demo/'
-      },
-      {
-        category: 'repo',
-        title: 'Cloud DevOps Demo',
-        description: 'Repository',
-        link: 'https://github.com/cordz-del/CloudDevOps-Demo'
-      },
-      {
-        category: 'webpage',
-        title: 'Cloud DevOps Demo (Live)',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/CloudDevOps-Demo/'
-      },
-      {
-        category: 'webpage',
-        title: 'Machine Learning Demo',
-        description: 'Live Webpage',
-        link: 'https://cordz-del.github.io/MachineLearning-Demo/'
-      }
-    ];
-
-    /* =======================
-       Generic Pagination Rendering Function
-       ======================= */
-    function renderPaginatedSection(data, containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
-      const container = document.getElementById(containerId);
-      container.innerHTML = '';
-      let filtered = data.filter(item => {
-        return (currentFilter === 'all' || item.category.includes(currentFilter)) &&
-               (item.title.toLowerCase().includes(searchTerm) ||
-                (item.description && item.description.toLowerCase().includes(searchTerm)));
-      });
-      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
-      const start = (page - 1) * itemsPerPage;
-      const items = filtered.slice(start, start + itemsPerPage);
-      items.forEach(item => {
-        let itemHTML = "";
-        if (item.link) {
-          itemHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
-        } else {
-          itemHTML = `<span>${item.title}</span>`;
-        }
-        if (item.description) {
-          itemHTML += ' — ' + item.description;
-        }
-        if (item.grade) {
-          itemHTML += ` (Grade Achieved: ${item.grade})`;
-        }
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.innerHTML = itemHTML;
-        container.appendChild(div);
-      });
-      document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
-      return totalPages;
+    // Function to load external HTML partials into specified container elements
+    function loadPartial(containerId, filePath) {
+      fetch(filePath)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then(html => {
+          document.getElementById(containerId).innerHTML = html;
+        })
+        .catch(error => console.error(`Error loading ${filePath}:`, error));
     }
 
-    /* =======================
-       Render Functions for Each Section
-       ======================= */
-    function renderNewsletters() {
-      const activeButton = document.querySelector('#newsletters-tabs button.active');
-      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
-      const searchTerm = document.getElementById('newsletters-search').value.toLowerCase();
-      const totalPages = renderPaginatedSection(newslettersData, 'newsletters-container', newslettersPage, newslettersPerPage, currentFilter, searchTerm, 'newsletters-page-info');
-      return totalPages;
-    }
-    function renderCerts() {
-      const activeButton = document.querySelector('#certs-tabs button.active');
-      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
-      const searchTerm = document.getElementById('certs-search').value.toLowerCase();
-      const totalPages = renderPaginatedSection(certificationsData, 'certs-container', certsPage, certsPerPage, currentFilter, searchTerm, 'certs-page-info');
-      return totalPages;
-    }
-    function renderProjects() {
-      const activeButton = document.querySelector('#projects-tabs button.active');
-      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
-      const searchTerm = document.getElementById('projects-search').value.toLowerCase();
-      const totalPages = renderPaginatedSection(projectsData, 'projects-container', projectsPage, projectsPerPage, currentFilter, searchTerm, 'projects-page-info');
-      return totalPages;
-    }
-    function renderSkills() {
-      const searchTerm = document.getElementById('skills-search').value.toLowerCase();
-      const activeButton = document.querySelector('#skills-tabs button.active');
-      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
-      const container = document.getElementById('skills-list');
-      container.innerHTML = '';
-      let filtered = skillsData;
-      if(currentFilter !== 'all'){
-        filtered = filtered.filter(skill => skill.group === currentFilter);
-      }
-      filtered = filtered.filter(skill => skill.title.toLowerCase().includes(searchTerm));
-      const totalPages = Math.ceil(filtered.length / skillsPerPage) || 1;
-      const start = (skillsPage - 1) * skillsPerPage;
-      const pageSkills = filtered.slice(start, start + skillsPerPage);
-      pageSkills.forEach(skill => {
-        const li = document.createElement('li');
-        li.textContent = skill.title;
-        container.appendChild(li);
-      });
-      document.getElementById('skills-page-info').innerText = `Page ${skillsPage} of ${totalPages}`;
-    }
+    // Load the partial files for each section
+    loadPartial('newsletters', 'newsletters.html');
+    loadPartial('skills', 'skills.html');
+    loadPartial('certifications', 'certifications.html');
+    loadPartial('projects', 'projects.html');
 
-    /* =======================
-       Setup Tab Event Listeners for Each Section
-       ======================= */
-    function setupTabs(tabsContainerId, renderFunction) {
-      const tabsContainer = document.getElementById(tabsContainerId);
-      const buttons = tabsContainer.querySelectorAll('button');
-      buttons.forEach(button => {
-        button.addEventListener('click', () => {
-          buttons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-          if(tabsContainerId === 'newsletters-tabs') newslettersPage = 1;
-          if(tabsContainerId === 'certs-tabs') certsPage = 1;
-          if(tabsContainerId === 'projects-tabs') projectsPage = 1;
-          if(tabsContainerId === 'skills-tabs') skillsPage = 1;
-          renderFunction();
-        });
-      });
-    }
-    setupTabs('newsletters-tabs', renderNewsletters);
-    setupTabs('certs-tabs', renderCerts);
-    setupTabs('projects-tabs', renderProjects);
-    setupTabs('skills-tabs', renderSkills);
-
-    /* =======================
-       Setup Search Event Listeners
-       ======================= */
-    document.getElementById('newsletters-search').addEventListener('input', renderNewsletters);
-    document.getElementById('certs-search').addEventListener('input', renderCerts);
-    document.getElementById('projects-search').addEventListener('input', renderProjects);
-    document.getElementById('skills-search').addEventListener('input', renderSkills);
-
-    /* =======================
-       Setup Pagination Button Event Listeners
-       ======================= */
-    document.getElementById('newsletters-prev').addEventListener('click', () => {
-      if(newslettersPage > 1) { newslettersPage--; renderNewsletters(); }
-    });
-    document.getElementById('newsletters-next').addEventListener('click', () => {
-      const totalPages = renderNewsletters();
-      if(newslettersPage < totalPages) { newslettersPage++; renderNewsletters(); }
-    });
-    document.getElementById('certs-prev').addEventListener('click', () => {
-      if(certsPage > 1) { certsPage--; renderCerts(); }
-    });
-    document.getElementById('certs-next').addEventListener('click', () => {
-      const totalPages = renderCerts();
-      if(certsPage < totalPages) { certsPage++; renderCerts(); }
-    });
-    document.getElementById('projects-prev').addEventListener('click', () => {
-      if(projectsPage > 1) { projectsPage--; renderProjects(); }
-    });
-    document.getElementById('projects-next').addEventListener('click', () => {
-      const totalPages = renderProjects();
-      if(projectsPage < totalPages) { projectsPage++; renderProjects(); }
-    });
-    document.getElementById('skills-prev').addEventListener('click', () => {
-      if(skillsPage > 1) { skillsPage--; renderSkills(); }
-    });
-    document.getElementById('skills-next').addEventListener('click', () => {
-      const searchTerm = document.getElementById('skills-search').value.toLowerCase();
-      const activeButton = document.querySelector('#skills-tabs button.active');
-      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
-      let filtered = skillsData;
-      if(currentFilter !== 'all'){
-        filtered = filtered.filter(skill => skill.group === currentFilter);
-      }
-      filtered = filtered.filter(skill => skill.title.toLowerCase().includes(searchTerm));
-      const totalPages = Math.ceil(filtered.length / skillsPerPage) || 1;
-      if(skillsPage < totalPages) { skillsPage++; renderSkills(); }
-    });
-
-    // Initial Render
-    renderNewsletters();
-    renderCerts();
-    renderProjects();
-    renderSkills();
+    // (Optional) You can add additional initialization or event-binding code here
   </script>
 </body>
 </html>
