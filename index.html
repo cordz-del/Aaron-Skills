@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aaron's Portfolio</title>
-  <!-- Google Fonts: Roboto and Playfair Display -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     /* CSS Reset */
@@ -14,7 +14,7 @@
       margin: 0;
       padding: 0;
     }
-    /* Default (Light) Theme Variables */
+    /* Light Theme Variables */
     :root {
       --primary-color: #007acc;
       --secondary-color: #333;
@@ -34,7 +34,7 @@
       --accent-bg: #1a1a1a;
       --bubble-bg: #1e1e1e;
     }
-    /* Base Styles & Fallback Background Pattern */
+    /* Base Styles */
     body {
       position: relative;
       font-family: 'Roboto', sans-serif;
@@ -43,7 +43,7 @@
       line-height: 1.6;
       background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 10px);
     }
-    /* Enhanced SVG Background Overlay */
+    /* SVG Background Overlay */
     body::before {
       content: "";
       position: fixed;
@@ -59,6 +59,7 @@
     [data-theme="dark"] body::before {
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23FFFFFF' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23FFFFFF' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23FFFFFF' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23FFFFFF' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23FFFFFF' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23FFFFFF' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
     }
+    /* Link Styles */
     a {
       color: var(--primary-color);
       text-decoration: none;
@@ -181,64 +182,15 @@
       padding-bottom: 0.5rem;
       margin-bottom: 1rem;
     }
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 1rem;
-    }
-    /* Responsive AI Agent Container & Chat Frame */
-    .ai-agent-container {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      color: var(--white);
-      padding: 1.5rem;
-      border-radius: 20px;
-      text-align: center;
-    }
-    .ai-agent-container h2 {
-      color: var(--white);
-      margin-bottom: 1rem;
-    }
-    .ai-agent-frame {
-      position: relative;
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      aspect-ratio: 16 / 9;
-      border: none;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      overflow: hidden;
-    }
-    .ai-agent-frame iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    /* Mobile Adjustments */
+    /* Responsive adjustments */
     @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-      }
-      nav a {
-        padding: 0.75rem;
-      }
-      #theme-toggle {
-        font-size: 0.8rem;
-        padding: 0.3rem 0.7rem;
-      }
-      .ai-agent-frame {
-        max-width: 90%;
-        aspect-ratio: 16 / 9;
-      }
+      nav { flex-direction: column; }
+      nav a { padding: 0.75rem; }
+      #theme-toggle { font-size: 0.8rem; padding: 0.3rem 0.7rem; }
+      .ai-agent-frame { max-width: 90%; aspect-ratio: 16 / 9; }
     }
     @media (max-width: 600px) and (orientation: portrait) {
-      .ai-agent-frame {
-        max-width: 95%;
-        height: 700px;
-      }
+      .ai-agent-frame { max-width: 95%; height: 700px; }
       .ai-agent-frame iframe {
         transform: scale(0.75);
         transform-origin: top left;
@@ -254,7 +206,9 @@
       <img src="images/ChatGPT%20Image%20Apr%202,%202025,%2008_06_04%20AM.png" alt="Portfolio Logo" class="header-logo">
       <h1>Aaron's Portfolio</h1>
     </div>
-    <p class="quote">"Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> ignite change."</p>
+    <p class="quote">
+      "Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> ignite change."
+    </p>
     <p>
       <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">Visit my LinkedIn Profile</a>
     </p>
@@ -269,37 +223,71 @@
     <a href="#projects">Projects</a>
   </nav>
   <div class="container">
-    <!-- Biography Section (Inline) -->
+    <!-- Biography Section -->
     <div class="bubble" id="biography">
       <h2>Biography</h2>
-      <p>Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full‑stack solutions, I possess <strong>secret strengths</strong> that fuel my creative vision. My deep <strong>love for AI</strong> drives me to build innovative technologies designed for the <strong>betterment</strong> of all people—unifying diverse communities and empowering individuals to achieve their full potential. I create with <strong>heart</strong> and <strong>purpose</strong>, believing that every breakthrough is an act of love and a beacon for the future of work.</p>
+      <p>
+        Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full‑stack solutions, I possess <strong>secret strengths</strong> that fuel my creative vision. My deep <strong>love for AI</strong> drives me to build innovative technologies designed for the <strong>betterment</strong> of all people—unifying diverse communities and empowering individuals to achieve their full potential. I create with <strong>heart</strong> and <strong>purpose</strong>, believing that every breakthrough is an act of love and a beacon for the future of work.
+      </p>
     </div>
-    <!-- AI Agent Section (Inline) -->
+
+    <!-- AI Agent Section -->
     <div class="bubble ai-agent-container" id="ai-agent">
       <h2>Example of AI Agent Aaron 2.0</h2>
-      <p>Interact in real-time with Aaron 2.0, a cutting-edge AI Agent meticulously trained to dynamically share insights from my extensive professional experiences.</p>
+      <p>
+        Interact in real-time with Aaron 2.0, a cutting-edge AI Agent meticulously trained to dynamically share insights from my extensive professional experiences.
+      </p>
       <div class="ai-agent-frame">
         <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b" frameborder="0" allowtransparency="true"></iframe>
       </div>
     </div>
-    <!-- The following sections are loaded via external files -->
+
+    <!-- Newsletters & Articles Section (Loaded via Partial) -->
     <div class="bubble" id="newsletters">
-      <!-- Content from newsletters.html will be loaded here -->
+      <h2>LinkedIn Newsletters &amp; Articles</h2>
+      <div id="newsletters-content">
+        <!-- Content from newsletters.html will be loaded here -->
+      </div>
     </div>
+
+    <!-- Skills Section (Loaded via Partial) -->
     <div class="bubble" id="skills">
-      <!-- Content from skills.html will be loaded here -->
+      <h2>Skills</h2>
+      <div id="skills-content">
+        <!-- Content from skills.html will be loaded here -->
+      </div>
     </div>
+
+    <!-- Licenses & Certifications Section (Loaded via Partial) -->
     <div class="bubble" id="certifications">
-      <!-- Content from certifications.html will be loaded here -->
+      <h2>Licenses &amp; Certifications</h2>
+      <div id="certifications-content">
+        <!-- Content from certifications.html will be loaded here -->
+      </div>
     </div>
+
+    <!-- Projects Section (Dynamically Fetched from GitHub) -->
     <div class="bubble" id="projects">
-      <!-- Content from projects.html will be loaded here -->
+      <h2>Projects</h2>
+      <div class="filter-controls" id="projects-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="repo">Repositories</button>
+        <button data-filter="webpage">Live Webpages</button>
+        <input type="text" id="projects-search" placeholder="Search projects..." />
+      </div>
+      <div id="projects-container"></div>
+      <div class="pagination" id="projects-pagination">
+        <button id="projects-prev">Previous</button>
+        <span id="projects-page-info"></span>
+        <button id="projects-next">Next</button>
+      </div>
     </div>
   </div>
+
   <footer>
     <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
   </footer>
-  
+
   <script>
     // Dark Mode Toggle
     const toggleButton = document.getElementById('theme-toggle');
@@ -309,28 +297,110 @@
       document.documentElement.setAttribute('data-theme', newTheme);
     });
 
-    // Function to load external HTML partials into specified container elements
-    function loadPartial(containerId, filePath) {
-      fetch(filePath)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.text();
+    /* Global Pagination Variables (for sections loaded via partials, if needed) */
+    let newslettersPage = 1, projectsPage = 1;
+    const newslettersPerPage = 5, projectsPerPage = 5;
+
+    /* Function to load external partial files into a container */
+    function loadPartial(url, containerId) {
+      fetch(url)
+        .then(response => response.text())
+        .then(text => {
+          document.getElementById(containerId).innerHTML = text;
         })
-        .then(html => {
-          document.getElementById(containerId).innerHTML = html;
-        })
-        .catch(error => console.error(`Error loading ${filePath}:`, error));
+        .catch(error => console.error('Error loading', url, error));
     }
 
-    // Load the partial files for each section
-    loadPartial('newsletters', 'newsletters.html');
-    loadPartial('skills', 'skills.html');
-    loadPartial('certifications', 'certifications.html');
-    loadPartial('projects', 'projects.html');
+    // Load the partial files (ensure these files are on the same server and are fragments)
+    loadPartial('newsletters.html', 'newsletters-content');
+    loadPartial('skills.html', 'skills-content');
+    loadPartial('certifications.html', 'certifications-content');
 
-    // (Optional) You can add additional initialization or event-binding code here
+    // Projects section: Fetch projects dynamically from GitHub
+    let projectsData = [];
+    async function fetchProjects() {
+      try {
+        const response = await fetch('https://api.github.com/users/cordz-del/repos?per_page=107');
+        const repos = await response.json();
+        projectsData = [];
+        repos.forEach(repo => {
+          projectsData.push({
+            category: 'repo',
+            title: repo.name,
+            description: 'Repository',
+            link: repo.html_url
+          });
+          if (repo.homepage && repo.homepage.trim() !== '') {
+            projectsData.push({
+              category: 'webpage',
+              title: repo.name + ' (Live)',
+              description: 'Live Webpage',
+              link: repo.homepage
+            });
+          }
+        });
+        renderProjects();
+      } catch (e) {
+        console.error('Error fetching projects:', e);
+      }
+    }
+
+    /* Generic Pagination Rendering Function for Projects */
+    function renderPaginatedSection(data, containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      let filtered = data.filter(item => {
+        return (currentFilter === 'all' || item.category.includes(currentFilter)) &&
+               (item.title.toLowerCase().includes(searchTerm) ||
+                (item.description && item.description.toLowerCase().includes(searchTerm)));
+      });
+      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
+      const start = (page - 1) * itemsPerPage;
+      const items = filtered.slice(start, start + itemsPerPage);
+      items.forEach(item => {
+        let itemHTML = item.link ? `<a href="${item.link}" target="_blank">${item.title}</a>` : `<span>${item.title}</span>`;
+        if (item.description) {
+          itemHTML += ' — ' + item.description;
+        }
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = itemHTML;
+        container.appendChild(div);
+      });
+      document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
+      return totalPages;
+    }
+
+    /* Render Projects Function */
+    function renderProjects() {
+      const activeButton = document.querySelector('#projects-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('projects-search').value.toLowerCase();
+      const totalPages = renderPaginatedSection(projectsData, 'projects-container', projectsPage, projectsPerPage, currentFilter, searchTerm, 'projects-page-info');
+      return totalPages;
+    }
+
+    // Setup Pagination for Projects
+    document.getElementById('projects-prev').addEventListener('click', () => {
+      if (projectsPage > 1) { projectsPage--; renderProjects(); }
+    });
+    document.getElementById('projects-next').addEventListener('click', () => {
+      const totalPages = renderProjects();
+      if (projectsPage < totalPages) { projectsPage++; renderProjects(); }
+    });
+    document.getElementById('projects-search').addEventListener('input', renderProjects);
+    const projectsTabs = document.getElementById('projects-tabs').querySelectorAll('button');
+    projectsTabs.forEach(button => {
+      button.addEventListener('click', () => {
+        projectsTabs.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        projectsPage = 1;
+        renderProjects();
+      });
+    });
+
+    // Initial rendering of projects
+    fetchProjects();
   </script>
 </body>
 </html>
