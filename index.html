@@ -311,6 +311,7 @@
     <p>
       <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">Visit my LinkedIn Profile</a>
     </p>
+    <!-- Updated dark mode toggle: now uses document.body -->
     <button id="theme-toggle">Toggle Dark Mode</button>
   </header>
   <nav>
@@ -418,12 +419,12 @@
     <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
   </footer>
   <script>
-    // Dark Mode Toggle
+    // Dark Mode Toggle (updated to use document.body)
     const toggleButton = document.getElementById('theme-toggle');
     toggleButton.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const currentTheme = document.body.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
+      document.body.setAttribute('data-theme', newTheme);
     });
 
     /* Global Pagination Variables */
@@ -635,7 +636,7 @@
         hours: 25,
         link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/AdvancedPythonProgramming'
       }
-      // You can add any additional certifications from your LinkedIn profile here.
+      // Additional certifications can be added here as needed.
     ];
 
     // Projects Data will be fetched dynamically from GitHub
@@ -738,7 +739,7 @@
       const container = document.getElementById('skills-list');
       container.innerHTML = '';
       let filtered = skillsData;
-      if(currentFilter !== 'all'){
+      if (currentFilter !== 'all') {
         filtered = filtered.filter(skill => skill.group === currentFilter);
       }
       filtered = filtered.filter(skill => skill.title.toLowerCase().includes(searchTerm));
@@ -788,39 +789,39 @@
        Setup Pagination Button Event Listeners
        ======================= */
     document.getElementById('newsletters-prev').addEventListener('click', () => {
-      if(newslettersPage > 1) { newslettersPage--; renderNewsletters(); }
+      if (newslettersPage > 1) { newslettersPage--; renderNewsletters(); }
     });
     document.getElementById('newsletters-next').addEventListener('click', () => {
       const totalPages = renderNewsletters();
-      if(newslettersPage < totalPages) { newslettersPage++; renderNewsletters(); }
+      if (newslettersPage < totalPages) { newslettersPage++; renderNewsletters(); }
     });
     document.getElementById('certs-prev').addEventListener('click', () => {
-      if(certsPage > 1) { certsPage--; renderCerts(); }
+      if (certsPage > 1) { certsPage--; renderCerts(); }
     });
     document.getElementById('certs-next').addEventListener('click', () => {
       const totalPages = renderCerts();
-      if(certsPage < totalPages) { certsPage++; renderCerts(); }
+      if (certsPage < totalPages) { certsPage++; renderCerts(); }
     });
     document.getElementById('projects-prev').addEventListener('click', () => {
-      if(projectsPage > 1) { projectsPage--; renderProjects(); }
+      if (projectsPage > 1) { projectsPage--; renderProjects(); }
     });
     document.getElementById('projects-next').addEventListener('click', () => {
       const totalPages = renderProjects();
-      if(projectsPage < totalPages) { projectsPage++; renderProjects(); }
+      if (projectsPage < totalPages) { projectsPage++; renderProjects(); }
     });
     document.getElementById('skills-prev').addEventListener('click', () => {
-      if(skillsPage > 1) { skillsPage--; renderSkills(); }
+      if (skillsPage > 1) { skillsPage--; renderSkills(); }
     });
     document.getElementById('skills-next').addEventListener('click', () => {
       const activeButton = document.querySelector('#skills-tabs button.active');
       const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
       let filtered = skillsData;
-      if(currentFilter !== 'all'){
+      if (currentFilter !== 'all') {
         filtered = filtered.filter(skill => skill.group === currentFilter);
       }
       filtered = filtered.filter(skill => skill.title.toLowerCase().includes(document.getElementById('skills-search').value.toLowerCase()));
       const totalPages = Math.ceil(filtered.length / skillsPerPage) || 1;
-      if(skillsPage < totalPages) { skillsPage++; renderSkills(); }
+      if (skillsPage < totalPages) { skillsPage++; renderSkills(); }
     });
 
     /* =======================
