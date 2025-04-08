@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aaron's Portfolio</title>
-  <!-- Google Fonts: Roboto for body and Playfair Display for quotes -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     /* CSS Reset */
@@ -34,7 +34,7 @@
       --accent-bg: #1a1a1a;
       --bubble-bg: #1e1e1e;
     }
-    /* Base Styles & Background Pattern */
+    /* Base Styles */
     body {
       position: relative;
       font-family: 'Roboto', sans-serif;
@@ -47,9 +47,9 @@
     body::before {
       content: "";
       position: fixed;
-      top: 0;
+      top: 0; 
       left: 0;
-      width: 100%;
+      width: 100%; 
       height: 100%;
       z-index: -1;
       pointer-events: none;
@@ -59,6 +59,7 @@
     [data-theme="dark"] body::before {
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23FFFFFF' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23FFFFFF' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23FFFFFF' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23FFFFFF' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23FFFFFF' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23FFFFFF' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
     }
+    /* Link Styles */
     a {
       color: var(--primary-color);
       text-decoration: none;
@@ -181,7 +182,109 @@
       padding-bottom: 0.5rem;
       margin-bottom: 1rem;
     }
-    /* Responsive Adjustments */
+    ul {
+      list-style: none;
+      margin-bottom: 1rem;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 0.75rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+    li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
+    article {
+      margin: 1rem 0;
+      padding: 1rem;
+      background-color: var(--accent-bg);
+      border-left: 4px solid var(--primary-color);
+      border-radius: 4px;
+    }
+    /* Filter Controls */
+    .filter-controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .filter-controls button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .filter-controls button:hover,
+    .filter-controls button.active {
+      background-color: #444;
+    }
+    .filter-controls input[type="text"] {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      flex: 1;
+    }
+    /* Pagination Controls */
+    .pagination {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .pagination button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 0.5rem;
+    }
+    .pagination button:hover {
+      background-color: #444;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+    }
+    /* Responsive AI Agent Container & Chat Frame */
+    .ai-agent-container {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      padding: 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .ai-agent-container h2 {
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .ai-agent-frame {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .ai-agent-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    /* Mobile Adjustments */
     @media (max-width: 600px) {
       nav { flex-direction: column; }
       nav a { padding: 0.75rem; }
@@ -191,11 +294,10 @@
     @media (max-width: 600px) and (orientation: portrait) {
       .ai-agent-frame { max-width: 95%; height: 700px; }
       .ai-agent-frame iframe {
-        transform: scale(0.75);
-        transform-origin: top left;
-        width: 133%;
-        height: 133%;
+        transform: scale(0.75); transform-origin: top left; width: 133%; height: 133%;
       }
+      .filter-controls { flex-wrap: nowrap; overflow-x: auto; }
+      .filter-controls button { font-size: 0.75rem; padding: 0.3rem 0.5rem; }
     }
   </style>
 </head>
@@ -205,9 +307,7 @@
       <img src="images/ChatGPT%20Image%20Apr%202,%202025,%2008_06_04%20AM.png" alt="Portfolio Logo" class="header-logo">
       <h1>Aaron's Portfolio</h1>
     </div>
-    <p class="quote">
-      "Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> ignite change."
-    </p>
+    <p class="quote">"Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> ignite change."</p>
     <p>
       <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">Visit my LinkedIn Profile</a>
     </p>
@@ -222,54 +322,101 @@
     <a href="#projects">Projects</a>
   </nav>
   <div class="container">
-    <!-- Biography Section (Inline) -->
+    <!-- Biography Section -->
     <div class="bubble" id="biography">
       <h2>Biography</h2>
-      <p>
-        Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full‑stack solutions, I possess <strong>secret strengths</strong> that fuel my creative vision. My deep <strong>love for AI</strong> drives me to build innovative technologies designed for the <strong>betterment</strong> of all people—unifying diverse communities and empowering individuals to achieve their full potential. I create with <strong>heart</strong> and <strong>purpose</strong>, believing that every breakthrough is an act of love and a beacon for the future of work.
-      </p>
+      <p>Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full‑stack solutions, I possess <strong>secret strengths</strong> that fuel my creative vision. My deep <strong>love for AI</strong> drives me to build innovative technologies designed for the <strong>betterment</strong> of all people—unifying diverse communities and empowering individuals to achieve their full potential. I create with <strong>heart</strong> and <strong>purpose</strong>, believing that every breakthrough is an act of love and a beacon for the future of work.</p>
     </div>
-
-    <!-- AI Agent Section (Inline) -->
+    <!-- AI Agent Section -->
     <div class="bubble ai-agent-container" id="ai-agent">
       <h2>Example of AI Agent Aaron 2.0</h2>
-      <p>
-        Interact in real-time with Aaron 2.0, a cutting-edge AI Agent meticulously trained to dynamically share insights from my extensive professional experiences.
-      </p>
+      <p>Interact in real-time with Aaron 2.0, a cutting-edge AI Agent meticulously trained to dynamically share insights from my extensive professional experiences.</p>
       <div class="ai-agent-frame">
         <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b" frameborder="0" allowtransparency="true"></iframe>
       </div>
     </div>
-
-    <!-- Newsletters & Articles Section (Loaded via Partial) -->
+    <!-- LinkedIn Newsletters & Articles Section -->
     <div class="bubble" id="newsletters">
       <h2>LinkedIn Newsletters &amp; Articles</h2>
-      <div id="newsletters-content"><!-- Partial: newsletters.html --></div>
+      <div class="filter-controls" id="newsletters-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="article">Articles</button>
+        <input type="text" id="newsletters-search" placeholder="Search newsletters/articles..." />
+      </div>
+      <div id="newsletters-container"></div>
+      <div class="pagination" id="newsletters-pagination">
+        <button id="newsletters-prev">Previous</button>
+        <span id="newsletters-page-info"></span>
+        <button id="newsletters-next">Next</button>
+      </div>
     </div>
-
-    <!-- Skills Section (Loaded via Partial) -->
+    <!-- Skills Section with Tabs and Pagination -->
     <div class="bubble" id="skills">
       <h2>Skills</h2>
-      <div id="skills-content"><!-- Partial: skills.html --></div>
+      <div class="filter-controls" id="skills-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="AI & Machine Learning">AI &amp; Machine Learning</button>
+        <button data-filter="Programming & Development">Programming &amp; Development</button>
+        <button data-filter="Frameworks & Libraries">Frameworks &amp; Libraries</button>
+        <button data-filter="API Integration & Microservices">API Integration &amp; Microservices</button>
+        <button data-filter="Cloud & DevOps">Cloud &amp; DevOps</button>
+        <button data-filter="Automation & QA Testing">Automation &amp; QA Testing</button>
+        <button data-filter="Data Analytics & Visualization">Data Analytics &amp; Visualization</button>
+        <button data-filter="Infrastructure & System Integration">Infrastructure &amp; System Integration</button>
+        <button data-filter="Robotics & STEM Education">Robotics &amp; STEM Education</button>
+        <button data-filter="Technical Writing & Communication">Technical Writing &amp; Communication</button>
+        <button data-filter="Compliance & Ethical AI Practices">Compliance &amp; Ethical AI Practices</button>
+        <button data-filter="Project & Product Management">Project &amp; Product Management</button>
+        <button data-filter="Professional & Soft Skills">Professional &amp; Soft Skills</button>
+        <input type="text" id="skills-search" placeholder="Search skills..." />
+      </div>
+      <ul id="skills-list"></ul>
+      <div class="pagination" id="skills-pagination">
+        <button id="skills-prev">Previous</button>
+        <span id="skills-page-info"></span>
+        <button id="skills-next">Next</button>
+      </div>
     </div>
-
-    <!-- Licenses & Certifications Section (Loaded via Partial) -->
+    <!-- Licenses & Certifications Section -->
     <div class="bubble" id="certifications">
       <h2>Licenses &amp; Certifications</h2>
-      <div id="certifications-content"><!-- Partial: certifications.html --></div>
+      <!-- Summary Breakdown -->
+      <div id="certs-summary"></div>
+      <div class="filter-controls" id="certs-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="specialization">Specializations</button>
+        <button data-filter="course">Courses</button>
+        <button data-filter="linkedin">LinkedIn</button>
+        <button data-filter="training">Training</button>
+        <input type="text" id="certs-search" placeholder="Search certifications..." />
+      </div>
+      <div id="certs-container"></div>
+      <div class="pagination" id="certs-pagination">
+        <button id="certs-prev">Previous</button>
+        <span id="certs-page-info"></span>
+        <button id="certs-next">Next</button>
+      </div>
     </div>
-
-    <!-- Projects Section (Loaded via Partial) -->
+    <!-- Projects Section (Repositories Fetched Dynamically) -->
     <div class="bubble" id="projects">
       <h2>Projects</h2>
-      <div id="projects-content"><!-- Partial: projects.html --></div>
+      <div class="filter-controls" id="projects-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="repo">Repositories</button>
+        <button data-filter="webpage">Live Webpages</button>
+        <input type="text" id="projects-search" placeholder="Search projects..." />
+      </div>
+      <div id="projects-container"></div>
+      <div class="pagination" id="projects-pagination">
+        <button id="projects-prev">Previous</button>
+        <span id="projects-page-info"></span>
+        <button id="projects-next">Next</button>
+      </div>
     </div>
   </div>
-
   <footer>
     <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
   </footer>
-
   <script>
     // Dark Mode Toggle
     const toggleButton = document.getElementById('theme-toggle');
@@ -279,26 +426,435 @@
       document.documentElement.setAttribute('data-theme', newTheme);
     });
 
-    // Function to load external partial files into a container
-    function loadPartial(url, containerId) {
-      fetch(url)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+    /* Global Pagination Variables */
+    let newslettersPage = 1, certsPage = 1, projectsPage = 1, skillsPage = 1;
+    const newslettersPerPage = 5, certsPerPage = 10, projectsPerPage = 5, skillsPerPage = 10;
+
+    /* =======================
+       Data Arrays
+       ======================= */
+
+    // LinkedIn Newsletters & Articles
+    const newslettersData = [
+      { category: 'article', title: 'Building AI Agent for Day-to-Day Requests: Comprehensive How-To', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/building-ai-agent-day-to-day-requests-comprehensive-how-to-graham-1x3te/' },
+      { category: 'article', title: 'AI Chatbots for Mental Health Support: Promise, Challenges, and the Future', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/ai-chatbots-mental-health-support-promise-challenges-future-graham-hxvse/' },
+      { category: 'article', title: 'Building AI Chatbot without Traditional Backend: Modern Approaches', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/building-ai-chatbot-without-traditional-backend-modern-robert-graham-44ede/' },
+      { category: 'article', title: 'AI-Driven Python Automation & QA: Unleashing Selenium & LLMs', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/ai-driven-python-automation-qa-unleashing-selenium-llms-robert-graham-bsvee/' },
+      { category: 'article', title: 'Three AI Mega-Trends Shaping Technology, Healthcare, and Society', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/three-ai-mega-trends-shaping-technology-healthcare-society-graham-8fave/?trackingId=fEWkP0RuQviIoefU2OYuiA%3D%3D' },
+      { category: 'article', title: 'How AI is Revolutionizing Cancer Treatment: A Deep Dive in Oncology', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/how-ai-revolutionizing-cancer-treatment-deep-dive-oncology-graham-jidme/?trackingId=9MLOT2bpTXiyLUX1MADW5Q%3D%3D' },
+      { category: 'article', title: 'Comprehensive Guide to ChromaDB for Beginners & Advanced Users', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/comprehensive-guide-chromadb-beginners-advanced-users-robert-graham-pz0pf/?trackingId=652DvIcAR1W4BsFs1bJqSA%3D%3D' },
+      { category: 'article', title: 'Comprehensive Guide to CI/CD Integration for ML Models', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/comprehensive-guide-cicd-integration-ml-models-robert-graham-whw3c/?trackingId=2o94p3MrQlWCJUcUGFasAg%3D%3D' },
+      { category: 'article', title: 'Bridging AI & Automation: How LLMs are Revolutionizing Testing', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/bridging-ai-automation-how-llms-revolutionizing-testing-robert-graham-dv2me/?trackingId=RPDZyam1TCuWQ787rGMQeQ%3D%3D' },
+      { category: 'article', title: 'Scaling MLOps for Enterprise Applications', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/scaling-mlops-enterprise-applications-robert-graham-fsdxe/?trackingId=pTfTOHfjRuuKgnknc0PAWQ%3D%3D' },
+      { category: 'article', title: 'Advanced Guide to Facial Recognition with Python', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/advanced-guide-facial-recognition-python-robert-graham-gqzqe/?trackingId=bQrxYzgqTNaOUZNG%2BFNT5Q%3D%3D' }
+    ];
+
+    // Skills Data
+    const skillsData = [
+      { group: 'AI & Machine Learning', title: 'Generative AI (Advanced)' },
+      { group: 'AI & Machine Learning', title: 'Natural Language Processing (NLP) (Advanced)' },
+      { group: 'AI & Machine Learning', title: 'Retrieval-Augmented Generation (RAG) (Advanced)' },
+      { group: 'AI & Machine Learning', title: 'Prompt Engineering (GPT-4, Claude, ChatGPT, CoPilot) (Advanced)' },
+      { group: 'AI & Machine Learning', title: 'Large Language Models (LLMs) (Advanced)' },
+      { group: 'AI & Machine Learning', title: 'AI Agent Development (Advanced)' },
+      { group: 'AI & Machine Learning', title: 'Speech-to-Text (STT) (Advanced)' },
+      { group: 'AI & Machine Learning', title: 'Text-to-Speech (TTS) (Advanced)' },
+      { group: 'AI & Machine Learning', title: 'Conversational Design (Voice UX, Chatbots) (Advanced)' },
+      { group: 'AI & Machine Learning', title: 'Emotionally Intelligent AI (Advanced)' },
+      { group: 'AI & Machine Learning', title: 'Voice Interaction & Dialog Flow (Advanced)' },
+      { group: 'Programming & Development', title: 'Python (Expert)' },
+      { group: 'Programming & Development', title: 'JavaScript (Advanced)' },
+      { group: 'Programming & Development', title: 'TypeScript (Advanced)' },
+      { group: 'Programming & Development', title: 'SQL (Advanced)' },
+      { group: 'Frameworks & Libraries', title: 'LangChain (Advanced)' },
+      { group: 'Frameworks & Libraries', title: 'TensorFlow (Intermediate)' },
+      { group: 'Frameworks & Libraries', title: 'PyTorch (Intermediate)' },
+      { group: 'Frameworks & Libraries', title: 'Hugging Face (Intermediate)' },
+      { group: 'Frameworks & Libraries', title: 'Flask (Intermediate)' },
+      { group: 'Frameworks & Libraries', title: 'FastAPI (Intermediate)' },
+      { group: 'API Integration & Microservices', title: 'OpenAI API (Advanced)' },
+      { group: 'API Integration & Microservices', title: 'Google Cloud API (Advanced)' },
+      { group: 'API Integration & Microservices', title: 'Deepgram API (Advanced)' },
+      { group: 'API Integration & Microservices', title: 'Azure Cognitive Services (Intermediate)' },
+      { group: 'API Integration & Microservices', title: 'RESTful API Development (Advanced)' },
+      { group: 'Cloud & DevOps', title: 'AWS SageMaker, Lambda, Elastic Beanstalk (Advanced)' },
+      { group: 'Cloud & DevOps', title: 'Azure AI (Intermediate)' },
+      { group: 'Cloud & DevOps', title: 'Google Cloud (Intermediate)' },
+      { group: 'Cloud & DevOps', title: 'Docker (Intermediate)' },
+      { group: 'Cloud & DevOps', title: 'Kubernetes (Intermediate)' },
+      { group: 'Cloud & DevOps', title: 'CI/CD Pipelines (GitHub Actions, Jenkins) (Intermediate)' },
+      { group: 'Cloud & DevOps', title: 'Terraform (Intermediate)' },
+      { group: 'Automation & QA Testing', title: 'Selenium (Expert)' },
+      { group: 'Automation & QA Testing', title: 'Hammer Automation (Intermediate)' },
+      { group: 'Automation & QA Testing', title: 'PyTest (Advanced)' },
+      { group: 'Automation & QA Testing', title: 'UAT Testing (Expert)' },
+      { group: 'Automation & QA Testing', title: 'Regression Testing (Expert)' },
+      { group: 'Automation & QA Testing', title: 'Functional Testing (Expert)' },
+      { group: 'Automation & QA Testing', title: 'Performance Testing (Expert)' },
+      { group: 'Automation & QA Testing', title: 'Issue Tracking (Jira, Azure DevOps) (Expert)' },
+      { group: 'Data Analytics & Visualization', title: 'Data Analysis (Pandas, NumPy) (Advanced)' },
+      { group: 'Data Analytics & Visualization', title: 'Tableau, Power BI (Intermediate)' },
+      { group: 'Infrastructure & System Integration', title: 'System Architecture (Advanced)' },
+      { group: 'Infrastructure & System Integration', title: 'Microservices Architecture (Advanced)' },
+      { group: 'Robotics & STEM Education', title: 'Robotics Instruction (VEX Robotics) (Advanced)' },
+      { group: 'Robotics & STEM Education', title: 'Curriculum Development & Coaching (Advanced)' },
+      { group: 'Technical Writing & Communication', title: 'Technical Documentation (Expert)' },
+      { group: 'Technical Writing & Communication', title: 'AI-focused Articles & Publications (Advanced)' },
+      { group: 'Technical Writing & Communication', title: 'Stakeholder Communication (Expert)' },
+      { group: 'Compliance & Ethical AI Practices', title: 'FERPA, COPPA, GDPR (Advanced)' },
+      { group: 'Compliance & Ethical AI Practices', title: 'Ethical AI & Bias Mitigation (Advanced)' },
+      { group: 'Project & Product Management', title: 'Agile Methodologies (Expert)' },
+      { group: 'Project & Product Management', title: 'Scrum Framework (Expert)' },
+      { group: 'Project & Product Management', title: 'Project & Strategic Execution (Advanced)' },
+      { group: 'Professional & Soft Skills', title: 'Strategic Vision & Innovation (Advanced)' },
+      { group: 'Professional & Soft Skills', title: 'Creative Problem Solving (Advanced)' },
+      { group: 'Professional & Soft Skills', title: 'Cross-Functional Collaboration (Expert)' },
+      { group: 'Professional & Soft Skills', title: 'Mentorship & Team Development (Advanced)' },
+      { group: 'Professional & Soft Skills', title: 'Analytical & Critical Thinking (Expert)' }
+    ];
+
+    // Certifications Data – All your certifications cataloged
+    const certificationsData = [
+      {
+        category: 'specialization',
+        title: 'Machine Learning Specialization',
+        provider: 'DeepLearning.AI, Stanford University',
+        hours: 120,
+        link: 'https://www.coursera.org/account/accomplishments/specialization/2RE6LR3QZXIC'
+      },
+      {
+        category: 'specialization',
+        title: 'Introduction to Generative AI Learning Path',
+        provider: 'Google Cloud',
+        hours: 60,
+        link: 'https://www.coursera.org/account/accomplishments/specialization/WS864DZLGGMS'
+      },
+      {
+        category: 'course',
+        title: 'Machine Learning Certificate',
+        provider: 'DeepLearning.AI, Stanford University',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/XM5GX5LELZI3'
+      },
+      {
+        category: 'course',
+        title: 'Introduction to Generative AI Certificate',
+        provider: 'Google Cloud',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/2T7ZEGIRJLD3'
+      },
+      {
+        category: 'course',
+        title: 'Certificate MBS3QMA6NQCY',
+        provider: 'Coursera',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/MBS3QMA6NQCY'
+      },
+      {
+        category: 'course',
+        title: 'Certificate XP4AMM988RU2',
+        provider: 'Coursera',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/XP4AMM988RU2'
+      },
+      {
+        category: 'course',
+        title: 'Certificate DC9D75V9JQ4A',
+        provider: 'Coursera',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/DC9D75V9JQ4A'
+      },
+      {
+        category: 'course',
+        title: 'Certificate X3GU9ODWAZ1G',
+        provider: 'Coursera',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/X3GU9ODWAZ1G'
+      },
+      {
+        category: 'course',
+        title: 'Certificate 8O4NYU89I2FX',
+        provider: 'Coursera',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/8O4NYU89I2FX'
+      },
+      {
+        category: 'course',
+        title: 'Certificate 75KEPU9F0VEQ',
+        provider: 'Coursera',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/75KEPU9F0VEQ'
+      },
+      {
+        category: 'course',
+        title: 'Certificate C3V2UXB2KH2E',
+        provider: 'DeepLearning.AI, Stanford University',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/C3V2UXB2KH2E'
+      },
+      {
+        category: 'course',
+        title: 'Certificate BHI3D5H4S7JF',
+        provider: 'Coursera',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/BHI3D5H4S7JF'
+      },
+      {
+        category: 'course',
+        title: 'Certificate EGU8NHBJ7WBQ',
+        provider: 'Coursera',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/EGU8NHBJ7WBQ'
+      },
+      {
+        category: 'course',
+        title: 'Certificate BPPF9R7TKDZN',
+        provider: 'Coursera',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/BPPF9R7TKDZN'
+      },
+      {
+        category: 'course',
+        title: 'Certificate SS3FQ68LUT2X',
+        provider: 'Coursera',
+        hours: 40,
+        link: 'https://www.coursera.org/account/accomplishments/verify/SS3FQ68LUT2X'
+      },
+      // LinkedIn Certifications
+      {
+        category: 'linkedin',
+        title: 'Certified Data Scientist',
+        provider: 'LinkedIn Learning',
+        hours: 30,
+        link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/CertifiedDataScientist'
+      },
+      {
+        category: 'linkedin',
+        title: 'Advanced Python Programming',
+        provider: 'LinkedIn Learning',
+        hours: 25,
+        link: 'https://www.linkedin.com/in/r-aaron-graham/details/certifications/AdvancedPythonProgramming'
+      }
+      // You can add any additional certifications from your LinkedIn profile here.
+    ];
+
+    // Projects Data will be fetched dynamically from GitHub
+    let projectsData = [];
+
+    /* =======================
+       Fetch Projects from GitHub
+       ======================= */
+    async function fetchProjects() {
+      try {
+        const response = await fetch('https://api.github.com/users/cordz-del/repos?per_page=107');
+        const repos = await response.json();
+        projectsData = [];
+        repos.forEach(repo => {
+          projectsData.push({
+            category: 'repo',
+            title: repo.name,
+            description: 'Repository',
+            link: repo.html_url
+          });
+          if (repo.homepage && repo.homepage.trim() !== '') {
+            projectsData.push({
+              category: 'webpage',
+              title: repo.name + ' (Live)',
+              description: 'Live Webpage',
+              link: repo.homepage
+            });
           }
-          return response.text();
-        })
-        .then(html => {
-          document.getElementById(containerId).innerHTML = html;
-        })
-        .catch(error => console.error(`Error loading ${url}:`, error));
+        });
+        renderProjects();
+      } catch (e) {
+        console.error('Error fetching projects:', e);
+      }
     }
 
-    // Load partial files for each section
-    loadPartial('newsletters.html', 'newsletters-content');
-    loadPartial('skills.html', 'skills-content');
-    loadPartial('certifications.html', 'certifications-content');
-    loadPartial('projects.html', 'projects-content');
+    /* =======================
+       Generic Pagination Rendering Function
+       ======================= */
+    function renderPaginatedSection(data, containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      let filtered = data.filter(item => {
+        return (currentFilter === 'all' || item.category.includes(currentFilter)) &&
+               (item.title.toLowerCase().includes(searchTerm) ||
+                (item.description && item.description.toLowerCase().includes(searchTerm)));
+      });
+      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
+      const start = (page - 1) * itemsPerPage;
+      const items = filtered.slice(start, start + itemsPerPage);
+      items.forEach(item => {
+        let itemHTML = "";
+        if (item.link) {
+          itemHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+        } else {
+          itemHTML = `<span>${item.title}</span>`;
+        }
+        if (item.description) {
+          itemHTML += ' — ' + item.description;
+        }
+        if (item.grade) {
+          itemHTML += ` (Grade Achieved: ${item.grade})`;
+        }
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = itemHTML;
+        container.appendChild(div);
+      });
+      document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
+      return totalPages;
+    }
+
+    /* =======================
+       Render Functions for Each Section
+       ======================= */
+    function renderNewsletters() {
+      const activeButton = document.querySelector('#newsletters-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('newsletters-search').value.toLowerCase();
+      const totalPages = renderPaginatedSection(newslettersData, 'newsletters-container', newslettersPage, newslettersPerPage, currentFilter, searchTerm, 'newsletters-page-info');
+      return totalPages;
+    }
+    function renderCerts() {
+      const activeButton = document.querySelector('#certs-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('certs-search').value.toLowerCase();
+      const totalPages = renderPaginatedSection(certificationsData, 'certs-container', certsPage, certsPerPage, currentFilter, searchTerm, 'certs-page-info');
+      return totalPages;
+    }
+    function renderProjects() {
+      const activeButton = document.querySelector('#projects-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('projects-search').value.toLowerCase();
+      const totalPages = renderPaginatedSection(projectsData, 'projects-container', projectsPage, projectsPerPage, currentFilter, searchTerm, 'projects-page-info');
+      return totalPages;
+    }
+    function renderSkills() {
+      const searchTerm = document.getElementById('skills-search').value.toLowerCase();
+      const activeButton = document.querySelector('#skills-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const container = document.getElementById('skills-list');
+      container.innerHTML = '';
+      let filtered = skillsData;
+      if(currentFilter !== 'all'){
+        filtered = filtered.filter(skill => skill.group === currentFilter);
+      }
+      filtered = filtered.filter(skill => skill.title.toLowerCase().includes(searchTerm));
+      const totalPages = Math.ceil(filtered.length / skillsPerPage) || 1;
+      const start = (skillsPage - 1) * skillsPerPage;
+      const pageSkills = filtered.slice(start, start + skillsPerPage);
+      pageSkills.forEach(skill => {
+        const li = document.createElement('li');
+        li.textContent = skill.title;
+        container.appendChild(li);
+      });
+      document.getElementById('skills-page-info').innerText = `Page ${skillsPage} of ${totalPages}`;
+    }
+
+    /* =======================
+       Setup Tab Event Listeners
+       ======================= */
+    function setupTabs(tabsContainerId, renderFunction) {
+      const tabsContainer = document.getElementById(tabsContainerId);
+      const buttons = tabsContainer.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          buttons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          if(tabsContainerId === 'newsletters-tabs') newslettersPage = 1;
+          if(tabsContainerId === 'certs-tabs') certsPage = 1;
+          if(tabsContainerId === 'projects-tabs') projectsPage = 1;
+          if(tabsContainerId === 'skills-tabs') skillsPage = 1;
+          renderFunction();
+        });
+      });
+    }
+    setupTabs('newsletters-tabs', renderNewsletters);
+    setupTabs('certs-tabs', renderCerts);
+    setupTabs('projects-tabs', renderProjects);
+    setupTabs('skills-tabs', renderSkills);
+
+    /* =======================
+       Setup Search Event Listeners
+       ======================= */
+    document.getElementById('newsletters-search').addEventListener('input', renderNewsletters);
+    document.getElementById('certs-search').addEventListener('input', () => { certsPage = 1; renderCerts(); });
+    document.getElementById('projects-search').addEventListener('input', renderProjects);
+    document.getElementById('skills-search').addEventListener('input', () => { skillsPage = 1; renderSkills(); });
+
+    /* =======================
+       Setup Pagination Button Event Listeners
+       ======================= */
+    document.getElementById('newsletters-prev').addEventListener('click', () => {
+      if(newslettersPage > 1) { newslettersPage--; renderNewsletters(); }
+    });
+    document.getElementById('newsletters-next').addEventListener('click', () => {
+      const totalPages = renderNewsletters();
+      if(newslettersPage < totalPages) { newslettersPage++; renderNewsletters(); }
+    });
+    document.getElementById('certs-prev').addEventListener('click', () => {
+      if(certsPage > 1) { certsPage--; renderCerts(); }
+    });
+    document.getElementById('certs-next').addEventListener('click', () => {
+      const totalPages = renderCerts();
+      if(certsPage < totalPages) { certsPage++; renderCerts(); }
+    });
+    document.getElementById('projects-prev').addEventListener('click', () => {
+      if(projectsPage > 1) { projectsPage--; renderProjects(); }
+    });
+    document.getElementById('projects-next').addEventListener('click', () => {
+      const totalPages = renderProjects();
+      if(projectsPage < totalPages) { projectsPage++; renderProjects(); }
+    });
+    document.getElementById('skills-prev').addEventListener('click', () => {
+      if(skillsPage > 1) { skillsPage--; renderSkills(); }
+    });
+    document.getElementById('skills-next').addEventListener('click', () => {
+      const activeButton = document.querySelector('#skills-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      let filtered = skillsData;
+      if(currentFilter !== 'all'){
+        filtered = filtered.filter(skill => skill.group === currentFilter);
+      }
+      filtered = filtered.filter(skill => skill.title.toLowerCase().includes(document.getElementById('skills-search').value.toLowerCase()));
+      const totalPages = Math.ceil(filtered.length / skillsPerPage) || 1;
+      if(skillsPage < totalPages) { skillsPage++; renderSkills(); }
+    });
+
+    /* =======================
+       Render Certifications Summary
+       ======================= */
+    function renderCertsSummary() {
+      const summaryContainer = document.getElementById('certs-summary');
+      const summary = {};
+      let totalHours = 0;
+      certificationsData.forEach(cert => {
+        if(cert.hours) {
+          totalHours += parseFloat(cert.hours);
+          const provider = cert.provider;
+          summary[provider] = (summary[provider] || 0) + parseFloat(cert.hours);
+        }
+      });
+      let summaryHTML = '<h3>Certification Hours Breakdown:</h3><ul>';
+      for(const provider in summary) {
+        summaryHTML += `<li>${provider}: ${summary[provider]} hours</li>`;
+      }
+      summaryHTML += `</ul><p><strong>Total Certification Hours: ${totalHours} hours</strong></p>`;
+      summaryContainer.innerHTML = summaryHTML;
+    }
+
+    /* =======================
+       Initial Rendering
+       ======================= */
+    renderNewsletters();
+    renderCerts();
+    renderProjects();
+    renderSkills();
+    renderCertsSummary();
+    // Fetch projects dynamically from GitHub
+    fetchProjects();
   </script>
 </body>
 </html>
