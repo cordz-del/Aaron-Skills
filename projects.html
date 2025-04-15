@@ -112,22 +112,34 @@
     const projectsPerPage = 5;
     let projectsData = [];
 
-    // Function to fetch repositories from GitHub
+    // Function to fetch all repositories from GitHub using pagination
     async function fetchProjects() {
       try {
-        const response = await fetch('https://api.github.com/users/cordz-del/repos?per_page=107');
-        const repos = await response.json();
-        // Reset projectsData
+        let allRepos = [];
+        let page = 1;
+        while (true) {
+          const response = await fetch(`https://api.github.com/users/cordz-del/repos?per_page=100&page=${page}`);
+          const data = await response.json();
+          if (!Array.isArray(data) || data.length === 0) {
+            break;
+          }
+          allRepos = allRepos.concat(data);
+          // If less than 100 items returned, this is the last page.
+          if (data.length < 100) {
+            break;
+          }
+          page++;
+        }
+        
+        // Reset projectsData and add each repository and live webpage (if available)
         projectsData = [];
-        repos.forEach(repo => {
-          // Add each repository
+        allRepos.forEach(repo => {
           projectsData.push({
             category: 'repo',
             title: repo.name,
             description: 'Repository',
             link: repo.html_url
           });
-          // Add live webpage if homepage is provided
           if (repo.homepage && repo.homepage.trim() !== '') {
             projectsData.push({
               category: 'webpage',
