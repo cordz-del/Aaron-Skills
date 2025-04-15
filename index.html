@@ -243,7 +243,7 @@
     <p>
       <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">Visit my LinkedIn Profile</a>
     </p>
-    <!-- Updated dark mode toggle: now uses document.body -->
+    <!-- Dark Mode Toggle Button -->
     <button id="theme-toggle">Toggle Dark Mode</button>
   </header>
   <nav>
@@ -293,7 +293,7 @@
     <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
   </footer>
   <script>
-    // Dark Mode Toggle (updated to use document.body)
+    // Dark Mode Toggle
     const toggleButton = document.getElementById('theme-toggle');
     toggleButton.addEventListener('click', () => {
       const currentTheme = document.body.getAttribute('data-theme');
@@ -301,14 +301,14 @@
       document.body.setAttribute('data-theme', newTheme);
     });
 
-    // Function to load external HTML content and extract the body inner content
+    // Function to load external HTML content and extract inner content from <body>
     async function loadSection(sectionContainerId, fileName) {
       try {
         const response = await fetch(fileName);
         const htmlText = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlText, 'text/html');
-        // Extract only the inner content of the body
+        // Use the innerHTML of the body as the content
         const content = doc.body.innerHTML;
         document.getElementById(sectionContainerId).innerHTML = content;
       } catch (error) {
@@ -317,7 +317,7 @@
       }
     }
 
-    // Load content from external HTML files into their respective sections
+    // Load external sections (ensure these HTML files are in the same directory or adjust paths accordingly)
     loadSection('newsletters-content', 'newsletters.html');
     loadSection('skills-content', 'skills.html');
     loadSection('certifications-content', 'certifications.html');
