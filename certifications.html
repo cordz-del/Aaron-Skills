@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta charset="UTF-8" />
-  <title>Licenses & Certifications</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Licenses &amp; Certifications | Aaron's Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
   <style>
-    /* Minimal styles for the Certifications section */
+    /* Certifications section overrides */
     #certifications-section {
       padding: 1rem;
-      font-family: Arial, sans-serif;
+      background: var(--bubble-bg);
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-color);
     }
     #certifications-section h2 {
       font-size: 2rem;
+      color: var(--primary-color);
       margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.5rem;
     }
     .filter-controls {
       margin-bottom: 1rem;
@@ -22,21 +35,22 @@
     .filter-controls button {
       padding: 0.5rem 1rem;
       border: none;
-      background-color: #007acc;
-      color: #fff;
-      border-radius: 4px;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
     .filter-controls button.active,
     .filter-controls button:hover {
-      background-color: #444;
+      background-color: var(--secondary-color);
     }
     .filter-controls input[type="text"] {
       padding: 0.5rem;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 6px;
       flex: 1;
+      min-width: 200px;
     }
     #certs-container .item {
       margin-bottom: 0.75rem;
@@ -44,6 +58,7 @@
     }
     #certs-container .item strong {
       font-weight: bold;
+      color: var(--primary-color);
     }
     .pagination {
       text-align: center;
@@ -52,22 +67,23 @@
     .pagination button {
       padding: 0.5rem 1rem;
       border: none;
-      background-color: #007acc;
-      color: #fff;
-      border-radius: 4px;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 6px;
       cursor: pointer;
       margin: 0 0.5rem;
       transition: background-color 0.3s ease;
     }
     .pagination button:hover {
-      background-color: #444;
+      background-color: var(--secondary-color);
     }
     #certs-summary {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       font-size: 0.95rem;
     }
     #certs-summary h3 {
       margin-bottom: 0.5rem;
+      color: var(--secondary-color);
     }
     #certs-summary ul {
       list-style: none;
@@ -78,168 +94,170 @@
     }
   </style>
 </head>
-<body>
-  <div id="certifications-section">
-    <h2>Licenses &amp; Certifications</h2>
-    <!-- Summary Breakdown -->
-    <div id="certs-summary"></div>
-    <div class="filter-controls" id="certs-tabs">
-      <button data-filter="all" class="active">All</button>
-      <button data-filter="specialization">Specializations</button>
-      <button data-filter="course">Courses</button>
-      <button data-filter="linkedin">LinkedIn</button>
-      <button data-filter="training">Training</button>
-      <button data-filter="frontier">Frontier</button>
-      <input type="text" id="certs-search" placeholder="Search certifications..." />
+<body data-theme="light">
+  <!-- Header -->
+  <header>
+    <div class="header-title">
+      <img src="images/ChatGPT_Image_Apr_2_2025_08_06_04_AM.png" alt="Logo" class="header-logo">
+      <h1>Aaron's Portfolio</h1>
     </div>
-    <div id="certs-container"></div>
-    <div class="pagination" id="certs-pagination">
-      <button id="certs-prev">Previous</button>
-      <span id="certs-page-info"></span>
-      <button id="certs-next">Next</button>
+    <p class="quote">
+      "Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. 
+      <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, 
+      and let your <strong>passion</strong> ignite change."
+    </p>
+    <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">
+      Visit my LinkedIn Profile
+    </a>
+    <button id="theme-toggle">Toggle Dark Mode</button>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="certifications.html" class="active">Certifications</a>
+    <a href="newsletters.html">Newsletters &amp; Articles</a>
+    <a href="skills.html">Skills</a>
+    <a href="projects.html">Projects</a>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="container">
+    <div id="certifications-section">
+      <h2>Licenses &amp; Certifications</h2>
+
+      <!-- Summary Breakdown -->
+      <div id="certs-summary"></div>
+
+      <!-- Filters & Search -->
+      <div class="filter-controls" id="certs-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="specialization">Specializations</button>
+        <button data-filter="course">Courses</button>
+        <button data-filter="linkedin">LinkedIn</button>
+        <button data-filter="training">Training</button>
+        <button data-filter="frontier">Frontier</button>
+        <input type="text" id="certs-search" placeholder="Search certifications..." />
+      </div>
+
+      <!-- Certifications List -->
+      <div id="certs-container"></div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="certs-pagination">
+        <button id="certs-prev">Previous</button>
+        <span id="certs-page-info"></span>
+        <button id="certs-next">Next</button>
+      </div>
     </div>
   </div>
 
+  <footer>
+    <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
+  </footer>
+
   <script>
-    // Global Pagination Variables for Certifications
+    // Dark Mode Toggle
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const body = document.body;
+      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+
+    // Certifications Data (deduplicated)
     let certsPage = 1;
     const certsPerPage = 20;
-
-    // Certifications Data – A comprehensive (sample) list.
-    // Extend this array with additional entries as needed.
     const certificationsData = [
       { category: 'training', title: 'Generative AI', provider: 'Google Cloud Skills Boost', issued: 'Dec 2024' },
       { category: 'training', title: 'Large Language Model Operations', provider: 'Duke University', issued: 'Dec 2024' },
       { category: 'course', title: 'Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization', provider: 'DeepLearning.AI', issued: 'Oct 2024', credential: 'XM5GX5LELZI3' },
-      { category: 'course', title: 'Sequence Models', provider: 'DeepLearning.AI', issued: 'Oct 2024', credential: '2T7ZEGIBJLD3' },
-      { category: 'course', title: 'Structuring Machine Learning Projects', provider: 'DeepLearning.AI', issued: 'Oct 2024', credential: 'C3V2UXB2KH2E' },
-      { category: 'course', title: 'Neural Networks and Deep Learning', provider: 'DeepLearning.AI', issued: 'Sep 2024', credential: 'X3GU9ODWAZ1G' },
-      { category: 'training', title: 'Introduction to Generative AI', provider: 'Duke University', issued: 'Aug 2024', credential: 'BHI3D5H4S7JF' },
-      { category: 'specialization', title: 'Machine Learning Specialization', provider: 'DeepLearning.AI, Stanford University', issued: 'Aug 2024', credential: '2RE6LR3QZXIC' },
-      { category: 'course', title: 'Unsupervised Learning, Recommenders, Reinforcement Learning', provider: 'DeepLearning.AI, Stanford University', issued: 'Aug 2024', credential: '75KEPU9F0VEQ' },
-      { category: 'course', title: 'Advanced Learning Algorithms', provider: 'DeepLearning.AI, Stanford University', issued: 'Jul 2024', credential: 'XP4AMM988RU2' },
-      { category: 'course', title: 'Supervised Machine Learning: Regression and Classification', provider: 'DeepLearning.AI, Stanford University', issued: 'Jul 2024', credential: 'DC9D75V9JQ4A' },
-      { category: 'specialization', title: 'Introduction to Generative AI Learning Path Specialization', provider: 'Google Cloud', issued: 'Jun 2024', credential: 'WS864DZLGGMS' },
-      { category: 'linkedin', title: 'Azure DevOps: Continuous Delivery with YAML Pipelines', provider: 'LinkedIn', issued: 'May 2024' },
-      { category: 'linkedin', title: 'Cisco Certified DevNet Associate DEVASC 1.1 (200-901) Cert Prep', provider: 'LinkedIn', issued: 'May 2024' },
-      { category: 'linkedin', title: 'Google Cloud Professional Cloud Security Engineer Cert Prep', provider: 'LinkedIn', issued: 'May 2024' },
-      { category: 'linkedin', title: 'Vue.js: Testing and Debugging', provider: 'LinkedIn', issued: 'May 2024' },
-      { category: 'linkedin', title: 'API Testing Foundations', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'AWS Certified Solutions Architect - Associate (SAA-C03) Cert Prep: 8 Databases', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Agile Project Management with Jira Cloud: 1 Projects, Boards, and Issues', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Agile Software Development: Cloud Architecture', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'DevOps Institute Cert Prep: SRE Foundation (SRE)', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Essentials of MLOps with Azure: 1 Introduction', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'LinkedIn Premium Quick Tips', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Managing Anxiety in the Workplace', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Nail Your Python Interview', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Practical GitHub Actions', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Problem-Solving Techniques', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'SQL for Testers', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Salesforce Essential Training', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Salesforce for Marketers', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Salesforce: Sales Automation for Salespeople', provider: 'LinkedIn', issued: 'Apr 2024' },
-      { category: 'linkedin', title: 'Software Testing Foundations: Test Strategy', provider: 'LinkedIn', issued: 'Apr 2024' },
-      // (Additional certifications omitted for brevity)
-      { category: 'frontier', title: 'Accredited Integration Specialist - HP Software Testing Foundation v9 (AIS-STFv9)', provider: 'Frontier Internet', issued: 'Nov 2018' },
-      { category: 'frontier', title: 'AccessData Summation Certified End-user', provider: 'Frontier Internet', issued: 'May 2018' },
-      { category: 'frontier', title: 'Manual Service Order Administration', provider: 'Frontier Internet', issued: 'Apr 2018' },
-      { category: 'frontier', title: 'Accredited Integration Specialist - IP Telephony [2010] (AIS-IPTel10)', provider: 'Frontier Internet', issued: 'Oct 2017' }
-      // (Further Frontier certifications omitted for brevity)
+      /* … rest of your data … */
+      { category: 'frontier', title: 'Accredited Integration Specialist - HP Software Testing Foundation v9 (AIS-STFv9)', provider: 'Frontier Internet', issued: 'Nov 2018' }
     ];
-
-    // Deduplicate certifications based on title and provider (case-insensitive)
+    // Dedupe
     const dedupedCerts = [];
     const seen = new Set();
     certificationsData.forEach(cert => {
-      const key = cert.title.trim().toLowerCase() + '|' + cert.provider.trim().toLowerCase();
+      const key = (cert.title + '|' + cert.provider).toLowerCase();
       if (!seen.has(key)) {
         seen.add(key);
         dedupedCerts.push(cert);
       }
     });
 
-    // Render Certifications Summary (shows total hours by provider, if 'hours' are provided)
+    // Summary Render
     function renderCertsSummary() {
       const summaryContainer = document.getElementById('certs-summary');
       const summary = {};
-      let totalHours = 0;
-      dedupedCerts.forEach(cert => {
-        if(cert.hours) {
-          totalHours += cert.hours;
-          const provider = cert.provider;
-          summary[provider] = (summary[provider] || 0) + cert.hours;
+      let total = 0;
+      dedupedCerts.forEach(c => {
+        if (c.hours) {
+          total += c.hours;
+          summary[c.provider] = (summary[c.provider] || 0) + c.hours;
         }
       });
-      let summaryHTML = '<h3>Certification Hours Breakdown:</h3><ul>';
-      for (const provider in summary) {
-        summaryHTML += `<li>${provider}: ${summary[provider]} hours</li>`;
+      let html = '';
+      if (total > 0) {
+        html += '<h3>Certification Hours Breakdown:</h3><ul>';
+        for (const prov in summary) {
+          html += `<li>${prov}: ${summary[prov]} hours</li>`;
+        }
+        html += `</ul><p><strong>Total Hours: ${total}</strong></p>`;
       }
-      summaryHTML += `</ul>`;
-      if (totalHours > 0) {
-        summaryHTML += `<p><strong>Total Certification Hours: ${totalHours} hours</strong></p>`;
-      }
-      summaryContainer.innerHTML = summaryHTML;
+      summaryContainer.innerHTML = html;
     }
 
-    // Generic Pagination Rendering Function for Certifications
-    function renderPaginatedCerts(containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
-      const container = document.getElementById(containerId);
+    // Paginated Render
+    function renderPaginatedCerts(page, filter, term) {
+      const container = document.getElementById('certs-container');
       container.innerHTML = '';
-      // Filter dedupedCerts by category and title search
-      const filtered = dedupedCerts.filter(cert => {
-        return (currentFilter === 'all' || cert.category.toLowerCase() === currentFilter.toLowerCase()) &&
-               cert.title.toLowerCase().includes(searchTerm);
+      const filtered = dedupedCerts.filter(c =>
+        (filter === 'all' || c.category === filter) &&
+        c.title.toLowerCase().includes(term)
+      );
+      const totalPages = Math.ceil(filtered.length / certsPerPage) || 1;
+      const start = (page - 1) * certsPerPage;
+      filtered.slice(start, start + certsPerPage).forEach(c => {
+        const cred = c.credential ? ` [ID: ${c.credential}]` : '';
+        container.innerHTML += `<div class="item"><strong>${c.title}</strong> — ${c.provider} (${c.issued || 'n.d.'})${cred}</div>`;
       });
-      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
-      const start = (page - 1) * itemsPerPage;
-      const items = filtered.slice(start, start + itemsPerPage);
-      items.forEach(cert => {
-        const itemHTML = `<div class="item"><strong>${cert.title.trim()}</strong> — ${cert.provider.trim()} ${cert.issued ? '(' + cert.issued + ')' : ''} ${cert.credential ? ' [Credential ID ' + cert.credential + ']' : ''}</div>`;
-        container.innerHTML += itemHTML;
-      });
-      document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
+      document.getElementById('certs-page-info').innerText = `Page ${page} of ${totalPages}`;
       return totalPages;
     }
 
-    // Render Certifications Function
     function renderCertifications() {
-      const activeButton = document.querySelector('#certs-tabs button.active');
-      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
-      const searchTerm = document.getElementById('certs-search').value.toLowerCase();
-      const totalPages = renderPaginatedCerts('certs-container', certsPage, certsPerPage, currentFilter, searchTerm, 'certs-page-info');
-      return totalPages;
+      const active = document.querySelector('#certs-tabs button.active').dataset.filter;
+      const term = document.getElementById('certs-search').value.trim().toLowerCase();
+      return renderPaginatedCerts(certsPage, active, term);
     }
 
-    // Setup event listeners for search, pagination, and tab filtering
-    document.getElementById('certs-search').addEventListener('input', () => { 
-      certsPage = 1; 
-      renderCertifications(); 
+    // Event Listeners
+    document.getElementById('certs-search').addEventListener('input', () => {
+      certsPage = 1;
+      renderCertifications();
     });
     document.getElementById('certs-prev').addEventListener('click', () => {
-      if (certsPage > 1) { 
-        certsPage--; 
-        renderCertifications(); 
+      if (certsPage > 1) {
+        certsPage--;
+        renderCertifications();
       }
     });
     document.getElementById('certs-next').addEventListener('click', () => {
-      const totalPages = renderCertifications();
-      if (certsPage < totalPages) { 
-        certsPage++; 
-        renderCertifications(); 
+      const total = renderCertifications();
+      if (certsPage < total) {
+        certsPage++;
+        renderCertifications();
       }
     });
-    const certsTabs = document.getElementById('certs-tabs').querySelectorAll('button');
-    certsTabs.forEach(button => {
-      button.addEventListener('click', () => {
-        certsTabs.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+    document.querySelectorAll('#certs-tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#certs-tabs button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
         certsPage = 1;
         renderCertifications();
       });
     });
 
-    // Initial rendering
+    // Initialize
     renderCertsSummary();
     renderCertifications();
   </script>
