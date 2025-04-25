@@ -14,6 +14,7 @@
       margin: 0;
       padding: 0;
     }
+
     /* Light Theme Variables */
     :root {
       --primary-color: #007acc;
@@ -24,6 +25,7 @@
       --accent-bg: #eef;
       --bubble-bg: #fff;
     }
+
     /* Dark Theme Overrides */
     [data-theme="dark"] {
       --primary-color: #1e90ff;
@@ -34,6 +36,7 @@
       --accent-bg: #1a1a1a;
       --bubble-bg: #1e1e1e;
     }
+
     /* Base Styles */
     body {
       position: relative;
@@ -41,16 +44,21 @@
       background-color: var(--background-color);
       color: var(--text-color);
       line-height: 1.6;
-      background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 10px);
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(0,0,0,0.03) 0,
+        rgba(0,0,0,0.03) 1px,
+        transparent 1px,
+        transparent 10px
+      );
     }
+
     /* SVG Background Overlay */
     body::before {
       content: "";
       position: fixed;
-      top: 0; 
-      left: 0;
-      width: 100%; 
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -1;
       pointer-events: none;
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23888888' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23888888' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23888888' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23888888' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23888888' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23888888' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23888888' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23888888' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
@@ -59,6 +67,7 @@
     [data-theme="dark"] body::before {
       background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><defs><pattern id='diamondPattern' patternUnits='userSpaceOnUse' width='120' height='120'><polygon points='60,0 120,60 60,120 0,60' fill='none' stroke='%23FFFFFF' stroke-width='1'/><polygon points='40,10 70,40 40,70 10,40' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><polygon points='80,20 110,50 80,80 50,50' fill='none' stroke='%23FFFFFF' stroke-width='0.7'/><text x='20' y='50' font-size='12' fill='%23FFFFFF' transform='rotate(-20 20 50)'>a²+b²=c²</text><text x='70' y='90' font-size='12' fill='%23FFFFFF' transform='rotate(-10 70 90)'>F=ma</text><text x='10' y='20' font-size='16' fill='%23FFFFFF' transform='rotate(10 10 20)'>E=mc²</text><text x='50' y='110' font-size='20' fill='%23FFFFFF' transform='rotate(-15 50 110)'>e^(iπ)+1=0</text><text x='80' y='30' font-size='14' fill='%23FFFFFF' transform='rotate(5 80 30)'>PV=nRT</text></pattern></defs><rect width='100%' height='100%' fill='url(%23diamondPattern)' /></svg>");
     }
+
     /* Link Styles */
     a {
       color: var(--primary-color);
@@ -69,6 +78,7 @@
       transform: translateY(-3px);
       text-decoration: underline;
     }
+
     /* Header */
     header {
       background: linear-gradient(135deg, #00509e, #007acc);
@@ -103,6 +113,7 @@
     header .linkedin-link:hover {
       transform: translateY(-5px);
     }
+
     .quote {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem;
@@ -111,7 +122,8 @@
     .quote strong {
       font-weight: bold;
     }
-    /* Dark Mode Toggle Button */
+
+    /* Dark Mode Toggle */
     #theme-toggle {
       position: absolute;
       top: 1rem;
@@ -129,6 +141,7 @@
       transform: translateY(2px);
       box-shadow: 0 2px 0 #111;
     }
+
     /* Navigation */
     nav {
       background-color: var(--secondary-color);
@@ -144,7 +157,8 @@
     nav a:hover {
       background-color: #444;
     }
-    /* Container & Bubble Sections */
+
+    /* Container & Bubble */
     .container {
       max-width: 960px;
       margin: 2rem auto;
@@ -163,10 +177,8 @@
     .bubble::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       border-radius: 20px;
       z-index: -1;
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -182,12 +194,14 @@
       padding-bottom: 0.5rem;
       margin-bottom: 1rem;
     }
+
     /* Footer */
     footer {
       text-align: center;
       padding: 1rem;
     }
-    /* Responsive AI Agent Container & Chat Frame */
+
+    /* AI Agent */
     .ai-agent-container {
       background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: var(--white);
@@ -196,7 +210,6 @@
       text-align: center;
     }
     .ai-agent-container h2 {
-      color: var(--white);
       margin-bottom: 1rem;
     }
     .ai-agent-frame {
@@ -204,31 +217,29 @@
       width: 100%;
       max-width: 900px;
       margin: 0 auto;
-      aspect-ratio: 16 / 9;
-      border: none;
+      aspect-ratio: 16/9;
+      overflow: hidden;
       border-radius: 20px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      overflow: hidden;
     }
     .ai-agent-frame iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       border: 0;
     }
-    /* Mobile Adjustments */
+
+    /* Responsive */
     @media (max-width: 600px) {
       nav { flex-direction: column; }
       nav a { padding: 0.75rem; }
       #theme-toggle { font-size: 0.8rem; padding: 0.3rem 0.7rem; }
-      .ai-agent-frame { max-width: 90%; aspect-ratio: 16 / 9; }
     }
     @media (max-width: 600px) and (orientation: portrait) {
-      .ai-agent-frame { max-width: 95%; height: 700px; }
+      .ai-agent-frame { height: 700px; }
       .ai-agent-frame iframe {
-        transform: scale(0.75); transform-origin: top left; width: 133%; height: 133%;
+        transform: scale(0.75);
+        transform-origin: top left;
       }
     }
   </style>
@@ -236,88 +247,94 @@
 <body data-theme="light">
   <header>
     <div class="header-title">
-      <img src="images/ChatGPT%20Image%20Apr%202,%202025,%2008_06_04%20AM.png" alt="Portfolio Logo" class="header-logo">
+      <img src="images/ChatGPT_Image_Apr_2_2025_08_06_04_AM.png" alt="Logo" class="header-logo">
       <h1>Aaron's Portfolio</h1>
     </div>
-    <p class="quote">"Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> ignite change."</p>
-    <p>
-      <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">Visit my LinkedIn Profile</a>
+    <p class="quote">
+      "Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. 
+      <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, 
+      and let your <strong>passion</strong> ignite change."
     </p>
-    <!-- Dark Mode Toggle Button -->
+    <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">
+      Visit my LinkedIn Profile
+    </a>
     <button id="theme-toggle">Toggle Dark Mode</button>
   </header>
+
   <nav>
     <a href="#biography">Biography</a>
     <a href="#ai-agent">AI Agent</a>
     <a href="#newsletters">Newsletters &amp; Articles</a>
     <a href="#skills">Skills</a>
-    <a href="#certifications">Licenses &amp; Certifications</a>
+    <a href="#certifications">Certifications</a>
     <a href="#projects">Projects</a>
   </nav>
+
   <div class="container">
-    <!-- Biography Section -->
-    <div class="bubble" id="biography">
+    <!-- Biography -->
+    <section class="bubble" id="biography">
       <h2>Biography</h2>
-      <p>Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full‑stack solutions, I possess <strong>secret strengths</strong> that fuel my creative vision. My deep <strong>love for AI</strong> drives me to build innovative technologies designed for the <strong>betterment</strong> of all people—unifying diverse communities and empowering individuals to achieve their full potential. I create with <strong>heart</strong> and <strong>purpose</strong>, believing that every breakthrough is an act of love and a beacon for the future of work.</p>
-    </div>
-    <!-- AI Agent Section -->
-    <div class="bubble ai-agent-container" id="ai-agent">
+      <p>Hello, I'm <strong>Aaron</strong>—a passionate developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full-stack solutions, I possess <strong>secret strengths</strong> that fuel my creative vision. I build innovative technologies for the betterment of all—unifying diverse communities and empowering individuals to reach their full potential.</p>
+    </section>
+
+    <!-- AI Agent -->
+    <section class="bubble ai-agent-container" id="ai-agent">
       <h2>Example of AI Agent Aaron 2.0</h2>
-      <p>Interact in real-time with Aaron 2.0, a cutting-edge AI Agent meticulously trained to dynamically share insights from my extensive professional experiences.</p>
+      <p>Interact in real-time with Aaron 2.0, a cutting-edge AI Agent trained on my professional experiences.</p>
       <div class="ai-agent-frame">
-        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b" frameborder="0" allowtransparency="true"></iframe>
+        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b" allowtransparency="true"></iframe>
       </div>
-    </div>
-    <!-- LinkedIn Newsletters & Articles Section -->
-    <div class="bubble" id="newsletters">
+    </section>
+
+    <!-- Newsletters & Articles -->
+    <section class="bubble" id="newsletters">
       <h2>LinkedIn Newsletters &amp; Articles</h2>
       <div id="newsletters-content">Loading content...</div>
-    </div>
-    <!-- Skills Section -->
-    <div class="bubble" id="skills">
+    </section>
+
+    <!-- Skills -->
+    <section class="bubble" id="skills">
       <h2>Skills</h2>
       <div id="skills-content">Loading content...</div>
-    </div>
-    <!-- Licenses & Certifications Section -->
-    <div class="bubble" id="certifications">
+    </section>
+
+    <!-- Certifications -->
+    <section class="bubble" id="certifications">
       <h2>Licenses &amp; Certifications</h2>
       <div id="certifications-content">Loading content...</div>
-    </div>
-    <!-- Projects Section -->
-    <div class="bubble" id="projects">
+    </section>
+
+    <!-- Projects -->
+    <section class="bubble" id="projects">
       <h2>Projects</h2>
       <div id="projects-content">Loading content...</div>
-    </div>
+    </section>
   </div>
+
   <footer>
     <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
   </footer>
+
   <script>
     // Dark Mode Toggle
-    const toggleButton = document.getElementById('theme-toggle');
-    toggleButton.addEventListener('click', () => {
-      const currentTheme = document.body.getAttribute('data-theme');
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      document.body.setAttribute('data-theme', newTheme);
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const html = document.body;
+      html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     });
 
-    // Function to load external HTML content and extract inner content from <body>
-    async function loadSection(sectionContainerId, fileName) {
+    // Load external HTML sections
+    async function loadSection(id, file) {
       try {
-        const response = await fetch(fileName);
-        const htmlText = await response.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlText, 'text/html');
-        // Use the innerHTML of the body as the content
-        const content = doc.body.innerHTML;
-        document.getElementById(sectionContainerId).innerHTML = content;
-      } catch (error) {
-        document.getElementById(sectionContainerId).innerHTML = "Error loading content.";
-        console.error("Error loading " + fileName, error);
+        const res = await fetch(file);
+        const txt = await res.text();
+        const doc = new DOMParser().parseFromString(txt, 'text/html');
+        document.getElementById(id).innerHTML = doc.body.innerHTML;
+      } catch (e) {
+        console.error(`Error loading ${file}:`, e);
+        document.getElementById(id).innerText = 'Failed to load content.';
       }
     }
 
-    // Load external sections (ensure these HTML files are in the same directory or adjust paths accordingly)
     loadSection('newsletters-content', 'newsletters.html');
     loadSection('skills-content', 'skills.html');
     loadSection('certifications-content', 'certifications.html');
