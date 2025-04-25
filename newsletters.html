@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta charset="UTF-8" />
-  <title>LinkedIn Newsletters & Articles</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn Newsletters &amp; Articles | Aaron's Portfolio</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
   <style>
-    /* Minimal styles for the newsletters section */
-    #newsletters-section {
-      padding: 1rem;
-    }
-    #newsletters-section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+    /* Newsletters section overrides */
     .filter-controls {
       margin-bottom: 1rem;
       display: flex;
@@ -21,25 +20,34 @@
     .filter-controls button {
       padding: 0.5rem 1rem;
       border: none;
-      background-color: #007acc;
-      color: #fff;
-      border-radius: 4px;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
     .filter-controls button.active,
     .filter-controls button:hover {
-      background-color: #444;
+      background-color: var(--secondary-color);
     }
     .filter-controls input[type="text"] {
       padding: 0.5rem;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 6px;
       flex: 1;
+      min-width: 200px;
     }
     #newsletters-container .item {
       margin-bottom: 0.75rem;
       font-size: 1rem;
+    }
+    #newsletters-container .item a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: text-decoration 0.2s ease;
+    }
+    #newsletters-container .item a:hover {
+      text-decoration: underline;
     }
     .pagination {
       text-align: center;
@@ -48,40 +56,83 @@
     .pagination button {
       padding: 0.5rem 1rem;
       border: none;
-      background-color: #007acc;
-      color: #fff;
-      border-radius: 4px;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 6px;
       cursor: pointer;
       margin: 0 0.5rem;
       transition: background-color 0.3s ease;
     }
     .pagination button:hover {
-      background-color: #444;
+      background-color: var(--secondary-color);
     }
   </style>
 </head>
-<body>
-  <div id="newsletters-section">
-    <h2>LinkedIn Newsletters & Articles</h2>
-    <div class="filter-controls" id="newsletters-tabs">
-      <button data-filter="all" class="active">All</button>
-      <button data-filter="article">Articles</button>
-      <input type="text" id="newsletters-search" placeholder="Search newsletters/articles..." />
+<body data-theme="light">
+  <!-- Header -->
+  <header>
+    <div class="header-title">
+      <img src="images/ChatGPT_Image_Apr_2_2025_08_06_04_AM.png" alt="Logo" class="header-logo">
+      <h1>Aaron's Portfolio</h1>
     </div>
-    <div id="newsletters-container"></div>
-    <div class="pagination" id="newsletters-pagination">
-      <button id="newsletters-prev">Previous</button>
-      <span id="newsletters-page-info"></span>
-      <button id="newsletters-next">Next</button>
-    </div>
+    <p class="quote">
+      "Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. 
+      <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, 
+      and let your <strong>passion</strong> ignite change."
+    </p>
+    <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">
+      Visit my LinkedIn Profile
+    </a>
+    <button id="theme-toggle">Toggle Dark Mode</button>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="certifications.html">Certifications</a>
+    <a href="newsletters.html" class="active">Newsletters &amp; Articles</a>
+    <a href="skills.html">Skills</a>
+    <a href="projects.html">Projects</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <section class="bubble" id="newsletters-section">
+      <h2>LinkedIn Newsletters &amp; Articles</h2>
+
+      <!-- Filters & Search -->
+      <div class="filter-controls" id="newsletters-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="article">Articles</button>
+        <input type="text" id="newsletters-search" placeholder="Search newsletters/articles..." />
+      </div>
+
+      <!-- List -->
+      <div id="newsletters-container"></div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="newsletters-pagination">
+        <button id="newsletters-prev">Previous</button>
+        <span id="newsletters-page-info"></span>
+        <button id="newsletters-next">Next</button>
+      </div>
+    </section>
   </div>
 
+  <footer>
+    <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
+  </footer>
+
   <script>
-    // Global Pagination Variables for the newsletters section
+    // Dark Mode Toggle
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const body = document.body;
+      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+    });
+
+    // Newsletters Data
     let newslettersPage = 1;
     const newslettersPerPage = 5;
-
-    // Data Array for LinkedIn Newsletters & Articles
     const newslettersData = [
       { category: 'article', title: 'Building AI Agent for Day-to-Day Requests: Comprehensive How-To', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/building-ai-agent-day-to-day-requests-comprehensive-how-to-graham-1x3te/' },
       { category: 'article', title: 'AI Chatbots for Mental Health Support: Promise, Challenges, and the Future', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/ai-chatbots-mental-health-support-promise-challenges-future-graham-hxvse/' },
@@ -96,62 +147,62 @@
       { category: 'article', title: 'Advanced Guide to Facial Recognition with Python', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/advanced-guide-facial-recognition-python-robert-graham-gqzqe/?trackingId=bQrxYzgqTNaOUZNG%2BFNT5Q%3D%3D' }
     ];
 
-    // Function to render paginated content for the newsletters section
-    function renderPaginatedSection(data, containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
+    // Render paginated section
+    function renderPaginatedSection(data, containerId, page, perPage, filter, term, infoId) {
       const container = document.getElementById(containerId);
       container.innerHTML = '';
-      let filtered = data.filter(item => {
-        return (currentFilter === 'all' || item.category.includes(currentFilter)) &&
-               (item.title.toLowerCase().includes(searchTerm) ||
-                (item.description && item.description.toLowerCase().includes(searchTerm)));
-      });
-      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
-      const start = (page - 1) * itemsPerPage;
-      const items = filtered.slice(start, start + itemsPerPage);
-      items.forEach(item => {
-        let itemHTML = "";
-        if (item.link) {
-          itemHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
-        } else {
-          itemHTML = `<span>${item.title}</span>`;
-        }
-        if (item.description) {
-          itemHTML += ' — ' + item.description;
-        }
+      const filtered = data.filter(item =>
+        (filter === 'all' || item.category === filter) &&
+        (item.title.toLowerCase().includes(term) ||
+         (item.description && item.description.toLowerCase().includes(term)))
+      );
+      const totalPages = Math.ceil(filtered.length / perPage) || 1;
+      const start = (page - 1) * perPage;
+      filtered.slice(start, start + perPage).forEach(item => {
+        const linkHTML = item.link
+          ? `<a href="${item.link}" target="_blank">${item.title}</a>`
+          : `<span>${item.title}</span>`;
+        const desc = item.description ? ` — ${item.description}` : '';
         const div = document.createElement('div');
         div.className = 'item';
-        div.innerHTML = itemHTML;
+        div.innerHTML = linkHTML + desc;
         container.appendChild(div);
       });
-      document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
+      document.getElementById(infoId).innerText = `Page ${page} of ${totalPages}`;
       return totalPages;
     }
 
-    // Function to render newsletters
+    // Render newsletters
     function renderNewsletters() {
-      const activeButton = document.querySelector('#newsletters-tabs button.active');
-      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
-      const searchTerm = document.getElementById('newsletters-search').value.toLowerCase();
-      const totalPages = renderPaginatedSection(newslettersData, 'newsletters-container', newslettersPage, newslettersPerPage, currentFilter, searchTerm, 'newsletters-page-info');
-      return totalPages;
+      const active = document.querySelector('#newsletters-tabs button.active').dataset.filter;
+      const term = document.getElementById('newsletters-search').value.trim().toLowerCase();
+      return renderPaginatedSection(
+        newslettersData,
+        'newsletters-container',
+        newslettersPage,
+        newslettersPerPage,
+        active,
+        term,
+        'newsletters-page-info'
+      );
     }
 
-    // Setup event listeners for search and pagination
-    document.getElementById('newsletters-search').addEventListener('input', () => { newslettersPage = 1; renderNewsletters(); });
+    // Event listeners
+    document.getElementById('newsletters-search').addEventListener('input', () => {
+      newslettersPage = 1;
+      renderNewsletters();
+    });
     document.getElementById('newsletters-prev').addEventListener('click', () => {
-      if(newslettersPage > 1) { newslettersPage--; renderNewsletters(); }
+      if (newslettersPage > 1) { newslettersPage--; renderNewsletters(); }
     });
     document.getElementById('newsletters-next').addEventListener('click', () => {
-      const totalPages = renderNewsletters();
-      if(newslettersPage < totalPages) { newslettersPage++; renderNewsletters(); }
+      const total = renderNewsletters();
+      if (newslettersPage < total) { newslettersPage++; renderNewsletters(); }
     });
-
-    // Setup tabs for filtering
-    const newslettersTabs = document.getElementById('newsletters-tabs').querySelectorAll('button');
-    newslettersTabs.forEach(button => {
-      button.addEventListener('click', () => {
-        newslettersTabs.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+    document.querySelectorAll('#newsletters-tabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#newsletters-tabs button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
         newslettersPage = 1;
         renderNewsletters();
       });
