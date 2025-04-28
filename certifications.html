@@ -1,248 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Licenses &amp; Certifications | Aaron's Portfolio</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="style.css">
   <style>
-    /* Certifications section overrides */
-    #certifications-section {
-      padding: 2rem;
+    :root {
+      --bg-color: #f5f5f5;
+      --primary-color: #DAA520;    /* gold */
+      --secondary-color: #0b1c2d;  /* dark navy */
+      --text-color: #0b1c2d;
     }
-    #certifications-section h2 {
-      font-size: 2rem;
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-      border-bottom: 2px solid var(--primary-color);
-      padding-bottom: 0.5rem;
-    }
-    .filter-controls {
+    /* Reset & base */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
+      flex-direction: column;
     }
-    .filter-controls button {
-      padding: 0.5rem 1rem;
-      border: none;
-      background-color: var(--primary-color);
-      color: var(--white);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+    header, footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--secondary-color);
+      color: #fff;
     }
-    .filter-controls button.active,
-    .filter-controls button:hover {
-      background-color: var(--secondary-color);
-    }
-    .filter-controls input[type="text"] {
+    main {
       flex: 1;
-      min-width: 200px;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
     }
-    #certs-summary {
-      margin-bottom: 1.5rem;
-      font-size: 0.95rem;
+    nav {
+      text-align: center;
+      padding: .5rem 0;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    #certs-summary h3 {
-      margin-bottom: 0.5rem;
+    nav a {
+      margin: 0 .5rem;
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
     }
-    #certs-summary ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    #certs-summary li {
-      margin-bottom: 0.3rem;
-    }
-    #certs-container .item {
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-    #certs-container .item strong {
+    nav a.active {
       color: var(--primary-color);
     }
-    .pagination {
+
+    /* Bubble container */
+    .bubble {
+      background: var(--primary-color);
+      color: var(--secondary-color);
+      padding: 2rem 3rem;
+      border-radius: 50px;
+      font-size: 1.25rem;
+      font-weight: bold;
       text-align: center;
-      margin-top: 1.5rem;
-    }
-    .pagination button {
-      padding: 0.5rem 1rem;
-      margin: 0 0.5rem;
-      border: none;
-      background-color: var(--primary-color);
-      color: var(--white);
-      border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      max-width: 90%;
+      user-select: none;
     }
-    .pagination button:hover {
-      background-color: var(--secondary-color);
+    .bubble:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    @media (min-width: 600px) {
+      .bubble { font-size: 1.5rem; padding: 2.5rem 4rem; }
     }
   </style>
 </head>
-<body data-theme="light">
+<body>
   <header>
-    <div class="header-title">
-      <img src="images/ChatGPT_Image_Apr_2_2025_08_06_04_AM.png" alt="Logo" class="header-logo">
-      <h1>Aaron's Portfolio</h1>
-    </div>
-    <p class="quote">
-      "Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. 
-      <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, 
-      and let your <strong>passion</strong> ignite change."
-    </p>
-    <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">
-      Visit my LinkedIn Profile
-    </a>
-    <button id="theme-toggle">Toggle Dark Mode</button>
+    <h1>Aaron's Portfolio</h1>
   </header>
 
   <nav>
     <a href="index.html">Home</a>
     <a href="certifications.html" class="active">Certifications</a>
-    <a href="newsletters.html">Newsletters &amp; Articles</a>
-    <a href="skills.html">Skills</a>
     <a href="projects.html">Projects</a>
   </nav>
 
-  <div class="container">
-    <section id="certifications-section" class="bubble">
-      <h2>Licenses &amp; Certifications</h2>
-
-      <!-- Summary Breakdown -->
-      <div id="certs-summary"></div>
-
-      <!-- Filter Controls -->
-      <div class="filter-controls" id="certs-tabs">
-        <button data-filter="all" class="active">All</button>
-        <button data-filter="specialization">Specializations</button>
-        <button data-filter="course">Courses</button>
-        <button data-filter="linkedin">LinkedIn</button>
-        <button data-filter="training">Training</button>
-        <button data-filter="frontier">Frontier</button>
-        <input type="text" id="certs-search" placeholder="Search certifications..." />
-      </div>
-
-      <!-- Certifications List -->
-      <div id="certs-container"></div>
-
-      <!-- Pagination -->
-      <div class="pagination">
-        <button id="certs-prev">Previous</button>
-        <span id="certs-page-info"></span>
-        <button id="certs-next">Next</button>
-      </div>
-    </section>
-  </div>
+  <main>
+    <div class="bubble" id="cert-bubble" role="button" tabindex="0">
+      Click Here to View My Certifications
+    </div>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
+    <p>&copy; 2025 Aaron's Portfolio</p>
   </footer>
 
   <script>
-    // Dark Mode Toggle
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      const b = document.body;
-      b.setAttribute('data-theme', b.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
-
-    // Pagination state
-    let certsPage = 1;
-    const certsPerPage = 20;
-
-    // Certifications data
-    const certificationsData = [
-      { category: 'training', title: 'Generative AI', provider: 'Google Cloud Skills Boost', issued: 'Dec 2024' },
-      { category: 'training', title: 'Large Language Model Operations', provider: 'Duke University', issued: 'Dec 2024' },
-      { category: 'course', title: 'Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization', provider: 'DeepLearning.AI', issued: 'Oct 2024', credential: 'XM5GX5LELZI3' },
-      /* … your full list here … */
-      { category: 'frontier', title: 'Accredited Integration Specialist - HP Software Testing Foundation v9 (AIS-STFv9)', provider: 'Frontier Internet', issued: 'Nov 2018' }
-    ];
-
-    // Deduplicate
-    const seen = new Set();
-    const dedupedCerts = certificationsData.filter(c => {
-      const key = (c.title + '|' + c.provider).toLowerCase();
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    });
-
-    // Render summary of hours (if any)
-    function renderCertsSummary() {
-      const container = document.getElementById('certs-summary');
-      let html = '';
-      let totalHours = 0;
-      const byProvider = {};
-      dedupedCerts.forEach(c => {
-        if (c.hours) {
-          totalHours += c.hours;
-          byProvider[c.provider] = (byProvider[c.provider] || 0) + c.hours;
-        }
-      });
-      if (totalHours > 0) {
-        html += '<h3>Certification Hours Breakdown:</h3><ul>';
-        for (const p in byProvider) {
-          html += `<li>${p}: ${byProvider[p]} hours</li>`;
-        }
-        html += `</ul><p><strong>Total Hours: ${totalHours}</strong></p>`;
-      }
-      container.innerHTML = html;
+    const bubble = document.getElementById('cert-bubble');
+    function openCertPages() {
+      window.open('https://www.coursera.org/my-learning?myLearningTab=COMPLETED', '_blank');
+      window.open('https://www.linkedin.com/in/r-aaron-graham/details/certifications/', '_blank');
     }
-
-    // Paginated render
-    function renderPaginatedCerts() {
-      const filter = document.querySelector('#certs-tabs button.active').dataset.filter;
-      const term = document.getElementById('certs-search').value.trim().toLowerCase();
-      const filtered = dedupedCerts.filter(c =>
-        (filter === 'all' || c.category === filter) &&
-        c.title.toLowerCase().includes(term)
-      );
-      const totalPages = Math.max(1, Math.ceil(filtered.length / certsPerPage));
-      const start = (certsPage - 1) * certsPerPage;
-      const pageItems = filtered.slice(start, start + certsPerPage);
-
-      const container = document.getElementById('certs-container');
-      container.innerHTML = '';
-      pageItems.forEach(c => {
-        const cred = c.credential ? ` [ID: ${c.credential}]` : '';
-        container.innerHTML += `<div class="item"><strong>${c.title}</strong> — ${c.provider} (${c.issued || 'n.d.'})${cred}</div>`;
-      });
-
-      document.getElementById('certs-page-info').innerText = `Page ${certsPage} of ${totalPages}`;
-      return totalPages;
-    }
-
-    // Initial setup
-    renderCertsSummary();
-    renderPaginatedCerts();
-
-    // Event listeners
-    document.getElementById('certs-search').addEventListener('input', () => {
-      certsPage = 1;
-      renderPaginatedCerts();
-    });
-    document.getElementById('certs-prev').addEventListener('click', () => {
-      if (certsPage > 1) { certsPage--; renderPaginatedCerts(); }
-    });
-    document.getElementById('certs-next').addEventListener('click', () => {
-      const total = renderPaginatedCerts();
-      if (certsPage < total) { certsPage++; renderPaginatedCerts(); }
-    });
-    document.querySelectorAll('#certs-tabs button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#certs-tabs button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        certsPage = 1;
-        renderPaginatedCerts();
-      });
+    bubble.addEventListener('click', openCertPages);
+    bubble.addEventListener('keyup', e => {
+      if (e.key === 'Enter' || e.key === ' ') openCertPages();
     });
   </script>
 </body>
