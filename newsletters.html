@@ -1,215 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LinkedIn Newsletters &amp; Articles | Aaron's Portfolio</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Newsletters section overrides */
-    .filter-controls {
-      margin-bottom: 1rem;
+    :root {
+      --bg-color: #f5f5f5;
+      --primary-color: #DAA520;   /* gold */
+      --secondary-color: #0b1c2d; /* dark navy */
+      --text-color: #0b1c2d;
+    }
+    /* Reset & base */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Roboto', sans-serif;
+      min-height: 100vh;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      flex-direction: column;
     }
-    .filter-controls button {
-      padding: 0.5rem 1rem;
-      border: none;
-      background-color: var(--primary-color);
-      color: var(--white);
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .filter-controls button.active,
-    .filter-controls button:hover {
-      background-color: var(--secondary-color);
-    }
-    .filter-controls input[type="text"] {
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      flex: 1;
-      min-width: 200px;
-    }
-    #newsletters-container .item {
-      margin-bottom: 0.75rem;
-      font-size: 1rem;
-    }
-    #newsletters-container .item a {
-      color: var(--primary-color);
-      text-decoration: none;
-      transition: text-decoration 0.2s ease;
-    }
-    #newsletters-container .item a:hover {
-      text-decoration: underline;
-    }
-    .pagination {
+    header, footer {
       text-align: center;
-      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--secondary-color);
+      color: #fff;
     }
-    .pagination button {
-      padding: 0.5rem 1rem;
-      border: none;
-      background-color: var(--primary-color);
-      color: var(--white);
-      border-radius: 6px;
+    nav {
+      text-align: center;
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 0.5rem 0;
+    }
+    nav a {
+      margin: 0 .5rem;
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    nav a.active {
+      color: var(--primary-color);
+    }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    /* Bubble button */
+    .bubble {
+      background: var(--primary-color);
+      color: var(--secondary-color);
+      padding: 2rem 3rem;
+      border-radius: 50px;
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: center;
       cursor: pointer;
-      margin: 0 0.5rem;
-      transition: background-color 0.3s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      max-width: 90%;
+      user-select: none;
     }
-    .pagination button:hover {
-      background-color: var(--secondary-color);
+    .bubble:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    @media (min-width: 600px) {
+      .bubble { font-size: 1.5rem; padding: 2.5rem 4rem; }
     }
   </style>
 </head>
-<body data-theme="light">
-  <!-- Header -->
+<body>
   <header>
-    <div class="header-title">
-      <img src="images/ChatGPT_Image_Apr_2_2025_08_06_04_AM.png" alt="Logo" class="header-logo">
-      <h1>Aaron's Portfolio</h1>
-    </div>
-    <p class="quote">
-      "Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. 
-      <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, 
-      and let your <strong>passion</strong> ignite change."
-    </p>
-    <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank" class="linkedin-link">
-      Visit my LinkedIn Profile
-    </a>
-    <button id="theme-toggle">Toggle Dark Mode</button>
+    <h1>Aaron's Portfolio</h1>
   </header>
 
-  <!-- Navigation -->
   <nav>
     <a href="index.html">Home</a>
     <a href="certifications.html">Certifications</a>
     <a href="newsletters.html" class="active">Newsletters &amp; Articles</a>
-    <a href="skills.html">Skills</a>
     <a href="projects.html">Projects</a>
   </nav>
 
-  <!-- Main Content -->
-  <div class="container">
-    <section class="bubble" id="newsletters-section">
-      <h2>LinkedIn Newsletters &amp; Articles</h2>
-
-      <!-- Filters & Search -->
-      <div class="filter-controls" id="newsletters-tabs">
-        <button data-filter="all" class="active">All</button>
-        <button data-filter="article">Articles</button>
-        <input type="text" id="newsletters-search" placeholder="Search newsletters/articles..." />
-      </div>
-
-      <!-- List -->
-      <div id="newsletters-container"></div>
-
-      <!-- Pagination -->
-      <div class="pagination" id="newsletters-pagination">
-        <button id="newsletters-prev">Previous</button>
-        <span id="newsletters-page-info"></span>
-        <button id="newsletters-next">Next</button>
-      </div>
-    </section>
-  </div>
+  <main>
+    <div class="bubble" id="news-bubble" role="button" tabindex="0">
+      Click Here to Read My LinkedIn Articles &amp; Newsletters
+    </div>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
+    <p>&copy; 2025 Aaron's Portfolio</p>
   </footer>
 
   <script>
-    // Dark Mode Toggle
-    document.getElementById('theme-toggle').addEventListener('click', () => {
-      const body = document.body;
-      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-    });
-
-    // Newsletters Data
-    let newslettersPage = 1;
-    const newslettersPerPage = 5;
-    const newslettersData = [
-      { category: 'article', title: 'Building AI Agent for Day-to-Day Requests: Comprehensive How-To', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/building-ai-agent-day-to-day-requests-comprehensive-how-to-graham-1x3te/' },
-      { category: 'article', title: 'AI Chatbots for Mental Health Support: Promise, Challenges, and the Future', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/ai-chatbots-mental-health-support-promise-challenges-future-graham-hxvse/' },
-      { category: 'article', title: 'Building AI Chatbot without Traditional Backend: Modern Approaches', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/building-ai-chatbot-without-traditional-backend-modern-robert-graham-44ede/' },
-      { category: 'article', title: 'AI-Driven Python Automation & QA: Unleashing Selenium & LLMs', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/ai-driven-python-automation-qa-unleashing-selenium-llms-robert-graham-bsvee/' },
-      { category: 'article', title: 'Three AI Mega-Trends Shaping Technology, Healthcare, and Society', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/three-ai-mega-trends-shaping-technology-healthcare-society-graham-8fave/?trackingId=fEWkP0RuQviIoefU2OYuiA%3D%3D' },
-      { category: 'article', title: 'How AI is Revolutionizing Cancer Treatment: A Deep Dive in Oncology', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/how-ai-revolutionizing-cancer-treatment-deep-dive-oncology-graham-jidme/?trackingId=9MLOT2bpTXiyLUX1MADW5Q%3D%3D' },
-      { category: 'article', title: 'Comprehensive Guide to ChromaDB for Beginners & Advanced Users', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/comprehensive-guide-chromadb-beginners-advanced-users-robert-graham-pz0pf/?trackingId=652DvIcAR1W4BsFs1bJqSA%3D%3D' },
-      { category: 'article', title: 'Comprehensive Guide to CI/CD Integration for ML Models', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/comprehensive-guide-cicd-integration-ml-models-robert-graham-whw3c/?trackingId=2o94p3MrQlWCJUcUGFasAg%3D%3D' },
-      { category: 'article', title: 'Bridging AI & Automation: How LLMs are Revolutionizing Testing', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/bridging-ai-automation-how-llms-revolutionizing-testing-robert-graham-dv2me/?trackingId=RPDZyam1TCuWQ787rGMQeQ%3D%3D' },
-      { category: 'article', title: 'Scaling MLOps for Enterprise Applications', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/scaling-mlops-enterprise-applications-robert-graham-fsdxe/?trackingId=pTfTOHfjRuuKgnknc0PAWQ%3D%3D' },
-      { category: 'article', title: 'Advanced Guide to Facial Recognition with Python', description: 'LinkedIn Article', link: 'https://www.linkedin.com/pulse/advanced-guide-facial-recognition-python-robert-graham-gqzqe/?trackingId=bQrxYzgqTNaOUZNG%2BFNT5Q%3D%3D' }
-    ];
-
-    // Render paginated section
-    function renderPaginatedSection(data, containerId, page, perPage, filter, term, infoId) {
-      const container = document.getElementById(containerId);
-      container.innerHTML = '';
-      const filtered = data.filter(item =>
-        (filter === 'all' || item.category === filter) &&
-        (item.title.toLowerCase().includes(term) ||
-         (item.description && item.description.toLowerCase().includes(term)))
-      );
-      const totalPages = Math.ceil(filtered.length / perPage) || 1;
-      const start = (page - 1) * perPage;
-      filtered.slice(start, start + perPage).forEach(item => {
-        const linkHTML = item.link
-          ? `<a href="${item.link}" target="_blank">${item.title}</a>`
-          : `<span>${item.title}</span>`;
-        const desc = item.description ? ` — ${item.description}` : '';
-        const div = document.createElement('div');
-        div.className = 'item';
-        div.innerHTML = linkHTML + desc;
-        container.appendChild(div);
-      });
-      document.getElementById(infoId).innerText = `Page ${page} of ${totalPages}`;
-      return totalPages;
+    const bubble = document.getElementById('news-bubble');
+    function openLinkedInSections() {
+      window.open('https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/', '_blank');
+      window.open('https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/', '_blank');
     }
-
-    // Render newsletters
-    function renderNewsletters() {
-      const active = document.querySelector('#newsletters-tabs button.active').dataset.filter;
-      const term = document.getElementById('newsletters-search').value.trim().toLowerCase();
-      return renderPaginatedSection(
-        newslettersData,
-        'newsletters-container',
-        newslettersPage,
-        newslettersPerPage,
-        active,
-        term,
-        'newsletters-page-info'
-      );
-    }
-
-    // Event listeners
-    document.getElementById('newsletters-search').addEventListener('input', () => {
-      newslettersPage = 1;
-      renderNewsletters();
+    bubble.addEventListener('click', openLinkedInSections);
+    bubble.addEventListener('keyup', e => {
+      if (e.key === 'Enter' || e.key === ' ') openLinkedInSections();
     });
-    document.getElementById('newsletters-prev').addEventListener('click', () => {
-      if (newslettersPage > 1) { newslettersPage--; renderNewsletters(); }
-    });
-    document.getElementById('newsletters-next').addEventListener('click', () => {
-      const total = renderNewsletters();
-      if (newslettersPage < total) { newslettersPage++; renderNewsletters(); }
-    });
-    document.querySelectorAll('#newsletters-tabs button').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#newsletters-tabs button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        newslettersPage = 1;
-        renderNewsletters();
-      });
-    });
-
-    // Initial render
-    renderNewsletters();
   </script>
 </body>
 </html>
