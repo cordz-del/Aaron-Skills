@@ -1,282 +1,388 @@
-/* Reset & Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aaron's Portfolio</title>
+  <!-- Google Fonts: Roboto for body and Playfair Display for impactful quotes -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    /* Default (Light) Theme Variables */
+    :root {
+      --primary-color: #007acc;
+      --secondary-color: #333;
+      --background-color: #f4f4f4;
+      --white: #fff;
+      --text-color: #333;
+      --accent-bg: #eef;
+      --bubble-bg: #fff;
+    }
+    /* Dark Theme Overrides */
+    [data-theme="dark"] {
+      --primary-color: #1e90ff;
+      --secondary-color: #222;
+      --background-color: #121212;
+      --white: #f4f4f4;
+      --text-color: #bbb;
+      --accent-bg: #1a1a1a;
+      --bubble-bg: #1e1e1e;
+    }
+    /* Background Pattern for a subtle code-like effect */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 10px);
+    }
+    [data-theme="dark"] body {
+      background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 10px);
+    }
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: transform 0.3s ease, text-decoration 0.3s ease;
+    }
+    a:hover {
+      transform: translateY(-3px);
+      text-decoration: underline;
+    }
+    /* Header */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem 1rem;
+      position: relative;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.3rem;
+    }
+    /* Impactful Quote styled with Playfair Display and bold emphasis */
+    .quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .quote strong {
+      font-weight: bold;
+    }
+    /* Dark Mode Toggle Button */
+    #theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--white);
+      color: var(--primary-color);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    #theme-toggle:hover {
+      background-color: var(--primary-color);
+      color: var(--white);
+    }
+    /* Navigation */
+    nav {
+      background-color: var(--secondary-color);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: var(--white);
+      padding: 1rem;
+      text-decoration: none;
+    }
+    nav a:hover {
+      background-color: #444;
+    }
+    /* Container & Bubble Sections */
+    .container {
+      max-width: 960px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .bubble {
+      background: var(--bubble-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    /* Section Titles */
+    .bubble h2 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    /* Lists */
+    ul {
+      list-style: none;
+      margin-bottom: 1rem;
+      padding-left: 0;
+    }
+    li {
+      margin-bottom: 0.75rem;
+      padding-left: 1rem;
+      position: relative;
+    }
+    li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--primary-color);
+    }
+    /* Articles Styling */
+    article {
+      margin: 1rem 0;
+      padding: 1rem;
+      background-color: var(--accent-bg);
+      border-left: 4px solid var(--primary-color);
+      border-radius: 4px;
+    }
+    /* Filter Controls for Tabs & Search */
+    .filter-controls {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .filter-controls button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .filter-controls button:hover, .filter-controls button.active {
+      background-color: #444;
+    }
+    .filter-controls input[type="text"] {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      flex: 1;
+    }
+    /* Pagination Controls */
+    .pagination {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .pagination button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--primary-color);
+      color: var(--white);
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0 0.5rem;
+    }
+    .pagination button:hover {
+      background-color: #444;
+    }
+    /* Custom styling for the AI Agent section */
+    .ai-agent-container {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      padding: 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .ai-agent-container h2 {
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .ai-agent-frame {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 900px;
+      height: 800px;
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+      nav a {
+        padding: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <header>
+    <h1>Aaron's Portfolio</h1>
+    <p class="quote">"Every lesson learned is a <strong>stepping stone</strong> to <strong>greatness</strong>. <strong>Embrace knowledge</strong>, keep <strong>reaching for the stars</strong>, and let your <strong>passion</strong> ignite change."</p>
+    <p>
+      <a href="https://www.linkedin.com/in/r-aaron-graham" target="_blank">Visit my LinkedIn Profile</a>
+    </p>
+    <button id="theme-toggle">Toggle Dark Mode</button>
+  </header>
+  <nav>
+    <a href="#biography">Biography</a>
+    <a href="#ai-agent">AI Agent</a>
+    <a href="#newsletters">Newsletters &amp; Articles</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Licenses &amp; Certifications</a>
+    <a href="#projects">Projects</a>
+  </nav>
+  <div class="container">
+    <!-- Biography Section (Expanded with powerful language) -->
+    <div class="bubble" id="biography">
+      <h2>Biography</h2>
+      <p>Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. I harness <strong>innovative</strong> coding skills and a deep <strong>love for AI</strong> to create solutions that unite people and drive <strong>transformative change</strong>. My work is an act of love: a commitment to empower communities, elevate technology, and spark a future where every breakthrough <strong>inspires hope</strong> and <strong>unlocks potential</strong>. I believe in building bridges with code and fueling progress with <strong>heart</strong> and <strong>purpose</strong>.</p>
+    </div>
+    <!-- AI Agent Section -->
+    <div class="bubble ai-agent-container" id="ai-agent">
+      <h2>Example of AI Agent Aaron 2.0</h2>
+      <p>Experience cutting-edge AI in real time! Interact with my agent and see how it transforms conversation with creative prompts and dynamic responses.</p>
+      <div class="ai-agent-frame">
+        <iframe src="https://chatbot.simplified.com/iframe/41bf68b6-b23d-47e5-a848-43142525835b"
+                frameborder="0" 
+                allowtransparency="true" 
+                style="background-color: transparent; width:100%; height:100%;">
+        </iframe>
+      </div>
+    </div>
+    <!-- LinkedIn Newsletters & Articles Section (Paginated: 5 per page) -->
+    <div class="bubble" id="newsletters">
+      <h2>LinkedIn Newsletters &amp; Articles</h2>
+      <div class="filter-controls" id="newsletters-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="newsletter">Newsletters</button>
+        <button data-filter="article">Articles</button>
+        <input type="text" id="newsletters-search" placeholder="Search newsletters/articles..." />
+      </div>
+      <div id="newsletters-container"></div>
+      <div class="pagination" id="newsletters-pagination">
+        <button id="newsletters-prev">Previous</button>
+        <span id="newsletters-page-info"></span>
+        <button id="newsletters-next">Next</button>
+      </div>
+    </div>
+    <!-- Skills Section (Assumed 100+ items; searchable list) -->
+    <div class="bubble" id="skills">
+      <h2>Skills</h2>
+      <input type="text" id="skills-search" placeholder="Search skills..." />
+      <ul id="skills-list"></ul>
+    </div>
+    <!-- Licenses & Certifications Section (Paginated: 10 per page) -->
+    <div class="bubble" id="certifications">
+      <h2>Licenses &amp; Certifications</h2>
+      <div class="filter-controls" id="certs-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="ml">Machine Learning</button>
+        <button data-filter="llmops">LLMOps</button>
+        <button data-filter="cloud">Cloud</button>
+        <button data-filter="testing">Testing</button>
+        <input type="text" id="certs-search" placeholder="Search certifications..." />
+      </div>
+      <div id="certs-container"></div>
+      <div class="pagination" id="certs-pagination">
+        <button id="certs-prev">Previous</button>
+        <span id="certs-page-info"></span>
+        <button id="certs-next">Next</button>
+      </div>
+    </div>
+    <!-- Projects Section (Paginated: 5 per page) -->
+    <div class="bubble" id="projects">
+      <h2>Projects</h2>
+      <div class="filter-controls" id="projects-tabs">
+        <button data-filter="all" class="active">All</button>
+        <button data-filter="chatbots">Chatbots</button>
+        <button data-filter="automation">Automation</button>
+        <button data-filter="ai">AI</button>
+        <button data-filter="fullstack">Full-Stack</button>
+        <input type="text" id="projects-search" placeholder="Search projects..." />
+      </div>
+      <div id="projects-container"></div>
+      <div class="pagination" id="projects-pagination">
+        <button id="projects-prev">Previous</button>
+        <span id="projects-page-info"></span>
+        <button id="projects-next">Next</button>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2025 Aaron's Portfolio. All rights reserved.</p>
+  </footer>
+  <script>
+    // Dark Mode Toggle
+    const toggleButton = document.getElementById('theme-toggle');
+    toggleButton.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+    });
 
-:root {
-  --primary-color: #007acc;
-  --secondary-color: #333;
-  --background-color: #f4f4f4;
-  --white: #fff;
-  --text-color: #333;
-  --accent-bg: #eef;
-  --bubble-bg: #fff;
-}
+    /* ================================================
+       Sample Data Arrays (Replace these with actual LinkedIn data)
+       ================================================ */
+    // Sample Newsletters & Articles (5 items per page)
+    const newslettersData = [
+      { category: 'newsletter', title: 'AI Chatbot Insights Newsletter', description: 'Published weekly | 340 subscribers', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/' },
+      { category: 'article', title: 'Three AI Mega-Trends Shaping Technology, Healthcare, and Society (2025–2035)', description: '38 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/' },
+      { category: 'article', title: 'Unlocking the Power of AI: Insights into ML, Python Automation, and RAG', description: '2 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/' },
+      { category: 'article', title: 'How AI is Revolutionizing Cancer Treatment: A Deep Dive', description: '20 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/' },
+      { category: 'newsletter', title: 'Newsletter Example 2', description: 'Sample description', link: '#' }
+      // ... add more as needed
+    ];
+    // Sample Skills (Assume 100+ items)
+    const skillsData = [
+      { title: 'Python Programming' },
+      { title: 'ETL Pipeline Development' },
+      { title: 'SQL Data Transformation' },
+      { title: 'Data Validation & Quality Assurance' },
+      { title: 'Process Optimization' },
+      { title: 'Automation' },
+      { title: 'Data Integration' }
+      // ... add more skills up to 100+ items
+    ];
+    // Sample Certifications (Paginated: 10 per page, assume 351 items)
+    const certificationsData = [
+      { category: 'ml', title: 'Machine Learning Specialization, Stanford', hours: '120 hrs' },
+      { category: 'llmops', title: 'LLMOps Specialization, Duke', hours: '80 hrs' },
+      { category: 'cloud', title: 'Generative AI, Google Cloud', hours: '60 hrs' },
+      { category: 'testing', title: 'Test Automation & API Testing', hours: '50 hrs' }
+      // ... add more up to 351 items
+    ];
+    // Sample Projects (Paginated: 5 per page, assume 54 items)
+    const projectsData = [
+      { category: 'automation ai', title: '10228.2 – SO Post NEP', description: 'Optimized the service order processing system following the Network Enhancement Program (NEP). Developed automated ETL workflows using Python and SQL to transform and migrate order data, ensuring seamless integration and improved order accuracy. Enhanced data validation processes to minimize errors.', skills: ['Python Programming', 'ETL Pipeline Development', 'SQL Data Transformation', 'Data Validation & Quality Assurance', 'Process Optimization', 'Automation', 'Data Integration'], period: 'Jan 2016 - Nov 2023', company: 'Frontier Communications' },
+      { category: 'automation ai', title: '12052 – Tech Initiated Provisioning', description: 'Optimized the provisioning process by implementing technology-driven solutions that empowered field technicians and automated service initiation. Developed Python scripts and integrated SQL data checks to streamline workflows.', skills: ['Python Programming', 'Automation & Scripting', 'SQL Data Manipulation', 'ETL Pipeline Development', 'Process Optimization', 'Data Validation & Quality Assurance', 'Workflow Automation'], period: 'Jan 2016 - Nov 2023', company: 'Frontier Communications' },
+      { category: 'automation fullstack', title: '12112.4 – Enhanced Bonded Automation', description: 'Developed enhanced automation processes for bonded network configurations to streamline provisioning and boost throughput using Python scripting, SQL validation, and network tools.', skills: ['Python Programming', 'SQL Data Validation', 'ETL Pipeline Development', 'Process Automation', 'Network Configuration', 'Troubleshooting & Debugging', 'Data Integration'], period: 'Jan 2016 - Nov 2023', company: 'Frontier Communications' },
+      { category: 'automation', title: '12190.2 – Self Install', description: 'Developed and implemented a self-installation process empowering customers to independently activate telecommunications services. Automated integration using Python and SQL-based data pipelines.', skills: ['Python Programming', 'SQL Data Manipulation', 'ETL Pipeline Development', 'Process Automation', 'User Interface Integration', 'Data Validation & Quality Assurance', 'Troubleshooting & Debugging'], period: 'Jan 2016 - Nov 2023', company: 'Frontier Communications' },
+      { category: 'data', title: '12790 – Connected Line Cards but No Billing Info', description: 'Resolved critical discrepancies by reconciling connected line cards missing billing info. Developed ETL pipelines in Python and SQL to cross-reference inventory with billing records, ensuring every active line card was billed accurately.', skills: ['Python Programming', 'SQL Data Manipulation', 'ETL Pipeline Development', 'Data Integration', 'Data Validation & Quality Assurance', 'Process Automation', 'Troubleshooting'], period: 'Jan 2016 - Nov 2023', company: 'Frontier Communications' }
+      // ... add more up to 54 items
+    ];
 
-body {
-  font-family: 'Roboto', sans-serif;
-  line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--background-color);
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(0,0,0,0.03) 0,
-    rgba(0,0,0,0.03) 1px,
-    transparent 1px,
-    transparent 10px
-  );
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* Dark Theme Overrides */
-body[data-theme="dark"] {
-  --primary-color: #1e90ff;
-  --secondary-color: #222;
-  --background-color: #121212;
-  --white: #f4f4f4;
-  --text-color: #bbb;
-  --accent-bg: #1a1a1a;
-  --bubble-bg: #1e1e1e;
-}
-
-/* Link Styles */
-a {
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.3s ease, text-decoration 0.3s ease;
-}
-a:hover {
-  text-decoration: underline;
-}
-
-/* Header & Quote */
-header {
-  background: linear-gradient(135deg, #00509e, #007acc);
-  color: var(--white);
-  text-align: center;
-  padding: 2rem 1rem;
-  position: relative;
-}
-header h1 {
-  font-size: 2.8rem;
-  margin-bottom: 0.5rem;
-}
-.quote {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-}
-.linkedin-link {
-  color: #fff;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-.linkedin-link:hover {
-  transform: translateY(-5px);
-}
-
-/* Dark Mode Toggle */
-#theme-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.5rem 1rem;
-  border: none;
-  background: linear-gradient(145deg, #444, #222);
-  color: #ddd;
-  border-radius: 6px;
-  box-shadow: 0 4px 0 #111;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-#theme-toggle:active {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 #111;
-}
-
-/* Navigation */
-nav {
-  background-color: var(--secondary-color);
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-nav a {
-  color: var(--white);
-  padding: 1rem;
-}
-nav a:hover {
-  background-color: #444;
-}
-nav a.active {
-  background-color: #00509e;
-}
-
-/* Container for bubbles */
-.container {
-  flex: 1;
-  max-width: 960px;
-  margin: 2rem auto;
-  padding: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-/* Biography & AI Agent containers */
-#biography,
-#ai-agent {
-  flex: 0 0 100%;
-  max-width: 800px;
-  background: var(--accent-bg);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  overflow: auto;
-}
-#biography {
-  min-height: 300px;
-}
-#ai-agent {
-  min-height: 400px;
-}
-
-/* Universal bubble style */
-.bubble {
-  background: var(--bubble-bg);
-  color: inherit;
-  border-radius: 20px;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  text-align: center;
-}
-.bubble::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  z-index: -1;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-.bubble:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-}
-
-/* Floating Animations */
-@keyframes float1 {
-  0%,100% { transform: translate(0,0); }
-  25%    { transform: translate(15px,-10px); }
-  50%    { transform: translate(0,-20px); }
-  75%    { transform: translate(-15px,-10px); }
-}
-@keyframes float2 {
-  0%,100% { transform: translate(0,0); }
-  25%    { transform: translate(-10px,15px); }
-  50%    { transform: translate(0,20px); }
-  75%    { transform: translate(10px,15px); }
-}
-@keyframes float3 {
-  0%,100% { transform: translate(0,0); }
-  25%    { transform: translate(20px,0); }
-  50%    { transform: translate(0,20px); }
-  75%    { transform: translate(-20px,0); }
-}
-@keyframes float4 {
-  0%,100% { transform: translate(0,0); }
-  25%    { transform: translate(10px,10px); }
-  50%    { transform: translate(0,20px); }
-  75%    { transform: translate(-10px,10px); }
-}
-
-/* Bubble Variants */
-.bubble.certifications {
-  background: #DAA520;
-  color: #0b1c2d;
-  font-size: 1.5rem;
-  padding: 2rem 4rem;
-  animation: float1 20s infinite ease-in-out;
-}
-.bubble.skills {
-  background: #009688;
-  color: #fff;
-  font-size: 1.25rem;
-  padding: 1.75rem 3.5rem;
-  animation: float2 25s infinite ease-in-out;
-}
-.bubble.newsletters {
-  background: #6A1B9A;
-  color: #fff;
-  font-size: 1rem;
-  padding: 1.5rem 3rem;
-  animation: float3 30s infinite ease-in-out;
-}
-.bubble.projects {
-  background: #4CAF50;
-  color: #fff;
-  font-size: 1.4rem;
-  padding: 1.8rem 3.8rem;
-  animation: float4 22s infinite ease-in-out;
-}
-
-/* Footer */
-footer {
-  background-color: var(--secondary-color);
-  color: var(--white);
-  text-align: center;
-  padding: 1rem 0;
-  margin-top: auto;
-}
-
-/* Responsive Styles */
-@media (max-width: 600px) {
-  nav {
-    flex-direction: column;
-  }
-  nav a {
-    padding: 0.75rem;
-  }
-  #theme-toggle {
-    font-size: 0.8rem;
-    padding: 0.3rem 0.7rem;
-  }
-  #biography {
-    min-height: auto;
-  }
-  #ai-agent {
-    min-height: auto;
-  }
-  .bubble.certifications {
-    font-size: 1.25rem;
-    padding: 1.5rem 2.5rem;
-  }
-  .bubble.skills {
-    font-size: 1.1rem;
-    padding: 1.5rem 3rem;
-  }
-  .bubble.newsletters {
-    font-size: 0.9rem;
-    padding: 1.25rem 2rem;
-  }
-  .bubble.projects {
-    font-size: 1.2rem;
-    padding: 1.5rem 3rem;
-  }
-}
+    /* ================================================
+       Generic Pagination Rendering Function
+       ================================================ */
+    function renderPaginatedSection(data, containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      let filtered = data.filter(item => {
+        const titleMatch = item.title.toLowerCase().includes(searchTerm);
+        const descMatch = item.description ? item.description.toLowerCase().includes(searchTerm) : false;
+        return (currentFilter === 'all' || item.category.includes(currentFilter)) && (titleMatch || descMatch);
+      });
+      const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
+      const start = (page - 1) * itemsPerPage;
+      const items = filtered.slice(start, start + itemsPerPage);
+      items.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.style.marginBottom = '1rem';
+        // For projects, show extended description
