@@ -62,22 +62,15 @@ header {
   position: relative;
 }
 
-.header-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.header-logo {
-  height: 60px;
-  width: auto;
-}
-
 header h1 {
   font-size: 2.8rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
 }
 
 .linkedin-link {
@@ -90,12 +83,6 @@ header h1 {
 
 .linkedin-link:hover {
   transform: translateY(-5px);
-}
-
-.quote {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
 }
 
 /* Dark Mode Toggle */
@@ -184,12 +171,39 @@ nav a.active {
   box-shadow: 0 6px 20px rgba(0,0,0,0.25);
 }
 
+/* Animations */
+@keyframes float1 {
+  0%,100% { transform: translate(0,0); }
+  25%    { transform: translate(15px,-10px); }
+  50%    { transform: translate(0,-20px); }
+  75%    { transform: translate(-15px,-10px); }
+}
+@keyframes float2 {
+  0%,100% { transform: translate(0,0); }
+  25%    { transform: translate(-10px,15px); }
+  50%    { transform: translate(0,20px); }
+  75%    { transform: translate(10px,15px); }
+}
+@keyframes float3 {
+  0%,100% { transform: translate(0,0); }
+  25%    { transform: translate(20px,0); }
+  50%    { transform: translate(0,20px); }
+  75%    { transform: translate(-20px,0); }
+}
+@keyframes float4 {
+  0%,100% { transform: translate(0,0); }
+  25%    { transform: translate(10px,10px); }
+  50%    { transform: translate(0,20px); }
+  75%    { transform: translate(-10px,10px); }
+}
+
 /* Bubble Variants */
 .bubble.certifications {
   background: #DAA520;
   color: #0b1c2d;
   font-size: 1.5rem;
   padding: 2rem 4rem;
+  animation: float1 20s infinite ease-in-out;
 }
 
 .bubble.skills {
@@ -197,6 +211,7 @@ nav a.active {
   color: #fff;
   font-size: 1.25rem;
   padding: 1.75rem 3.5rem;
+  animation: float2 25s infinite ease-in-out;
 }
 
 .bubble.newsletters {
@@ -204,6 +219,7 @@ nav a.active {
   color: #fff;
   font-size: 1rem;
   padding: 1.5rem 3rem;
+  animation: float3 30s infinite ease-in-out;
 }
 
 .bubble.projects {
@@ -211,6 +227,7 @@ nav a.active {
   color: #fff;
   font-size: 1.4rem;
   padding: 1.8rem 3.8rem;
+  animation: float4 22s infinite ease-in-out;
 }
 
 /* Footer */
