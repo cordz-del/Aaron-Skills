@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aaron's Portfolio</title>
-  <!-- Google Fonts: Roboto for body and Playfair Display for impactful quotes -->
+  <!-- Google Fonts: Roboto for body and Playfair Display for the quote -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     /* Default (Light) Theme Variables */
@@ -59,7 +59,7 @@
       font-size: 2.8rem;
       margin-bottom: 0.3rem;
     }
-    /* Impactful Quote styled with Playfair Display and bold emphasis */
+    /* Quote styled with a different font & bold emphasis */
     .quote {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem;
@@ -238,10 +238,10 @@
     <a href="#projects">Projects</a>
   </nav>
   <div class="container">
-    <!-- Biography Section (Expanded with powerful language) -->
+    <!-- Biography Section -->
     <div class="bubble" id="biography">
       <h2>Biography</h2>
-      <p>Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. I harness <strong>innovative</strong> coding skills and a deep <strong>love for AI</strong> to create solutions that unite people and drive <strong>transformative change</strong>. My work is an act of love: a commitment to empower communities, elevate technology, and spark a future where every breakthrough <strong>inspires hope</strong> and <strong>unlocks potential</strong>. I believe in building bridges with code and fueling progress with <strong>heart</strong> and <strong>purpose</strong>.</p>
+      <p>Hello, I'm <strong>Aaron</strong>—a <strong>passionate</strong> developer with over 8 years of experience. Beyond my technical expertise in Python, AI, and full‑stack solutions, I possess <strong>secret strengths</strong> that fuel my creative vision. My deep <strong>love for AI</strong> drives me to build innovative technologies designed for the <strong>betterment</strong> of all people—unifying diverse communities and empowering individuals to achieve their full potential. I create with <strong>heart</strong> and <strong>purpose</strong>, believing that every breakthrough is an act of love and a beacon for the future of work.</p>
     </div>
     <!-- AI Agent Section -->
     <div class="bubble ai-agent-container" id="ai-agent">
@@ -255,7 +255,7 @@
         </iframe>
       </div>
     </div>
-    <!-- LinkedIn Newsletters & Articles Section (Paginated: 5 per page) -->
+    <!-- LinkedIn Newsletters & Articles Section (Paginated) -->
     <div class="bubble" id="newsletters">
       <h2>LinkedIn Newsletters &amp; Articles</h2>
       <div class="filter-controls" id="newsletters-tabs">
@@ -271,13 +271,13 @@
         <button id="newsletters-next">Next</button>
       </div>
     </div>
-    <!-- Skills Section (Assumed 100+ items; searchable list) -->
+    <!-- Skills Section (Assuming 100+ items; use search to filter) -->
     <div class="bubble" id="skills">
       <h2>Skills</h2>
       <input type="text" id="skills-search" placeholder="Search skills..." />
       <ul id="skills-list"></ul>
     </div>
-    <!-- Licenses & Certifications Section (Paginated: 10 per page) -->
+    <!-- Licenses & Certifications Section (Paginated, 10 per page) -->
     <div class="bubble" id="certifications">
       <h2>Licenses &amp; Certifications</h2>
       <div class="filter-controls" id="certs-tabs">
@@ -295,7 +295,7 @@
         <button id="certs-next">Next</button>
       </div>
     </div>
-    <!-- Projects Section (Paginated: 5 per page) -->
+    <!-- Projects Section (Paginated, 5 per page) -->
     <div class="bubble" id="projects">
       <h2>Projects</h2>
       <div class="filter-controls" id="projects-tabs">
@@ -326,57 +326,51 @@
       document.documentElement.setAttribute('data-theme', newTheme);
     });
 
-    /* ================================================
-       Sample Data Arrays (Replace these with actual LinkedIn data)
-       ================================================ */
-    // Sample Newsletters & Articles (5 items per page)
+    /* =======================
+       Sample Data Arrays
+       (Replace these with your actual LinkedIn data)
+       ======================= */
     const newslettersData = [
-      { category: 'newsletter', title: 'AI Chatbot Insights Newsletter', description: 'Published weekly | 340 subscribers', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/' },
+      { category: 'newsletter', title: 'AI Chatbot Insights Newsletter', description: 'Published weekly | 340 subscribers', link: '#' },
       { category: 'article', title: 'Three AI Mega-Trends Shaping Technology, Healthcare, and Society (2025–2035)', description: '38 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/' },
       { category: 'article', title: 'Unlocking the Power of AI: Insights into ML, Python Automation, and RAG', description: '2 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/newsletter/' },
       { category: 'article', title: 'How AI is Revolutionizing Cancer Treatment: A Deep Dive', description: '20 min read', link: 'https://www.linkedin.com/in/r-aaron-graham/recent-activity/articles/' },
-      { category: 'newsletter', title: 'Newsletter Example 2', description: 'Sample description', link: '#' }
-      // ... add more as needed
+      { category: 'newsletter', title: 'Newsletter Example 2', description: 'Sample description', link: '#' },
+      // ... add more items as needed
     ];
-    // Sample Skills (Assume 100+ items)
     const skillsData = [
-      { title: 'Python Programming' },
-      { title: 'ETL Pipeline Development' },
-      { title: 'SQL Data Transformation' },
-      { title: 'Data Validation & Quality Assurance' },
-      { title: 'Process Optimization' },
-      { title: 'Automation' },
-      { title: 'Data Integration' }
-      // ... add more skills up to 100+ items
+      { category: 'programming', title: 'Python Development: 8+ years' },
+      { category: 'ai', title: 'Generative AI & LLMs: GPT-4, Claude, LangChain' },
+      { category: 'ai', title: 'Retrieval-Augmented Generation (RAG)' },
+      { category: 'ai', title: 'Vector Databases: Pinecone, ChromaDB' },
+      { category: 'automation', title: 'AI-Driven Chatbots & Automation' },
+      { category: 'fullstack', title: 'Full Stack & DevOps: AWS, Azure, Flask, Django, React, Docker, Kubernetes, CI/CD' },
+      // ... simulate 100+ items here
     ];
-    // Sample Certifications (Paginated: 10 per page, assume 351 items)
     const certificationsData = [
       { category: 'ml', title: 'Machine Learning Specialization, Stanford', hours: '120 hrs' },
       { category: 'llmops', title: 'LLMOps Specialization, Duke', hours: '80 hrs' },
       { category: 'cloud', title: 'Generative AI, Google Cloud', hours: '60 hrs' },
-      { category: 'testing', title: 'Test Automation & API Testing', hours: '50 hrs' }
-      // ... add more up to 351 items
+      { category: 'testing', title: 'Test Automation & API Testing', hours: '50 hrs' },
+      // ... add up to 351 items
     ];
-    // Sample Projects (Paginated: 5 per page, assume 54 items)
     const projectsData = [
-      { category: 'automation ai', title: '10228.2 – SO Post NEP', description: 'Optimized the service order processing system following the Network Enhancement Program (NEP). Developed automated ETL workflows using Python and SQL to transform and migrate order data, ensuring seamless integration and improved order accuracy. Enhanced data validation processes to minimize errors.', skills: ['Python Programming', 'ETL Pipeline Development', 'SQL Data Transformation', 'Data Validation & Quality Assurance', 'Process Optimization', 'Automation', 'Data Integration'], period: 'Jan 2016 - Nov 2023', company: 'Frontier Communications' },
-      { category: 'automation ai', title: '12052 – Tech Initiated Provisioning', description: 'Optimized the provisioning process by implementing technology-driven solutions that empowered field technicians and automated service initiation. Developed Python scripts and integrated SQL data checks to streamline workflows.', skills: ['Python Programming', 'Automation & Scripting', 'SQL Data Manipulation', 'ETL Pipeline Development', 'Process Optimization', 'Data Validation & Quality Assurance', 'Workflow Automation'], period: 'Jan 2016 - Nov 2023', company: 'Frontier Communications' },
-      { category: 'automation fullstack', title: '12112.4 – Enhanced Bonded Automation', description: 'Developed enhanced automation processes for bonded network configurations to streamline provisioning and boost throughput using Python scripting, SQL validation, and network tools.', skills: ['Python Programming', 'SQL Data Validation', 'ETL Pipeline Development', 'Process Automation', 'Network Configuration', 'Troubleshooting & Debugging', 'Data Integration'], period: 'Jan 2016 - Nov 2023', company: 'Frontier Communications' },
-      { category: 'automation', title: '12190.2 – Self Install', description: 'Developed and implemented a self-installation process empowering customers to independently activate telecommunications services. Automated integration using Python and SQL-based data pipelines.', skills: ['Python Programming', 'SQL Data Manipulation', 'ETL Pipeline Development', 'Process Automation', 'User Interface Integration', 'Data Validation & Quality Assurance', 'Troubleshooting & Debugging'], period: 'Jan 2016 - Nov 2023', company: 'Frontier Communications' },
-      { category: 'data', title: '12790 – Connected Line Cards but No Billing Info', description: 'Resolved critical discrepancies by reconciling connected line cards missing billing info. Developed ETL pipelines in Python and SQL to cross-reference inventory with billing records, ensuring every active line card was billed accurately.', skills: ['Python Programming', 'SQL Data Manipulation', 'ETL Pipeline Development', 'Data Integration', 'Data Validation & Quality Assurance', 'Process Automation', 'Troubleshooting'], period: 'Jan 2016 - Nov 2023', company: 'Frontier Communications' }
-      // ... add more up to 54 items
+      { category: 'chatbots ai', title: 'Amie SEL Chatbot', description: 'An AI-powered chatbot.' },
+      { category: 'automation ai', title: 'SecureChatRAG', description: 'A secure retrieval-augmented generation system.' },
+      { category: 'automation fullstack', title: 'Automation Workflow Tools', description: 'Scripts to automate business processes.' },
+      // ... add up to 54 items
     ];
 
-    /* ================================================
+    /* =======================
        Generic Pagination Rendering Function
-       ================================================ */
+       ======================= */
     function renderPaginatedSection(data, containerId, page, itemsPerPage, currentFilter, searchTerm, pageInfoId) {
       const container = document.getElementById(containerId);
       container.innerHTML = '';
       let filtered = data.filter(item => {
-        const titleMatch = item.title.toLowerCase().includes(searchTerm);
-        const descMatch = item.description ? item.description.toLowerCase().includes(searchTerm) : false;
-        return (currentFilter === 'all' || item.category.includes(currentFilter)) && (titleMatch || descMatch);
+        return (currentFilter === 'all' || item.category.includes(currentFilter)) &&
+               (item.title.toLowerCase().includes(searchTerm) ||
+                (item.description && item.description.toLowerCase().includes(searchTerm)));
       });
       const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
       const start = (page - 1) * itemsPerPage;
@@ -384,5 +378,115 @@
       items.forEach(item => {
         const div = document.createElement('div');
         div.className = 'item';
-        div.style.marginBottom = '1rem';
-        // For projects, show extended description
+        div.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>${item.description ? ' — ' + item.description : ''}${item.hours ? ' (' + item.hours + ')' : ''}`;
+        container.appendChild(div);
+      });
+      document.getElementById(pageInfoId).innerText = `Page ${page} of ${totalPages}`;
+      return totalPages;
+    }
+
+    /* =======================
+       Pagination Variables
+       ======================= */
+    let newslettersPage = 1, certsPage = 1, projectsPage = 1;
+    const newslettersPerPage = 5, certsPerPage = 10, projectsPerPage = 5;
+
+    /* =======================
+       Render Functions for Each Section
+       ======================= */
+    function renderNewsletters() {
+      const activeButton = document.querySelector('#newsletters-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('newsletters-search').value.toLowerCase();
+      const totalPages = renderPaginatedSection(newslettersData, 'newsletters-container', newslettersPage, newslettersPerPage, currentFilter, searchTerm, 'newsletters-page-info');
+      return totalPages;
+    }
+    function renderCerts() {
+      const activeButton = document.querySelector('#certs-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('certs-search').value.toLowerCase();
+      const totalPages = renderPaginatedSection(certificationsData, 'certs-container', certsPage, certsPerPage, currentFilter, searchTerm, 'certs-page-info');
+      return totalPages;
+    }
+    function renderProjects() {
+      const activeButton = document.querySelector('#projects-tabs button.active');
+      const currentFilter = activeButton ? activeButton.getAttribute('data-filter') : 'all';
+      const searchTerm = document.getElementById('projects-search').value.toLowerCase();
+      const totalPages = renderPaginatedSection(projectsData, 'projects-container', projectsPage, projectsPerPage, currentFilter, searchTerm, 'projects-page-info');
+      return totalPages;
+    }
+    function renderSkills() {
+      const searchTerm = document.getElementById('skills-search').value.toLowerCase();
+      const container = document.getElementById('skills-list');
+      container.innerHTML = '';
+      const filtered = skillsData.filter(item => item.title.toLowerCase().includes(searchTerm));
+      filtered.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item.title;
+        container.appendChild(li);
+      });
+    }
+
+    /* =======================
+       Setup Tab Event Listeners for Each Section
+       ======================= */
+    function setupTabs(tabsContainerId, renderFunction) {
+      const tabsContainer = document.getElementById(tabsContainerId);
+      const buttons = tabsContainer.querySelectorAll('button');
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          buttons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          // Reset to page 1 on filter change
+          if(tabsContainerId === 'newsletters-tabs') newslettersPage = 1;
+          if(tabsContainerId === 'certs-tabs') certsPage = 1;
+          if(tabsContainerId === 'projects-tabs') projectsPage = 1;
+          renderFunction();
+        });
+      });
+    }
+    setupTabs('newsletters-tabs', renderNewsletters);
+    setupTabs('certs-tabs', renderCerts);
+    setupTabs('projects-tabs', renderProjects);
+
+    /* =======================
+       Setup Search Event Listeners
+       ======================= */
+    document.getElementById('newsletters-search').addEventListener('input', renderNewsletters);
+    document.getElementById('certs-search').addEventListener('input', renderCerts);
+    document.getElementById('projects-search').addEventListener('input', renderProjects);
+    document.getElementById('skills-search').addEventListener('input', renderSkills);
+
+    /* =======================
+       Setup Pagination Button Event Listeners
+       ======================= */
+    document.getElementById('newsletters-prev').addEventListener('click', () => {
+      if(newslettersPage > 1) { newslettersPage--; renderNewsletters(); }
+    });
+    document.getElementById('newsletters-next').addEventListener('click', () => {
+      const totalPages = renderNewsletters();
+      if(newslettersPage < totalPages) { newslettersPage++; renderNewsletters(); }
+    });
+    document.getElementById('certs-prev').addEventListener('click', () => {
+      if(certsPage > 1) { certsPage--; renderCerts(); }
+    });
+    document.getElementById('certs-next').addEventListener('click', () => {
+      const totalPages = renderCerts();
+      if(certsPage < totalPages) { certsPage++; renderCerts(); }
+    });
+    document.getElementById('projects-prev').addEventListener('click', () => {
+      if(projectsPage > 1) { projectsPage--; renderProjects(); }
+    });
+    document.getElementById('projects-next').addEventListener('click', () => {
+      const totalPages = renderProjects();
+      if(projectsPage < totalPages) { projectsPage++; renderProjects(); }
+    });
+
+    // Initial Render
+    renderNewsletters();
+    renderCerts();
+    renderProjects();
+    renderSkills();
+  </script>
+</body>
+</html>
