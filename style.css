@@ -120,6 +120,7 @@ nav a.active {
 
 /* Container for bubbles */
 .container {
+  flex: 1;
   max-width: 960px;
   margin: 2rem auto;
   padding: 1rem;
@@ -127,7 +128,26 @@ nav a.active {
   flex-wrap: wrap;
   gap: 2rem;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+}
+
+/* Biography & AI Agent containers */
+#biography,
+#ai-agent {
+  flex: 0 0 100%;
+  max-width: 800px;
+  background: var(--accent-bg);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  overflow: auto;
+  margin: 0 auto;
+}
+#biography {
+  min-height: 300px;
+}
+#ai-agent {
+  min-height: 400px;
 }
 
 /* Universal bubble style */
@@ -237,6 +257,11 @@ footer {
   #theme-toggle {
     font-size: 0.8rem;
     padding: 0.3rem 0.7rem;
+  }
+  #biography,
+  #ai-agent {
+    max-width: 100%;
+    min-height: auto;
   }
   .bubble.certifications {
     font-size: 1.25rem;
